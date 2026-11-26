@@ -1,0 +1,146 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<title>Inadimplência com a Atendas</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700;800&amp;display=swap">
+<style>
+body{margin:0}
+a{color:#9DD8FF}a:hover{color:#FFFFFF}
+</style>
+</helmet>
+<div style="min-height: 1700px; background: #0E1A33; font-family: Figtree, Arial, sans-serif; color: #EEF3FA; padding: 32px 32px 56px; box-sizing: border-box">
+  <div style="max-width: 1380px; margin: 0 auto; display: flex; flex-direction: column; gap: 20px">
+
+    <header style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-end; gap: 16px">
+      <div style="display: flex; flex-direction: column; gap: 4px">
+        <h1 style="margin: 0; font-size: 30px; font-weight: 800; letter-spacing: -0.5px">Inadimplência com a Atendas</h1>
+        <p style="margin: 0; font-size: 15px; color: #A3B4D1">Franquias com boletos da Atendas em aberto, notificadas pelo Financeiro. Não é o Projeto de Adimplência do Cartão de TODOS.</p>
+      </div>
+      <div style="display: flex; flex-wrap: wrap; gap: 10px; align-items: center">
+        <span style="font-size: 14px; color: #A3B4D1">Lista de novembro recebida em 05/11</span>
+        <button type="button" style="min-height: 44px; padding: 0 16px; border: 1px solid #2C4677; border-radius: 10px; background: #15264A; color: #EEF3FA; font: inherit; font-weight: 600; cursor: pointer">Importar lista do Financeiro</button>
+      </div>
+    </header>
+
+    <section aria-label="Números do mês" style="display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 12px">
+      <sc-for list="{{numeros}}" as="n" hint-placeholder-count="5">
+        <div style="background: #15264A; border: 1px solid #243A66; border-radius: 14px; padding: 16px 18px; display: flex; flex-direction: column; gap: 4px">
+          <span style="font-size: 14px; font-weight: 600; color: #A3B4D1">{{n.nome}}</span>
+          <span style="font-size: 28px; font-weight: 800">{{n.valor}}</span>
+          <span style="font-size: 13px; color: #A3B4D1">{{n.detalhe}}</span>
+        </div>
+      </sc-for>
+    </section>
+
+    <div style="display: flex; flex-wrap: wrap; gap: 20px; align-items: flex-start">
+      <section aria-labelledby="h-lista" style="flex: 999 1 640px; min-width: 0; background: #15264A; border: 1px solid #243A66; border-radius: 14px; padding: 22px; display: flex; flex-direction: column; gap: 14px">
+        <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: baseline; gap: 10px">
+          <h2 id="h-lista" style="margin: 0; font-size: 18px; font-weight: 700">Franquias notificadas em novembro</h2>
+          <span style="font-size: 13px; color: #A3B4D1">Andamento: Recebida, Em contato, Acordo, Regularizada. À parte: Encaminhada ao Jurídico.</span>
+        </div>
+        <div style="overflow-x: auto">
+          <div role="table" data-tag="table" style="display: table; width: 100%; min-width: 820px; border-collapse: collapse; font-size: 14px">
+            <div role="rowgroup" data-tag="thead" style="display: table-header-group; "><div role="row" data-tag="tr" style="display: table-row; text-align: left; color: #A3B4D1; font-size: 13px">
+              <div role="columnheader" data-tag="th" style="display: table-cell; font-weight: 600; padding: 0 12px 10px 0; font-weight: 600; border-bottom: 1px solid #243A66">Franquia</div>
+              <div role="columnheader" data-tag="th" style="display: table-cell; font-weight: 600; padding: 0 12px 10px; font-weight: 600; border-bottom: 1px solid #243A66">Em aberto</div>
+              <div role="columnheader" data-tag="th" style="display: table-cell; font-weight: 600; padding: 0 12px 10px; font-weight: 600; border-bottom: 1px solid #243A66">Situação</div>
+              <div role="columnheader" data-tag="th" style="display: table-cell; font-weight: 600; padding: 0 0 10px 12px; font-weight: 600; border-bottom: 1px solid #243A66">Próxima ação</div>
+            </div></div>
+            <div role="rowgroup" data-tag="tbody" style="display: table-row-group; ">
+              <sc-for list="{{linhas}}" as="l" hint-placeholder-count="8">
+                <div role="row" data-tag="tr" style="display: table-row; ">
+                  <div role="cell" data-tag="td" style="display: table-cell; padding: 0; border-bottom: 1px solid #1E3360">
+                    <button type="button" onClick="{{l.pick}}" style="width: 100%; text-align: left; min-height: 56px; padding: 10px 12px 10px 0; border: 0; background: transparent; font: inherit; color: #EEF3FA; cursor: pointer; display: flex; flex-direction: column; gap: 2px">
+                      <b style="color: {{l.corNome}}">{{l.franquia}}</b><span style="font-size: 13px; color: #A3B4D1">{{l.cs}}</span>
+                    </button>
+                  </div>
+                  <div role="cell" data-tag="td" style="display: table-cell; padding: 10px 12px; border-bottom: 1px solid #1E3360"><div style="display: flex; flex-direction: column; gap: 2px"><b>{{l.valor}}</b><span style="font-size: 13px; color: #A3B4D1">{{l.faturas}}</span></div></div>
+                  <div role="cell" data-tag="td" style="display: table-cell; padding: 10px 12px; border-bottom: 1px solid #1E3360"><span style="font-size: 13px; font-weight: 700; color: {{l.cor}}; background: {{l.fundo}}; padding: 3px 10px; border-radius: 999px; white-space: nowrap">{{l.situacao}}</span></div>
+                  <div role="cell" data-tag="td" style="display: table-cell; padding: 10px 0 10px 12px; border-bottom: 1px solid #1E3360"><div style="display: flex; flex-direction: column; gap: 2px"><span>{{l.acao}}</span><span style="font-size: 13px; color: {{l.corData}}; font-weight: {{l.pesoData}}">{{l.data}}</span></div></div>
+                </div>
+              </sc-for>
+            </div>
+          </div>
+        </div>
+        <p style="margin: 0; font-size: 13px; color: #A3B4D1">Valores de exemplo. A CS registra cada contato no Registrar atendimento com o assunto "Inadimplência com a Atendas", e ele aparece aqui.</p>
+      </section>
+
+      <section aria-labelledby="h-trat" style="flex: 1 1 380px; min-width: 0; background: #15264A; border: 2px solid #0077B6; border-radius: 14px; padding: 22px; display: flex; flex-direction: column; gap: 14px">
+        <div style="display: flex; flex-direction: column; gap: 4px">
+          <h2 id="h-trat" style="margin: 0; font-size: 18px; font-weight: 800">CDT Uberlândia</h2>
+          <span style="font-size: 14px; color: #A3B4D1">2 faturas em aberto (setembro e outubro), R$ [valor]</span>
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 0">
+          <sc-for list="{{historico}}" as="h" hint-placeholder-count="5">
+            <div style="display: grid; grid-template-columns: 52px minmax(0, 1fr); gap: 10px; padding: 10px 0; border-top: 1px solid #1E3360; font-size: 14px">
+              <b>{{h.data}}</b>
+              <div style="display: flex; flex-direction: column; gap: 2px"><span style="font-weight: 600">{{h.titulo}}</span><span style="color: #A3B4D1; font-size: 13px">{{h.detalhe}}</span></div>
+            </div>
+          </sc-for>
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 8px; padding: 12px 14px; border-radius: 10px; background: #2A2A44; border: 1px solid #7A5232">
+          <b style="font-size: 14px; color: #F7B98A">Promessa vence em 22/11</b>
+          <span style="font-size: 13px; color: #C6D3E6">Se não pagar, o portal avisa a CS e sugere encaminhar ao Jurídico.</span>
+        </div>
+        <div style="display: flex; flex-wrap: wrap; gap: 8px">
+          <a href="Registrar.dc.html" style="display: inline-flex; align-items: center; min-height: 44px; padding: 0 16px; border-radius: 10px; background: #0077B6; color: #FFFFFF; font-weight: 700; text-decoration: none">Registrar contato</a>
+          <button type="button" style="min-height: 44px; padding: 0 14px; border: 1px solid #2C4677; border-radius: 10px; background: #15264A; color: #EEF3FA; font: inherit; font-weight: 600; cursor: pointer">Marcar como regularizada</button>
+          <button type="button" style="min-height: 44px; padding: 0 14px; border: 1px solid #2C4677; border-radius: 10px; background: #15264A; color: #EEF3FA; font: inherit; font-weight: 600; cursor: pointer">Encaminhar ao Jurídico</button>
+        </div>
+        <p style="margin: 0; font-size: 13px; color: #A3B4D1; border-top: 1px solid #1E3360; padding-top: 12px">Enquanto houver boleto em aberto, a franquia aparece em risco na saúde. Franquias do Cartão de TODOS seguem com novas oportunidades normalmente; clientes de outras redes precisam de aprovação da gestão.</p>
+      </section>
+    </div>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":1700}}'>
+class Component extends DCLogic {
+  constructor(props) { super(props); this.state = { sel: 'CDT Uberlândia' }; }
+  renderVals() {
+    const st = {
+      'Recebida': ['#C6D3E6', '#1B2E58'], 'Em contato': ['#AFC0F7', 'rgba(48,84,204,0.32)'], 'Acordo': ['#F7B98A', 'rgba(233,134,47,0.22)'],
+      'Regularizada': ['#6FDCCB', 'rgba(14,159,142,0.22)'], 'Encaminhada ao Jurídico': ['#F6A3A9', 'rgba(217,64,74,0.24)'],
+    };
+    const lin = [
+      ['CDT Uberlândia', 'Giovanna', 'R$ [valor]', '2 faturas: set e out', 'Acordo', 'Confirmar pagamento prometido', '22/11', false],
+      ['CDT Piracicaba', 'Camila', 'R$ [valor]', '2 faturas: set e out', 'Em contato', 'Reunião com o sócio', '20/11', false],
+      ['CDT Belém', 'Maria Eduarda', 'R$ [valor]', '1 fatura: out', 'Em contato', 'Retornar sobre a contestação do valor', 'atrasada desde 17/11', true],
+      ['CDT Maringá', 'Rafaela', 'R$ [valor]', '1 fatura: out', 'Recebida', 'Primeiro contato', 'atrasada desde 12/11', true],
+      ['CDT Teresina', 'Maria Eduarda', 'R$ [valor]', '3 faturas: ago a out', 'Acordo', 'Primeira parcela do acordo', '25/11', false],
+      ['CDT Osasco', 'Giovanna', 'R$ [valor]', '1 fatura: out', 'Regularizada', 'Pago em 14/11', '', false],
+      ['CDT Contagem', 'Giovanna', 'R$ [valor]', '1 fatura: out', 'Regularizada', 'Pago em 10/11', '', false],
+      ['CDT Vitória', 'Jéssica', 'R$ [valor]', '1 fatura: out', 'Regularizada', 'Pago em 09/11', '', false],
+    ];
+    return {
+      numeros: [
+        { nome: 'Notificadas', valor: 11, detalhe: 'pelo Financeiro em 05/11' },
+        { nome: 'Regularizadas', valor: 6, detalhe: '55%. Meta da área: 70%' },
+        { nome: 'Em acordo', valor: 2, detalhe: 'com data de pagamento' },
+        { nome: 'Sem tratativa', valor: 1, detalhe: 'notificada e sem contato há 14 dias' },
+        { nome: 'Valor em aberto', valor: 'R$ [valor]', detalhe: 'era R$ [valor] em 05/11' },
+      ],
+      linhas: lin.map(([franquia, cs, valor, faturas, situacao, acao, data, atrasada]) => ({
+        franquia, cs, valor, faturas, situacao, acao, data,
+        cor: st[situacao][0], fundo: st[situacao][1],
+        corData: atrasada ? '#F6A3A9' : '#A3B4D1', pesoData: atrasada ? '700' : '400',
+        corNome: franquia === this.state.sel ? '#0077B6' : '#EEF3FA',
+        pick: () => this.setState({ sel: franquia }) })),
+      historico: [
+        { data: '05/11', titulo: 'Notificada pelo Financeiro', detalhe: '2 faturas em aberto, setembro e outubro' },
+        { data: '06/11', titulo: 'WhatsApp para o sócio', detalhe: 'Giovanna. Sem retorno' },
+        { data: '10/11', titulo: 'Reunião gravada com o sócio', detalhe: 'Explicou atraso no caixa. Prometeu quitar as duas faturas até 22/11' },
+        { data: '10/11', titulo: 'Acordo registrado', detalhe: 'Pagamento único em 22/11. Financeiro avisado' },
+        { data: '19/11', titulo: 'Lembrete enviado', detalhe: 'Mensagem automática três dias antes do vencimento' },
+      ],
+    };
+  }
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,152 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<title>Carga de franquias</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700;800&amp;display=swap">
+<style>
+body{margin:0}
+a{color:#9DD8FF}a:hover{color:#FFFFFF}
+</style>
+</helmet>
+<div style="min-height: 3000px; background: #0E1A33; font-family: Figtree, Arial, sans-serif; color: #EEF3FA; padding: 32px 32px 56px; box-sizing: border-box">
+  <div style="max-width: 1380px; margin: 0 auto; display: flex; flex-direction: column; gap: 18px">
+    <a href="Config.dc.html" style="align-self: flex-start; display: inline-flex; align-items: center; gap: 6px; min-height: 44px; font-size: 15px; font-weight: 600; text-decoration: none">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 18l-6-6 6-6"></path></svg>
+      Configurações
+    </a>
+    <header style="display: flex; flex-direction: column; gap: 4px">
+      <h1 style="margin: 0; font-size: 30px; font-weight: 800; letter-spacing: -0.5px">Carga de franquias</h1>
+      <p style="margin: 0; font-size: 15px; color: #A3B4D1">Importe a carteira de uma vez pela planilha ou adicione as franquias que forem entrando, uma a uma.</p>
+    </header>
+    <div role="tablist" aria-label="Carga de franquias" style="display: flex; flex-wrap: wrap; gap: 4px; border-bottom: 1px solid #243A66">
+      <sc-for list="{{abas}}" as="a" hint-placeholder-count="3">
+        <sc-if value="{{a.ativo}}" hint-placeholder-val="{{false}}"><button type="button" role="tab" aria-selected="true" onClick="{{a.pick}}" style="min-height: 44px; padding: 0 16px; border: 0; border-bottom: 3px solid #00A8F0; background: transparent; color: #EEF3FA; font: inherit; font-size: 15px; font-weight: 700; cursor: pointer">{{a.nome}}</button></sc-if>
+        <sc-if value="{{a.inativo}}" hint-placeholder-val="{{true}}"><button type="button" role="tab" aria-selected="false" onClick="{{a.pick}}" style="min-height: 44px; padding: 0 16px; border: 0; border-bottom: 3px solid transparent; background: transparent; color: #A3B4D1; font: inherit; font-size: 15px; font-weight: 500; cursor: pointer">{{a.nome}}</button></sc-if>
+      </sc-for>
+    </div>    <sc-if value="{{verImp}}" hint-placeholder-val="{{true}}">
+      <div style="display: flex; flex-direction: column; gap: 16px">
+        <section style="background: #15264A; border: 1px solid #243A66; border-radius: 14px; padding: 22px; display: flex; flex-direction: column; gap: 14px">
+          <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 10px">
+            <div style="display: flex; flex-direction: column; gap: 2px"><h2 style="margin: 0; font-size: 18px; font-weight: 700">1. Baixe o modelo da planilha</h2><span style="font-size: 14px; color: #A3B4D1">Um arquivo com três abas. Uma linha por franquia, por pessoa e por produto, ligadas pelo código da unidade.</span></div>
+            <button type="button" style="display: inline-flex; align-items: center; justify-content: center; min-height: 44px; padding: 0 18px; border: 0; border-radius: 10px; background: #0077B6; color: #FFFFFF; font: inherit; font-weight: 700; cursor: pointer; text-decoration: none">Baixar modelo (.xlsx)</button>
+          </div>
+          <div style="border: 1px solid #243A66; border-radius: 12px; padding: 14px 16px; display: flex; flex-direction: column; gap: 4px">
+            <div style="display: flex; justify-content: space-between; align-items: baseline; gap: 10px; flex-wrap: wrap"><b style="font-size: 15px">Aba Franquias</b><span style="font-size: 13px; color: #A3B4D1">uma linha por unidade</span></div>
+            <div style="display: grid; grid-template-columns: 200px 110px minmax(0, 1fr); gap: 10px; padding: 6px 0; font-size: 12px; font-weight: 700; color: #A3B4D1"><span>Coluna</span><span>Preenchimento</span><span>Exemplo</span></div>
+            <div style="display: grid; grid-template-columns: 200px 110px minmax(0, 1fr); gap: 10px; padding: 8px 0; border-top: 1px solid #243A66; font-size: 14px"><b>Código da unidade</b><span style="color: #F7B98A; font-weight: 600">Obrigatório</span><span style="color: #C6D3E6">CDT-1043</span></div><div style="display: grid; grid-template-columns: 200px 110px minmax(0, 1fr); gap: 10px; padding: 8px 0; border-top: 1px solid #243A66; font-size: 14px"><b>Nome da franquia</b><span style="color: #F7B98A; font-weight: 600">Obrigatório</span><span style="color: #C6D3E6">CDT Santo André</span></div><div style="display: grid; grid-template-columns: 200px 110px minmax(0, 1fr); gap: 10px; padding: 8px 0; border-top: 1px solid #243A66; font-size: 14px"><b>Rede</b><span style="color: #F7B98A; font-weight: 600">Obrigatório</span><span style="color: #C6D3E6">Cartão de TODOS</span></div><div style="display: grid; grid-template-columns: 200px 110px minmax(0, 1fr); gap: 10px; padding: 8px 0; border-top: 1px solid #243A66; font-size: 14px"><b>Regional</b><span style="color: #F7B98A; font-weight: 600">Obrigatório</span><span style="color: #C6D3E6">SP Minas</span></div><div style="display: grid; grid-template-columns: 200px 110px minmax(0, 1fr); gap: 10px; padding: 8px 0; border-top: 1px solid #243A66; font-size: 14px"><b>Cidade e UF</b><span style="color: #F7B98A; font-weight: 600">Obrigatório</span><span style="color: #C6D3E6">Santo André, SP</span></div><div style="display: grid; grid-template-columns: 200px 110px minmax(0, 1fr); gap: 10px; padding: 8px 0; border-top: 1px solid #243A66; font-size: 14px"><b>CNPJ</b><span style="color: #F7B98A; font-weight: 600">Obrigatório</span><span style="color: #C6D3E6">00.000.000/0001-00</span></div><div style="display: grid; grid-template-columns: 200px 110px minmax(0, 1fr); gap: 10px; padding: 8px 0; border-top: 1px solid #243A66; font-size: 14px"><b>CS responsável</b><span style="color: #F7B98A; font-weight: 600">Obrigatório</span><span style="color: #C6D3E6">giovanna@atendas.com.br</span></div><div style="display: grid; grid-template-columns: 200px 110px minmax(0, 1fr); gap: 10px; padding: 8px 0; border-top: 1px solid #243A66; font-size: 14px"><b>Início com a Atendas</b><span style="color: #A3B4D1; font-weight: 600">Opcional</span><span style="color: #C6D3E6">01/11/2026 (sem data: hoje)</span></div><div style="display: grid; grid-template-columns: 200px 110px minmax(0, 1fr); gap: 10px; padding: 8px 0; border-top: 1px solid #243A66; font-size: 14px"><b>Fase da jornada</b><span style="color: #A3B4D1; font-weight: 600">Opcional</span><span style="color: #C6D3E6">Onboarding (padrão para franquia nova)</span></div>
+          </div>
+          <div style="border: 1px solid #243A66; border-radius: 12px; padding: 14px 16px; display: flex; flex-direction: column; gap: 4px">
+            <div style="display: flex; justify-content: space-between; align-items: baseline; gap: 10px; flex-wrap: wrap"><b style="font-size: 15px">Aba Equipe</b><span style="font-size: 13px; color: #A3B4D1">uma linha por pessoa da franquia</span></div>
+            <div style="display: grid; grid-template-columns: 200px 110px minmax(0, 1fr); gap: 10px; padding: 6px 0; font-size: 12px; font-weight: 700; color: #A3B4D1"><span>Coluna</span><span>Preenchimento</span><span>Exemplo</span></div>
+            <div style="display: grid; grid-template-columns: 200px 110px minmax(0, 1fr); gap: 10px; padding: 8px 0; border-top: 1px solid #243A66; font-size: 14px"><b>Código da unidade</b><span style="color: #F7B98A; font-weight: 600">Obrigatório</span><span style="color: #C6D3E6">CDT-1043</span></div><div style="display: grid; grid-template-columns: 200px 110px minmax(0, 1fr); gap: 10px; padding: 8px 0; border-top: 1px solid #243A66; font-size: 14px"><b>Nome</b><span style="color: #F7B98A; font-weight: 600">Obrigatório</span><span style="color: #C6D3E6">Ricardo Lima</span></div><div style="display: grid; grid-template-columns: 200px 110px minmax(0, 1fr); gap: 10px; padding: 8px 0; border-top: 1px solid #243A66; font-size: 14px"><b>Função</b><span style="color: #F7B98A; font-weight: 600">Obrigatório</span><span style="color: #C6D3E6">Gerente, Sócio, Coordenador, Financeiro, Assessor ou Operação final</span></div><div style="display: grid; grid-template-columns: 200px 110px minmax(0, 1fr); gap: 10px; padding: 8px 0; border-top: 1px solid #243A66; font-size: 14px"><b>WhatsApp</b><span style="color: #A3B4D1; font-weight: 600">Opcional</span><span style="color: #C6D3E6">(11) 90000-0000</span></div><div style="display: grid; grid-template-columns: 200px 110px minmax(0, 1fr); gap: 10px; padding: 8px 0; border-top: 1px solid #243A66; font-size: 14px"><b>E-mail</b><span style="color: #A3B4D1; font-weight: 600">Opcional</span><span style="color: #C6D3E6">gerente@cdtsantoandre.com.br</span></div><div style="display: grid; grid-template-columns: 200px 110px minmax(0, 1fr); gap: 10px; padding: 8px 0; border-top: 1px solid #243A66; font-size: 14px"><b>Decide compras</b><span style="color: #A3B4D1; font-weight: 600">Opcional</span><span style="color: #C6D3E6">Sim ou Não</span></div>
+          </div>
+          <div style="border: 1px solid #243A66; border-radius: 12px; padding: 14px 16px; display: flex; flex-direction: column; gap: 4px">
+            <div style="display: flex; justify-content: space-between; align-items: baseline; gap: 10px; flex-wrap: wrap"><b style="font-size: 15px">Aba Produtos</b><span style="font-size: 13px; color: #A3B4D1">uma linha por produto contratado</span></div>
+            <div style="display: grid; grid-template-columns: 200px 110px minmax(0, 1fr); gap: 10px; padding: 6px 0; font-size: 12px; font-weight: 700; color: #A3B4D1"><span>Coluna</span><span>Preenchimento</span><span>Exemplo</span></div>
+            <div style="display: grid; grid-template-columns: 200px 110px minmax(0, 1fr); gap: 10px; padding: 8px 0; border-top: 1px solid #243A66; font-size: 14px"><b>Código da unidade</b><span style="color: #F7B98A; font-weight: 600">Obrigatório</span><span style="color: #C6D3E6">CDT-1043</span></div><div style="display: grid; grid-template-columns: 200px 110px minmax(0, 1fr); gap: 10px; padding: 8px 0; border-top: 1px solid #243A66; font-size: 14px"><b>Produto</b><span style="color: #F7B98A; font-weight: 600">Obrigatório</span><span style="color: #C6D3E6">WhatsApp API Oficial</span></div><div style="display: grid; grid-template-columns: 200px 110px minmax(0, 1fr); gap: 10px; padding: 8px 0; border-top: 1px solid #243A66; font-size: 14px"><b>Plano</b><span style="color: #A3B4D1; font-weight: 600">Opcional</span><span style="color: #C6D3E6">Commit Silver (só WhatsApp API Oficial e RCS)</span></div><div style="display: grid; grid-template-columns: 200px 110px minmax(0, 1fr); gap: 10px; padding: 8px 0; border-top: 1px solid #243A66; font-size: 14px"><b>Setup</b><span style="color: #A3B4D1; font-weight: 600">Opcional</span><span style="color: #C6D3E6">R$ 500</span></div><div style="display: grid; grid-template-columns: 200px 110px minmax(0, 1fr); gap: 10px; padding: 8px 0; border-top: 1px solid #243A66; font-size: 14px"><b>Mensalidade</b><span style="color: #A3B4D1; font-weight: 600">Opcional</span><span style="color: #C6D3E6">R$ 700</span></div><div style="display: grid; grid-template-columns: 200px 110px minmax(0, 1fr); gap: 10px; padding: 8px 0; border-top: 1px solid #243A66; font-size: 14px"><b>Data do contrato</b><span style="color: #F7B98A; font-weight: 600">Obrigatório</span><span style="color: #C6D3E6">01/11/2026</span></div><div style="display: grid; grid-template-columns: 200px 110px minmax(0, 1fr); gap: 10px; padding: 8px 0; border-top: 1px solid #243A66; font-size: 14px"><b>Contratado por</b><span style="color: #F7B98A; font-weight: 600">Obrigatório</span><span style="color: #C6D3E6">Franquia ou Franqueadora</span></div>
+          </div>
+        </section>
+        <section style="background: #15264A; border: 1px solid #243A66; border-radius: 14px; padding: 22px; display: flex; flex-direction: column; gap: 14px">
+          <h2 style="margin: 0; font-size: 18px; font-weight: 700">2. Envie a planilha preenchida</h2>
+          <div style="border: 2px dashed #2C4677; border-radius: 12px; padding: 30px; display: flex; flex-direction: column; align-items: center; gap: 8px; text-align: center">
+            <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="#00A8F0" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 16V4M7 9l5-5 5 5"></path><path d="M4 16v4h16v-4"></path></svg>
+            <b>Arraste o arquivo aqui ou</b>
+            <label style="display: inline-flex; align-items: center; justify-content: center; min-height: 44px; padding: 0 16px; border: 1px solid #2C4677; border-radius: 10px; background: #1B2E58; color: #EEF3FA; font: inherit; font-weight: 600; cursor: pointer; text-decoration: none">Escolher arquivo<input type="file" style="position: absolute; left: -9999px"></label>
+            <span style="font-size: 13px; color: #A3B4D1">Excel ou CSV. Franquias que já existem pelo código são atualizadas, não duplicadas.</span>
+          </div>
+          <div style="display: flex; align-items: center; gap: 10px; font-size: 14px; color: #C6D3E6"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#6FDCCB" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5 9-10"></path></svg>carteira_inicial_cs.xlsx, enviada agora</div>
+        </section>
+        <section style="background: #15264A; border: 1px solid #243A66; border-radius: 14px; padding: 22px; display: flex; flex-direction: column; gap: 14px">
+          <h2 style="margin: 0; font-size: 18px; font-weight: 700">3. Confira antes de importar</h2>
+          <div style="display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 10px">
+            <div style="border: 1px solid #243A66; border-radius: 12px; padding: 14px"><span style="font-size: 13px; color: #A3B4D1">Franquias novas</span><br><b style="font-size: 26px">398</b></div>
+            <div style="border: 1px solid #243A66; border-radius: 12px; padding: 14px"><span style="font-size: 13px; color: #A3B4D1">Franquias atualizadas</span><br><b style="font-size: 26px">8</b></div>
+            <div style="border: 1px solid #243A66; border-radius: 12px; padding: 14px"><span style="font-size: 13px; color: #A3B4D1">Pessoas e produtos</span><br><b style="font-size: 26px">1.512</b></div>
+            <div style="border: 1px solid #7A3A4A; border-radius: 12px; padding: 14px"><span style="font-size: 13px; color: #A3B4D1">Linhas com erro</span><br><b style="font-size: 26px; color: #F6A3A9">5</b></div>
+          </div>
+          <div style="display: flex; flex-direction: column">
+            <div style="display: grid; grid-template-columns: 90px 110px 160px minmax(0, 1fr); gap: 10px; padding-bottom: 8px; border-bottom: 1px solid #243A66; font-size: 13px; font-weight: 600; color: #A3B4D1"><span>Linha</span><span>Aba</span><span>Coluna</span><span>O que corrigir</span></div>
+            <sc-for list="{{erros}}" as="e" hint-placeholder-count="5">
+              <div style="display: grid; grid-template-columns: 90px 110px 160px minmax(0, 1fr); gap: 10px; padding: 9px 0; border-bottom: 1px solid #243A66; font-size: 14px"><b>{{e.l}}</b><span>{{e.aba}}</span><span>{{e.col}}</span><span style="color: #F6A3A9">{{e.msg}}</span></div>
+            </sc-for>
+          </div>
+          <div style="display: flex; flex-wrap: wrap; justify-content: flex-end; gap: 10px">
+            <button type="button" style="display: inline-flex; align-items: center; justify-content: center; min-height: 44px; padding: 0 16px; border: 1px solid #2C4677; border-radius: 10px; background: #1B2E58; color: #EEF3FA; font: inherit; font-weight: 600; cursor: pointer; text-decoration: none">Baixar planilha com os erros</button>
+            <button type="button" style="display: inline-flex; align-items: center; justify-content: center; min-height: 44px; padding: 0 18px; border: 0; border-radius: 10px; background: #0077B6; color: #FFFFFF; font: inherit; font-weight: 700; cursor: pointer; text-decoration: none">Importar as 406 franquias válidas</button>
+          </div>
+          <span style="font-size: 13px; color: #A3B4D1">As linhas com erro ficam de fora. Corrija na planilha e envie de novo: só elas serão importadas.</span>
+        </section>
+      </div>
+    </sc-if>    <sc-if value="{{verMan}}" hint-placeholder-val="{{false}}">
+      <section style="background: #15264A; border: 1px solid #243A66; border-radius: 14px; padding: 22px; display: flex; flex-direction: column; gap: 14px">
+        <div style="display: flex; flex-direction: column; gap: 2px"><h2 style="margin: 0; font-size: 18px; font-weight: 700">Adicionar uma franquia</h2><span style="font-size: 14px; color: #A3B4D1">Para as unidades que forem entrando aos poucos. Ela entra em Onboarding e aparece na carteira da CS escolhida.</span></div>
+        <div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px">
+          <label style="display: flex; flex-direction: column; gap: 6px; font-size: 14px; font-weight: 600; color: #EEF3FA">Nome da franquia<input type="text" placeholder="CDT Santo André" style="min-height: 44px; padding: 0 12px; border: 1px solid #2C4677; border-radius: 8px; font: inherit; font-weight: 400; color: #EEF3FA; background: #1B2E58"></label>
+          <label style="display: flex; flex-direction: column; gap: 6px; font-size: 14px; font-weight: 600; color: #EEF3FA">Código da unidade<input type="text" placeholder="CDT-1043" style="min-height: 44px; padding: 0 12px; border: 1px solid #2C4677; border-radius: 8px; font: inherit; font-weight: 400; color: #EEF3FA; background: #1B2E58"></label>
+          <label style="display: flex; flex-direction: column; gap: 6px; font-size: 14px; font-weight: 600; color: #EEF3FA">CNPJ<input type="text" placeholder="00.000.000/0001-00" style="min-height: 44px; padding: 0 12px; border: 1px solid #2C4677; border-radius: 8px; font: inherit; font-weight: 400; color: #EEF3FA; background: #1B2E58"></label>
+          <label style="display: flex; flex-direction: column; gap: 6px; font-size: 14px; font-weight: 600; color: #EEF3FA">Rede<select style="min-height: 44px; padding: 0 12px; border: 1px solid #2C4677; border-radius: 8px; font: inherit; font-weight: 400; color: #EEF3FA; background: #1B2E58"><option>Cartão de TODOS</option><option>Outra rede</option></select></label>
+          <label style="display: flex; flex-direction: column; gap: 6px; font-size: 14px; font-weight: 600; color: #EEF3FA">Regional<select style="min-height: 44px; padding: 0 12px; border: 1px solid #2C4677; border-radius: 8px; font: inherit; font-weight: 400; color: #EEF3FA; background: #1B2E58"><option>SP Minas</option><option>SP Interior</option><option>Centro Sul</option><option>Costa Leste</option><option>Equatorial</option></select></label>
+          <label style="display: flex; flex-direction: column; gap: 6px; font-size: 14px; font-weight: 600; color: #EEF3FA">Cidade e UF<input type="text" placeholder="Santo André, SP" style="min-height: 44px; padding: 0 12px; border: 1px solid #2C4677; border-radius: 8px; font: inherit; font-weight: 400; color: #EEF3FA; background: #1B2E58"></label>
+          <label style="display: flex; flex-direction: column; gap: 6px; font-size: 14px; font-weight: 600; color: #EEF3FA">CS responsável<select style="min-height: 44px; padding: 0 12px; border: 1px solid #2C4677; border-radius: 8px; font: inherit; font-weight: 400; color: #EEF3FA; background: #1B2E58"><option>Giovanna</option><option>Camila</option><option>Rafaela</option><option>Jéssica</option><option>Maria Eduarda</option></select></label>
+          <label style="display: flex; flex-direction: column; gap: 6px; font-size: 14px; font-weight: 600; color: #EEF3FA">Início com a Atendas<input type="date" value="2026-11-19" style="min-height: 44px; padding: 0 12px; border: 1px solid #2C4677; border-radius: 8px; font: inherit; font-weight: 400; color: #EEF3FA; background: #1B2E58"></label>
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 10px; border-top: 1px solid #243A66; padding-top: 14px">
+          <b style="font-size: 15px">Equipe</b>
+          <div style="display: grid; grid-template-columns: 2fr 1.2fr 1.4fr 1.6fr; gap: 10px">
+            <label style="display: flex; flex-direction: column; gap: 6px; font-size: 14px; font-weight: 600; color: #EEF3FA">Nome<input type="text" placeholder="Nome" style="min-height: 44px; padding: 0 12px; border: 1px solid #2C4677; border-radius: 8px; font: inherit; font-weight: 400; color: #EEF3FA; background: #1B2E58"></label>
+            <label style="display: flex; flex-direction: column; gap: 6px; font-size: 14px; font-weight: 600; color: #EEF3FA">Função<select style="min-height: 44px; padding: 0 12px; border: 1px solid #2C4677; border-radius: 8px; font: inherit; font-weight: 400; color: #EEF3FA; background: #1B2E58"><option>Gerente</option><option>Sócio</option><option>Coordenador</option><option>Financeiro</option><option>Assessor</option><option>Operação final</option></select></label>
+            <label style="display: flex; flex-direction: column; gap: 6px; font-size: 14px; font-weight: 600; color: #EEF3FA">WhatsApp<input type="tel" style="min-height: 44px; padding: 0 12px; border: 1px solid #2C4677; border-radius: 8px; font: inherit; font-weight: 400; color: #EEF3FA; background: #1B2E58"></label>
+            <label style="display: flex; flex-direction: column; gap: 6px; font-size: 14px; font-weight: 600; color: #EEF3FA">E-mail<input type="email" style="min-height: 44px; padding: 0 12px; border: 1px solid #2C4677; border-radius: 8px; font: inherit; font-weight: 400; color: #EEF3FA; background: #1B2E58"></label>
+          </div>
+          <button type="button" style="align-self: flex-start; display: inline-flex; align-items: center; justify-content: center; min-height: 44px; padding: 0 16px; border: 1px solid #2C4677; border-radius: 10px; background: #1B2E58; color: #EEF3FA; font: inherit; font-weight: 600; cursor: pointer; text-decoration: none">Adicionar outra pessoa</button>
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 10px; border-top: 1px solid #243A66; padding-top: 14px">
+          <b style="font-size: 15px">Produtos contratados</b>
+          <div style="display: grid; grid-template-columns: 2fr 1.4fr 1fr 1fr 1.2fr; gap: 10px">
+            <label style="display: flex; flex-direction: column; gap: 6px; font-size: 14px; font-weight: 600; color: #EEF3FA">Produto<select style="min-height: 44px; padding: 0 12px; border: 1px solid #2C4677; border-radius: 8px; font: inherit; font-weight: 400; color: #EEF3FA; background: #1B2E58"><option>WhatsApp API Oficial</option><option>RCS</option><option>Telefonia</option><option>Portabilidade</option><option>Discadora/URA Reversa</option><option>CRM</option><option>IA de Voz</option></select></label>
+            <label style="display: flex; flex-direction: column; gap: 6px; font-size: 14px; font-weight: 600; color: #EEF3FA">Plano<select style="min-height: 44px; padding: 0 12px; border: 1px solid #2C4677; border-radius: 8px; font: inherit; font-weight: 400; color: #EEF3FA; background: #1B2E58"><option>Commit Silver</option><option>Commit Bronze</option><option>Commit Gold</option><option>Commit Platinum</option></select></label>
+            <label style="display: flex; flex-direction: column; gap: 6px; font-size: 14px; font-weight: 600; color: #EEF3FA">Setup<input type="text" placeholder="R$" style="min-height: 44px; padding: 0 12px; border: 1px solid #2C4677; border-radius: 8px; font: inherit; font-weight: 400; color: #EEF3FA; background: #1B2E58"></label>
+            <label style="display: flex; flex-direction: column; gap: 6px; font-size: 14px; font-weight: 600; color: #EEF3FA">Mensalidade<input type="text" placeholder="R$" style="min-height: 44px; padding: 0 12px; border: 1px solid #2C4677; border-radius: 8px; font: inherit; font-weight: 400; color: #EEF3FA; background: #1B2E58"></label>
+            <label style="display: flex; flex-direction: column; gap: 6px; font-size: 14px; font-weight: 600; color: #EEF3FA">Contrato<input type="date" style="min-height: 44px; padding: 0 12px; border: 1px solid #2C4677; border-radius: 8px; font: inherit; font-weight: 400; color: #EEF3FA; background: #1B2E58"></label>
+          </div>
+          <button type="button" style="align-self: flex-start; display: inline-flex; align-items: center; justify-content: center; min-height: 44px; padding: 0 16px; border: 1px solid #2C4677; border-radius: 10px; background: #1B2E58; color: #EEF3FA; font: inherit; font-weight: 600; cursor: pointer; text-decoration: none">Adicionar outro produto</button>
+          <span style="font-size: 13px; color: #A3B4D1">Franquia nova sem produto direto também pode entrar: KYC e Projeto de Adimplência vêm da franqueadora.</span>
+        </div>
+        <div style="display: flex; justify-content: flex-end; gap: 10px"><button type="button" style="display: inline-flex; align-items: center; justify-content: center; min-height: 44px; padding: 0 16px; border: 1px solid #2C4677; border-radius: 10px; background: #1B2E58; color: #EEF3FA; font: inherit; font-weight: 600; cursor: pointer; text-decoration: none">Cancelar</button><a href="Onboarding.dc.html" style="display: inline-flex; align-items: center; justify-content: center; min-height: 44px; padding: 0 18px; border: 0; border-radius: 10px; background: #0077B6; color: #FFFFFF; font: inherit; font-weight: 700; cursor: pointer; text-decoration: none">Salvar e abrir o onboarding</a></div>
+      </section>
+    </sc-if>    <sc-if value="{{verHist}}" hint-placeholder-val="{{false}}">
+      <section style="background: #15264A; border: 1px solid #243A66; border-radius: 14px; padding: 22px; display: flex; flex-direction: column; gap: 14px">
+        <h2 style="margin: 0; font-size: 18px; font-weight: 700">Cargas anteriores</h2>
+        <sc-for list="{{cargas}}" as="c" hint-placeholder-count="4">
+          <div style="display: grid; grid-template-columns: 130px minmax(0, 1fr) 200px 130px; gap: 12px; align-items: center; border-top: 1px solid #243A66; padding-top: 10px; font-size: 14px"><b>{{c.d}}</b><span>{{c.arq}}</span><span style="color: #C6D3E6">{{c.res}}</span><span style="color: #A3B4D1">{{c.quem}}</span></div>
+        </sc-for>
+      </section>
+    </sc-if>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":3000}}'>
+class Component extends DCLogic {
+  constructor(props) { super(props); this.state = { aba: 'Importar planilha' }; }
+  renderVals() {
+    const abasDe = (lista, atual, set) => lista.map((a) => ({ nome: a, ativo: a === atual, inativo: a !== atual, pick: () => set(a) }));
+    const a = this.state.aba;
+    return {
+      abas: abasDe(['Importar planilha', 'Adicionar uma franquia', 'Cargas anteriores'], a, (x) => this.setState({ aba: x })),
+      verImp: a === 'Importar planilha', verMan: a === 'Adicionar uma franquia', verHist: a === 'Cargas anteriores',
+      erros: [['14', 'Franquias', 'CNPJ', 'CNPJ com 13 dígitos'], ['87', 'Franquias', 'Regional', '"Sul" não existe; use Centro Sul'], ['203', 'Franquias', 'CS responsável', 'E-mail sem usuário no portal'], ['51', 'Equipe', 'Função', '"Supervisor" não é uma função; use Coordenador'], ['330', 'Produtos', 'Plano', 'Commit só vale para WhatsApp API Oficial e RCS']]
+        .map(([l, aba, col, msg]) => ({ l, aba, col, msg })),
+      cargas: [['19/11/2026', 'carteira_inicial_cs.xlsx', '406 franquias, 5 erros', 'Amanda'], ['20/11/2026', 'novas_franquias_nov.xlsx', '3 franquias', 'Amanda'], ['21/11/2026', 'Manual: CDT Santo André', '1 franquia', 'Giovanna']]
+        .map(([d, arq, res, quem]) => ({ d, arq, res, quem })),
+    };
+  }
+}
+</script>
+</body>
+</html>

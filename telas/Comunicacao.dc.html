@@ -1,0 +1,153 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<title>Comunicação com as franquias</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700;800&amp;display=swap">
+<style>
+body{margin:0}
+a{color:#9DD8FF}a:hover{color:#FFFFFF}
+</style>
+</helmet>
+<div style="min-height: 1700px; background: #0E1A33; font-family: Figtree, Arial, sans-serif; color: #EEF3FA; padding: 32px 32px 56px; box-sizing: border-box">
+  <div style="max-width: 1380px; margin: 0 auto; display: flex; flex-direction: column; gap: 20px">
+
+    <header style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-end; gap: 16px">
+      <div style="display: flex; flex-direction: column; gap: 4px">
+        <h1 style="margin: 0; font-size: 30px; font-weight: 800; letter-spacing: -0.5px">Comunicação com as franquias</h1>
+        <p style="margin: 0; font-size: 15px; color: #A3B4D1">Novembro de 2026. No máximo duas comunicações por dia para as mesmas franquias. <a href="AgendaRede.dc.html">Ver agenda das franqueadoras</a></p>
+      </div>
+      <a href="NovaComunicacao.dc.html" style="display: inline-flex; align-items: center; gap: 8px; min-height: 44px; padding: 0 20px; border-radius: 10px; background: #0077B6; color: #FFFFFF; font-weight: 700; text-decoration: none">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"></path></svg>
+        Nova comunicação
+      </a>
+    </header>
+
+    <section aria-label="Números do mês" style="display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px">
+      <div style="background: #15264A; border: 1px solid #243A66; border-radius: 14px; padding: 16px 18px; display: flex; flex-direction: column; gap: 4px"><span style="font-size: 14px; font-weight: 600; color: #A3B4D1">Enviadas</span><span style="font-size: 28px; font-weight: 800">11 <span style="font-size: 15px; font-weight: 500; color: #A3B4D1">de 17 planejadas</span></span><span style="font-size: 13px; color: #A3B4D1">Yungas 6, WhatsApp 4, RCS 1</span></div>
+      <div style="background: #15264A; border: 1px solid #243A66; border-radius: 14px; padding: 16px 18px; display: flex; flex-direction: column; gap: 4px"><span style="font-size: 14px; font-weight: 600; color: #A3B4D1">OUVIMOS VOCÊ</span><span style="font-size: 28px; font-weight: 800">3 <span style="font-size: 15px; font-weight: 500; color: #A3B4D1">de 4 semanas</span></span><span style="font-size: 13px; color: #A3B4D1">Toda semana até 08/12. A próxima é 24/11</span></div>
+      <div style="background: #15264A; border: 1px solid #243A66; border-radius: 14px; padding: 16px 18px; display: flex; flex-direction: column; gap: 4px"><span style="font-size: 14px; font-weight: 600; color: #A3B4D1">Esperando vídeo</span><span style="font-size: 28px; font-weight: 800">1</span><span style="font-size: 13px; color: #A3B4D1">Atendas Vision, em roteiro</span></div>
+      <div style="background: #15264A; border: 1px solid #7A3A4A; border-radius: 14px; padding: 16px 18px; display: flex; flex-direction: column; gap: 4px"><span style="font-size: 14px; font-weight: 600; color: #A3B4D1">Dias acima do limite</span><span style="font-size: 28px; font-weight: 800; color: #F6A3A9">1</span><span style="font-size: 13px; color: #A3B4D1">18/11, três comunicações</span></div>
+    </section>
+
+    <div style="display: flex; flex-wrap: wrap; gap: 20px; align-items: flex-start">
+      <section aria-labelledby="h-cal" style="flex: 999 1 720px; min-width: 0; background: #15264A; border: 1px solid #243A66; border-radius: 14px; padding: 22px; display: flex; flex-direction: column; gap: 12px">
+        <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 10px">
+          <h2 id="h-cal" style="margin: 0; font-size: 18px; font-weight: 700">Calendário</h2>
+          <div style="display: flex; flex-wrap: wrap; gap: 14px; font-size: 13px; color: #C6D3E6">
+            <span style="display: inline-flex; align-items: center; gap: 6px"><span style="width: 12px; height: 12px; border-radius: 3px; background: #0E9F8E"></span>Enviada</span>
+            <span style="display: inline-flex; align-items: center; gap: 6px"><span style="width: 12px; height: 12px; border-radius: 3px; background: #5B7BE0"></span>Aprovada</span>
+            <span style="display: inline-flex; align-items: center; gap: 6px"><span style="width: 12px; height: 12px; border-radius: 3px; background: #E9862F"></span>Em produção</span>
+            <span style="display: inline-flex; align-items: center; gap: 6px"><span style="width: 12px; height: 12px; border-radius: 3px; border: 2px solid #8696AB; box-sizing: border-box"></span>Planejada</span>
+          </div>
+        </div>
+        <div style="display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 6px; font-size: 13px; color: #A3B4D1; font-weight: 600">
+          <span>Segunda</span><span>Terça</span><span>Quarta</span><span>Quinta</span><span>Sexta</span>
+        </div>
+        <div style="display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 6px">
+          <sc-for list="{{dias}}" as="d" hint-placeholder-count="25">
+            <div style="min-height: 112px; border: {{d.borda}}; border-radius: 10px; padding: 8px; display: flex; flex-direction: column; gap: 5px; background: {{d.fundo}}">
+              <div style="display: flex; justify-content: space-between; align-items: center; gap: 4px">
+                <span style="font-size: 13px; font-weight: 700; color: {{d.corNum}}">{{d.num}}</span>
+                <span style="font-size: 11px; font-weight: 700; color: #F6A3A9">{{d.aviso}}</span>
+              </div>
+              <sc-for list="{{d.itens}}" as="c" hint-placeholder-count="1">
+                <button type="button" onClick="{{c.pick}}" style="text-align: left; border: {{c.borda}}; border-left: 4px solid {{c.cor}}; border-radius: 6px; padding: 4px 6px; background: #15264A; font: inherit; font-size: 12px; line-height: 1.3; color: #EEF3FA; cursor: pointer; display: flex; flex-direction: column; gap: 1px">
+                  <b>{{c.canal}}</b><span>{{c.tema}}</span>
+                </button>
+              </sc-for>
+            </div>
+          </sc-for>
+        </div>
+      </section>
+
+      <section aria-labelledby="h-com" style="flex: 1 1 360px; min-width: 0; background: #15264A; border: 2px solid #0077B6; border-radius: 14px; padding: 22px; display: flex; flex-direction: column; gap: 14px">
+        <div style="display: flex; flex-direction: column; gap: 4px">
+          <span style="font-size: 13px; font-weight: 700; color: #A3B4D1">{{sel.data}}, {{sel.canal}}</span>
+          <h2 id="h-com" style="margin: 0; font-size: 20px; font-weight: 800">{{sel.tema}}</h2>
+          <span style="font-size: 14px; color: #C6D3E6">Público: {{sel.publico}}</span>
+          <span style="font-size: 14px; color: #C6D3E6">Responsável: {{sel.resp}}</span>
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 6px">
+          <span style="font-size: 14px; font-weight: 700">Andamento</span>
+          <div style="display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 4px">
+            <sc-for list="{{sel.etapas}}" as="e" hint-placeholder-count="4">
+              <div style="display: flex; flex-direction: column; gap: 4px; font-size: 12px; font-weight: 600; color: {{e.cor}}">
+                <span style="height: 6px; border-radius: 99px; background: {{e.barra}}"></span>{{e.nome}}
+              </div>
+            </sc-for>
+          </div>
+        </div>
+        <sc-if value="{{sel.temVideo}}" hint-placeholder-val="{{false}}">
+          <div style="display: flex; flex-direction: column; gap: 4px; padding: 12px 14px; border-radius: 10px; background: #2A2A44; border: 1px solid #7A5232">
+            <b style="font-size: 14px; color: #F7B98A">Depende de vídeo da Atendas Vision</b>
+            <span style="font-size: 13px; color: #C6D3E6">"Como usar a discadora no dia a dia": em roteiro, entrega prevista para 21/11.</span>
+          </div>
+        </sc-if>
+        <sc-if value="{{sel.enviada}}" hint-placeholder-val="{{false}}">
+          <div style="display: flex; flex-direction: column; gap: 4px; padding: 12px 14px; border-radius: 10px; background: rgba(14,159,142,0.22)">
+            <b style="font-size: 14px; color: #6FDCCB">Resultado</b>
+            <span style="font-size: 13px; color: #C6D3E6">{{sel.resultado}}</span>
+          </div>
+        </sc-if>
+        <div style="display: flex; flex-wrap: wrap; gap: 8px">
+          <button type="button" style="min-height: 44px; padding: 0 16px; border: 0; border-radius: 10px; background: #0077B6; color: #FFFFFF; font: inherit; font-weight: 700; cursor: pointer">Editar</button>
+          <button type="button" style="min-height: 44px; padding: 0 14px; border: 1px solid #2C4677; border-radius: 10px; background: #15264A; color: #EEF3FA; font: inherit; font-weight: 600; cursor: pointer">Mudar de dia</button>
+        </div>
+        <p style="margin: 0; font-size: 13px; color: #A3B4D1; border-top: 1px solid #1E3360; padding-top: 12px">Clique em outra comunicação do calendário para ver o detalhe. As comunicações enviadas aparecem na ficha de cada franquia que recebeu.</p>
+      </section>
+    </div>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":1700}}'>
+class Component extends DCLogic {
+  constructor(props) { super(props); this.state = { sel: 'c9' }; }
+  renderVals() {
+    const COR = { Enviada: '#6FDCCB', Aprovada: '#AFC0F7', 'Em produção': '#E9862F', Planejada: '#8696AB' };
+    const C = [
+      ['c1', 3, 'Yungas', 'OUVIMOS VOCÊ: dores de KYC', 'Enviada', 'Todas as franquias', 'Amanda', 'Lida por 71% das franquias'],
+      ['c2', 4, 'WhatsApp', 'Vídeo: sua fatura no Minha Atendas', 'Enviada', 'Franquias com acesso liberado', 'Giovanna', 'Entregue a 188, lida por 142'],
+      ['c3', 5, 'RCS', 'Convite para a POC RCS', 'Enviada', 'Franquias interessadas', 'Amanda', '14 responderam, 4 entraram'],
+      ['c4', 10, 'Yungas', 'OUVIMOS VOCÊ: semana 2', 'Enviada', 'Todas as franquias', 'Amanda', 'Lida por 66% das franquias'],
+      ['c5', 11, 'Yungas', 'Manutenção programada da plataforma', 'Enviada', 'Todas as franquias', 'Camila', 'Lida por 74% das franquias'],
+      ['c6', 11, 'WhatsApp', 'Lembrete: treinamento de KYC', 'Enviada', 'Franquias com KYC', 'Jéssica', 'Entregue a 301, 38 inscritas'],
+      ['c7', 17, 'Yungas', 'OUVIMOS VOCÊ: semana 3', 'Enviada', 'Todas as franquias', 'Amanda', 'Lida por 63% das franquias'],
+      ['c8', 18, 'Yungas', 'Novidades da versão 2.4.0', 'Enviada', 'Todas as franquias', 'Rafaela', 'Lida por 58% das franquias'],
+      ['c10', 18, 'WhatsApp', 'Minha Atendas: acesso liberado, lote 2', 'Enviada', '96 franquias do lote 2', 'Maria Eduarda', 'Entregue a 96, 51 fizeram o primeiro acesso'],
+      ['c11', 18, 'RCS', 'Resultados parciais da POC', 'Enviada', 'Franquias da POC', 'Amanda', 'Lida por 4 de 4'],
+      ['c12', 19, 'WhatsApp', 'Pesquisa rápida de satisfação', 'Aprovada', 'Todas as franquias', 'Camila', ''],
+      ['c13', 24, 'Yungas', 'OUVIMOS VOCÊ: semana 4', 'Planejada', 'Todas as franquias', 'Amanda', ''],
+      ['c9', 24, 'WhatsApp', 'Vídeo: discadora no dia a dia', 'Em produção', 'Franquias com discadora', 'Giovanna', ''],
+      ['c14', 26, 'Yungas', 'Fechamento do mês: faturas no Minha Atendas', 'Planejada', 'Todas as franquias', 'Rafaela', ''],
+      ['c15', 30, 'WhatsApp', 'Agenda de dezembro', 'Planejada', 'Todas as franquias', 'Amanda', ''],
+    ];
+    const pick = (id) => () => this.setState({ sel: id });
+    const nums = [2,3,4,5,6, 9,10,11,12,13, 16,17,18,19,20, 23,24,25,26,27, 30,31,32,33,34];
+    const dias = nums.map((n) => {
+      const itens = C.filter((c) => c[1] === n).map((c) => ({ canal: c[2], tema: c[3], cor: COR[c[4]],
+        borda: c[0] === this.state.sel ? '2px solid #0077B6' : '1px solid #243A66', pick: pick(c[0]) }));
+      const fora = n > 30;
+      return { num: fora ? '' : n, itens, aviso: itens.length > 2 ? '3 no dia' : '',
+        borda: itens.length > 2 ? '2px solid #7A3A4A' : (n === 19 ? '2px solid #0077B6' : '1px solid #1E3360'),
+        fundo: fora ? '#112042' : (n < 19 ? '#112042' : '#FFFFFF'), corNum: n === 19 ? '#0077B6' : '#A3B4D1' };
+    });
+    const s = C.find((c) => c[0] === this.state.sel);
+    const ordem = ['Planejada', 'Em produção', 'Aprovada', 'Enviada'];
+    const idx = ordem.indexOf(s[4]);
+    return {
+      dias,
+      sel: { data: String(s[1]).padStart(2, '0') + '/11', canal: s[2], tema: s[3], publico: s[5], resp: s[6], resultado: s[7],
+        enviada: s[4] === 'Enviada', temVideo: s[0] === 'c9',
+        etapas: ordem.map((e, i) => ({ nome: e, barra: i <= idx ? '#0077B6' : '#1E3360', cor: i <= idx ? '#EEF3FA' : '#8FA3C4' })) },
+    };
+  }
+}
+</script>
+</body>
+</html>

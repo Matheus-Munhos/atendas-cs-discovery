@@ -1,0 +1,308 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<title>Nova comunicação</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700;800&amp;display=swap">
+<style>
+body{margin:0}
+a{color:#9DD8FF}a:hover{color:#FFFFFF}
+</style>
+</helmet>
+<div style="min-height: 3500px; background: #0E1A33; font-family: Figtree, Arial, sans-serif; color: #EEF3FA; padding: 32px 32px 56px; box-sizing: border-box">
+  <div style="max-width: 1240px; margin: 0 auto; display: flex; flex-direction: column; gap: 18px">
+    <a href="Comunicacao.dc.html" style="align-self: flex-start; display: inline-flex; align-items: center; gap: 6px; min-height: 44px; font-size: 15px; font-weight: 600; text-decoration: none">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 18l-6-6 6-6"></path></svg>
+      Comunicação
+    </a>
+    <header style="display: flex; flex-direction: column; gap: 4px">
+      <h1 style="margin: 0; font-size: 30px; font-weight: 800; letter-spacing: -0.5px">Nova comunicação</h1>
+      <p style="margin: 0; font-size: 15px; color: #A3B4D1">Seis passos: o quê, para quem, por onde, quando, a mensagem e quem aprova. A prévia ao lado mostra como chega na franquia.</p>
+    </header>
+
+    <div style="display: flex; flex-wrap: wrap; gap: 20px; align-items: flex-start">
+      <div style="flex: 999 1 640px; min-width: 0; display: flex; flex-direction: column; gap: 16px">
+
+        <section style="background: #15264A; border: 1px solid #243A66; border-radius: 14px; padding: 22px; display: flex; flex-direction: column; gap: 14px">
+          <h2 style="margin: 0; font-size: 18px; font-weight: 700">1. O quê</h2>
+          <div style="display: grid; grid-template-columns: 2fr 1fr; gap: 12px">
+            <label style="display: flex; flex-direction: column; gap: 6px; font-size: 14px; font-weight: 600; color: #EEF3FA">Tema
+              <input type="text" value="Discadora no dia a dia" style="min-height: 44px; padding: 0 12px; border: 1px solid #2C4677; border-radius: 8px; font: inherit; font-weight: 400; color: #EEF3FA; background: #1B2E58">
+            </label>
+            <label style="display: flex; flex-direction: column; gap: 6px; font-size: 14px; font-weight: 600; color: #EEF3FA">Objetivo
+              <select style="min-height: 44px; padding: 0 12px; border: 1px solid #2C4677; border-radius: 8px; font: inherit; font-weight: 400; color: #EEF3FA; background: #1B2E58"><option>Educar sobre um produto</option><option>Informar</option><option>Lembrar</option><option>Convidar</option><option>Pesquisa</option><option>Oferta de produto</option></select>
+            </label>
+          </div>
+          <div style="display: flex; flex-direction: column; gap: 8px">
+            <span style="font-size: 14px; font-weight: 600">Frequência</span>
+            <div style="display: flex; flex-wrap: wrap; gap: 8px">
+              <sc-for list="{{freqs}}" as="c" hint-placeholder-count="3">
+                <sc-if value="{{c.ativo}}" hint-placeholder-val="{{false}}"><button type="button" onClick="{{c.pick}}" aria-pressed="true" style="min-height: 52px; padding: 6px 16px; border-radius: 10px; border: 2px solid #00A8F0; background: #163D66; color: #EEF3FA; font: inherit; text-align: left; cursor: pointer; display: flex; flex-direction: column; gap: 2px"><b style="font-size: 15px">{{c.nome}}</b><span style="font-size: 12px; color: #C6D3E6">{{c.desc}}</span></button></sc-if>
+                <sc-if value="{{c.inativo}}" hint-placeholder-val="{{true}}"><button type="button" onClick="{{c.pick}}" aria-pressed="false" style="min-height: 52px; padding: 6px 16px; border-radius: 10px; border: 1px solid #2C4677; background: #1B2E58; color: #EEF3FA; font: inherit; text-align: left; cursor: pointer; display: flex; flex-direction: column; gap: 2px"><b style="font-size: 15px">{{c.nome}}</b><span style="font-size: 12px; color: #A3B4D1">{{c.desc}}</span></button></sc-if>
+              </sc-for>
+            </div>
+          </div>
+          <sc-if value="{{recorrente}}" hint-placeholder-val="{{false}}">
+            <div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px">
+              <label style="display: flex; flex-direction: column; gap: 6px; font-size: 14px; font-weight: 600; color: #EEF3FA">Repete
+                <select style="min-height: 44px; padding: 0 12px; border: 1px solid #2C4677; border-radius: 8px; font: inherit; font-weight: 400; color: #EEF3FA; background: #1B2E58"><option>Toda semana</option><option>A cada 15 dias</option><option>Todo mês</option></select>
+              </label>
+              <label style="display: flex; flex-direction: column; gap: 6px; font-size: 14px; font-weight: 600; color: #EEF3FA">No dia
+                <select style="min-height: 44px; padding: 0 12px; border: 1px solid #2C4677; border-radius: 8px; font: inherit; font-weight: 400; color: #EEF3FA; background: #1B2E58"><option>Segunda-feira</option><option>Terça-feira</option><option>Quarta-feira</option><option>Quinta-feira</option><option>Sexta-feira</option></select>
+              </label>
+              <label style="display: flex; flex-direction: column; gap: 6px; font-size: 14px; font-weight: 600; color: #EEF3FA">Até
+                <input type="date" value="2026-12-08" style="min-height: 44px; padding: 0 12px; border: 1px solid #2C4677; border-radius: 8px; font: inherit; font-weight: 400; color: #EEF3FA; background: #1B2E58">
+              </label>
+            </div>
+            <p style="margin: 0; font-size: 13px; color: #A3B4D1">É assim que o OUVIMOS VOCÊ foi criado: um quadro fixo. O portal coloca cada edição no calendário e avisa quando uma semana fica sem envio.</p>
+          </sc-if>
+        </section>
+
+        <section style="background: #15264A; border: 1px solid #243A66; border-radius: 14px; padding: 22px; display: flex; flex-direction: column; gap: 14px">
+          <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: baseline; gap: 10px">
+            <h2 style="margin: 0; font-size: 18px; font-weight: 700">2. Para quem</h2>
+            <span style="font-size: 15px; font-weight: 700; color: #6FDCCB">{{alcance}} franquias recebem</span>
+          </div>
+          <div style="display: flex; flex-wrap: wrap; gap: 8px">
+              <sc-for list="{{publicos}}" as="c" hint-placeholder-count="3">
+                <sc-if value="{{c.ativo}}" hint-placeholder-val="{{false}}"><button type="button" onClick="{{c.pick}}" aria-pressed="true" style="min-height: 52px; padding: 6px 16px; border-radius: 10px; border: 2px solid #00A8F0; background: #163D66; color: #EEF3FA; font: inherit; text-align: left; cursor: pointer; display: flex; flex-direction: column; gap: 2px"><b style="font-size: 15px">{{c.nome}}</b><span style="font-size: 12px; color: #C6D3E6">{{c.desc}}</span></button></sc-if>
+                <sc-if value="{{c.inativo}}" hint-placeholder-val="{{true}}"><button type="button" onClick="{{c.pick}}" aria-pressed="false" style="min-height: 52px; padding: 6px 16px; border-radius: 10px; border: 1px solid #2C4677; background: #1B2E58; color: #EEF3FA; font: inherit; text-align: left; cursor: pointer; display: flex; flex-direction: column; gap: 2px"><b style="font-size: 15px">{{c.nome}}</b><span style="font-size: 12px; color: #A3B4D1">{{c.desc}}</span></button></sc-if>
+              </sc-for>
+            </div>
+          <sc-if value="{{temFiltro}}" hint-placeholder-val="{{true}}">
+            <div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px">
+              <label style="display: flex; flex-direction: column; gap: 6px; font-size: 14px; font-weight: 600; color: #EEF3FA">{{filtroRotulo}}
+                <select style="min-height: 44px; padding: 0 12px; border: 1px solid #2C4677; border-radius: 8px; font: inherit; font-weight: 400; color: #EEF3FA; background: #1B2E58"><option>{{filtroValor}}</option></select>
+              </label>
+              <label style="display: flex; flex-direction: column; gap: 6px; font-size: 14px; font-weight: 600; color: #EEF3FA">Regionais
+                <select style="min-height: 44px; padding: 0 12px; border: 1px solid #2C4677; border-radius: 8px; font: inherit; font-weight: 400; color: #EEF3FA; background: #1B2E58"><option>Todas</option><option>SP Minas</option><option>SP Interior</option><option>Centro Sul</option><option>Costa Leste</option><option>Equatorial</option></select>
+              </label>
+            </div>
+          </sc-if>
+          <div style="display: flex; flex-direction: column; gap: 8px; border-top: 1px solid #243A66; padding-top: 14px">
+            <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: baseline; gap: 8px">
+              <span style="font-size: 15px; font-weight: 700">Quem recebe dentro da franquia</span>
+              <span style="font-size: 14px; color: #A3B4D1">cerca de {{pessoas}} pessoas</span>
+            </div>
+            <div role="group" aria-label="Quem recebe" style="display: flex; flex-wrap: wrap; gap: 8px">
+              <sc-for list="{{papeis}}" as="r" hint-placeholder-count="5">
+                <button type="button" onClick="{{r.pick}}" aria-pressed="{{r.sel}}" style="min-height: 44px; padding: 0 16px; border-radius: 999px; border: {{r.borda}}; background: {{r.fundo}}; color: #EEF3FA; font: inherit; font-size: 15px; font-weight: {{r.peso}}; cursor: pointer; display: inline-flex; align-items: center; gap: 8px"><span aria-hidden="true" style="font-weight: 800; color: #00A8F0">{{r.marca}}</span>{{r.nome}}</button>
+              </sc-for>
+            </div>
+            <span style="font-size: 13px; color: #A3B4D1">Usa as pessoas cadastradas na equipe de cada franquia: franqueados são os sócios; gestores, gerentes e coordenadores; assessores e operação final têm função própria. Quem não tem a função cadastrada fica de fora, e o portal avisa quantas franquias estão nessa situação.</span>
+          </div>
+          <label style="display: flex; align-items: center; gap: 10px; min-height: 40px; font-size: 15px"><input type="checkbox" checked style="width: 18px; height: 18px; accent-color: #00A8F0"> Não enviar para franquias com pedido de cancelamento em retenção</label>
+        </section>
+
+        <section style="background: #15264A; border: 1px solid #243A66; border-radius: 14px; padding: 22px; display: flex; flex-direction: column; gap: 14px">
+          <h2 style="margin: 0; font-size: 18px; font-weight: 700">3. Por onde</h2>
+          <div style="display: flex; flex-wrap: wrap; gap: 8px">
+              <sc-for list="{{canais}}" as="c" hint-placeholder-count="3">
+                <sc-if value="{{c.ativo}}" hint-placeholder-val="{{false}}"><button type="button" onClick="{{c.pick}}" aria-pressed="true" style="min-height: 52px; padding: 6px 16px; border-radius: 10px; border: 2px solid #00A8F0; background: #163D66; color: #EEF3FA; font: inherit; text-align: left; cursor: pointer; display: flex; flex-direction: column; gap: 2px"><b style="font-size: 15px">{{c.nome}}</b><span style="font-size: 12px; color: #C6D3E6">{{c.desc}}</span></button></sc-if>
+                <sc-if value="{{c.inativo}}" hint-placeholder-val="{{true}}"><button type="button" onClick="{{c.pick}}" aria-pressed="false" style="min-height: 52px; padding: 6px 16px; border-radius: 10px; border: 1px solid #2C4677; background: #1B2E58; color: #EEF3FA; font: inherit; text-align: left; cursor: pointer; display: flex; flex-direction: column; gap: 2px"><b style="font-size: 15px">{{c.nome}}</b><span style="font-size: 12px; color: #A3B4D1">{{c.desc}}</span></button></sc-if>
+              </sc-for>
+            </div>
+          <div style="padding: 12px 14px; border-radius: 10px; background: #1B2E58; font-size: 14px; color: #C6D3E6">{{canalNota}}</div>
+          <sc-if value="{{ehWhats}}" hint-placeholder-val="{{true}}">
+            <label style="display: flex; flex-direction: column; gap: 6px; font-size: 14px; font-weight: 600; color: #EEF3FA">Modelo de mensagem aprovado
+              <select style="min-height: 44px; padding: 0 12px; border: 1px solid #2C4677; border-radius: 8px; font: inherit; font-weight: 400; color: #EEF3FA; background: #1B2E58"><option>educacao_produto_video (aprovado)</option><option>lembrete_reuniao (aprovado)</option><option>Pedir modelo novo ao time de API Oficial</option></select>
+            </label>
+          </sc-if>
+        </section>
+
+        <section style="background: #15264A; border: 1px solid #243A66; border-radius: 14px; padding: 22px; display: flex; flex-direction: column; gap: 14px">
+          <h2 style="margin: 0; font-size: 18px; font-weight: 700">4. Quando</h2>
+          <div style="display: flex; flex-direction: column; gap: 10px">
+            <div style="display: flex; align-items: center; justify-content: space-between; gap: 10px">
+              <button type="button" onClick="{{mesAnt}}" aria-label="Mês anterior" style="width: 44px; height: 44px; border-radius: 10px; border: 1px solid #2C4677; background: #1B2E58; color: #EEF3FA; font: inherit; font-size: 18px; cursor: pointer">‹</button>
+              <b style="font-size: 17px">{{mesNome}}</b>
+              <button type="button" onClick="{{mesProx}}" aria-label="Próximo mês" style="width: 44px; height: 44px; border-radius: 10px; border: 1px solid #2C4677; background: #1B2E58; color: #EEF3FA; font: inherit; font-size: 18px; cursor: pointer">›</button>
+            </div>
+            <div style="display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); gap: 6px; font-size: 13px; font-weight: 600; color: #A3B4D1; text-align: center">
+              <span>Dom</span><span>Seg</span><span>Ter</span><span>Qua</span><span>Qui</span><span>Sex</span><span>Sáb</span>
+            </div>
+            <div style="display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); gap: 6px">
+              <sc-for list="{{cal}}" as="d" hint-placeholder-count="35">
+                <button type="button" onClick="{{d.pick}}" aria-disabled="{{d.off}}" aria-pressed="{{d.sel}}" aria-label="{{d.aria}}" style="min-height: 62px; padding: 6px 4px; border-radius: 10px; border: {{d.borda}}; background: {{d.fundo}}; color: {{d.corNum}}; font: inherit; cursor: {{d.cursor}}; display: flex; flex-direction: column; align-items: center; justify-content: flex-start; gap: 4px">
+                  <b style="font-size: 15px">{{d.num}}</b>
+                  <span style="display: flex; gap: 3px">
+                    <sc-for list="{{d.pontos}}" as="pt" hint-placeholder-count="1"><span style="width: 8px; height: 8px; border-radius: 50%; background: {{pt.cor}}"></span></sc-for>
+                  </span>
+                  <span style="font-size: 11px; color: {{d.corQtd}}">{{d.qtd}}</span>
+                </button>
+              </sc-for>
+            </div>
+            <div style="display: flex; flex-wrap: wrap; gap: 14px; font-size: 13px; color: #C6D3E6">
+              <span style="display: inline-flex; align-items: center; gap: 6px"><span style="width: 8px; height: 8px; border-radius: 50%; background: #6FDCCB"></span>Comunicação enviada</span>
+              <span style="display: inline-flex; align-items: center; gap: 6px"><span style="width: 8px; height: 8px; border-radius: 50%; background: #9DB8FF"></span>Planejada</span>
+              <span>Dias que já passaram ficam bloqueados. Cada ponto é uma comunicação.</span>
+            </div>
+          </div>
+          <div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px">
+            <label style="display: flex; flex-direction: column; gap: 6px; font-size: 14px; font-weight: 600; color: #EEF3FA">Horário
+              <input type="time" value="10:00" style="min-height: 44px; padding: 0 12px; border: 1px solid #2C4677; border-radius: 8px; font: inherit; font-weight: 400; color: #EEF3FA; background: #1B2E58">
+            </label>
+          </div>
+          <div style="padding: 12px 14px; border-radius: 10px; border: 1px solid {{aviso.borda}}; background: {{aviso.fundo}}; font-size: 14px; display: flex; flex-direction: column; gap: 4px">
+            <b style="color: {{aviso.cor}}">{{aviso.titulo}}</b>
+            <span style="color: #C6D3E6">{{aviso.texto}}</span>
+          </div>
+        </section>
+
+        <section style="background: #15264A; border: 1px solid #243A66; border-radius: 14px; padding: 22px; display: flex; flex-direction: column; gap: 14px">
+          <h2 style="margin: 0; font-size: 18px; font-weight: 700">5. Mensagem</h2>
+          <label style="display: flex; flex-direction: column; gap: 6px; font-size: 14px; font-weight: 600; color: #EEF3FA">Título <span style="font-weight: 400; color: #A3B4D1">(aparece no Yungas e como chamada no RCS)</span>
+            <input type="text" value="{{titulo}}" onInput="{{digTitulo}}" style="min-height: 44px; padding: 0 12px; border: 1px solid #2C4677; border-radius: 8px; font: inherit; font-weight: 400; color: #EEF3FA; background: #1B2E58">
+          </label>
+          <div style="display: flex; flex-direction: column; gap: 6px">
+            <label for="txt-msg" style="font-size: 14px; font-weight: 600">Texto</label>
+            <div style="display: flex; flex-wrap: wrap; gap: 6px">
+              <span style="font-size: 13px; color: #A3B4D1; align-self: center">Inserir:</span>
+              <sc-for list="{{campos}}" as="c" hint-placeholder-count="4">
+                <button type="button" onClick="{{c.pick}}" style="min-height: 36px; padding: 0 10px; border-radius: 8px; border: 1px dashed #4A628F; background: transparent; color: #9DD8FF; font: inherit; font-size: 13px; font-weight: 600; cursor: pointer">{{c.nome}}</button>
+              </sc-for>
+            </div>
+            <textarea id="txt-msg" rows="6" onInput="{{digTexto}}" style="padding: 12px; border: 1px solid #2C4677; border-radius: 8px; font: inherit; font-weight: 400; line-height: 1.5; color: #EEF3FA; background: #1B2E58; resize: vertical">{{texto}}</textarea>
+            <div style="display: flex; justify-content: space-between; gap: 10px; font-size: 13px; color: #A3B4D1"><span>Os campos entre colchetes se preenchem para cada franquia e pessoa.</span><span>{{chars}} caracteres</span></div>
+          </div>
+          <div style="display: grid; grid-template-columns: 1fr 2fr; gap: 12px">
+            <label style="display: flex; flex-direction: column; gap: 6px; font-size: 14px; font-weight: 600; color: #EEF3FA">Botão de ação
+              <input type="text" value="{{botao}}" onInput="{{digBotao}}" style="min-height: 44px; padding: 0 12px; border: 1px solid #2C4677; border-radius: 8px; font: inherit; font-weight: 400; color: #EEF3FA; background: #1B2E58">
+            </label>
+            <label style="display: flex; flex-direction: column; gap: 6px; font-size: 14px; font-weight: 600; color: #EEF3FA">Link do botão
+              <input type="url" value="https://docs.atendas.com.br/discadora" style="min-height: 44px; padding: 0 12px; border: 1px solid #2C4677; border-radius: 8px; font: inherit; font-weight: 400; color: #EEF3FA; background: #1B2E58">
+            </label>
+          </div>
+          <div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px">
+            <label style="display: flex; flex-direction: column; gap: 6px; font-size: 14px; font-weight: 600; color: #EEF3FA">Vídeo da Atendas Vision
+              <select style="min-height: 44px; padding: 0 12px; border: 1px solid #2C4677; border-radius: 8px; font: inherit; font-weight: 400; color: #EEF3FA; background: #1B2E58"><option>Discadora no dia a dia (em roteiro, entrega 21/11)</option><option>Sem vídeo</option><option>Pedir vídeo novo</option></select>
+              <a href="Vision.dc.html" style="font-size: 13px; font-weight: 600">Abrir a Atendas Vision</a>
+            </label>
+            <label style="display: flex; flex-direction: column; gap: 6px; font-size: 14px; font-weight: 600; color: #EEF3FA">Imagem ou anexo
+              <input type="file" style="min-height: 44px; padding: 8px 0; font: inherit; font-weight: 400; color: #EEF3FA">
+            </label>
+          </div>
+          <label style="display: flex; flex-direction: column; gap: 6px; font-size: 14px; font-weight: 600; color: #EEF3FA">Versão por função <span style="font-weight: 400; color: #A3B4D1">(opcional)</span>
+            <select style="min-height: 44px; padding: 0 12px; border: 1px solid #2C4677; border-radius: 8px; font: inherit; font-weight: 400; color: #EEF3FA; background: #1B2E58"><option>Mesma mensagem para todos</option><option>Mensagem diferente para franqueados</option><option>Mensagem diferente para a operação final</option></select>
+          </label>
+          <div style="padding: 12px 14px; border-radius: 10px; border: 1px solid #7A5232; background: #2A2A44; font-size: 14px; color: #F7B98A; font-weight: 600">O vídeo ainda não foi entregue. A comunicação fica "Em produção" até ele chegar.</div>
+        </section>
+
+        <section style="background: #15264A; border: 1px solid #243A66; border-radius: 14px; padding: 22px; display: flex; flex-direction: column; gap: 14px">
+          <h2 style="margin: 0; font-size: 18px; font-weight: 700">6. Responsável e aprovação</h2>
+          <div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px">
+            <label style="display: flex; flex-direction: column; gap: 6px; font-size: 14px; font-weight: 600; color: #EEF3FA">Responsável
+              <select style="min-height: 44px; padding: 0 12px; border: 1px solid #2C4677; border-radius: 8px; font: inherit; font-weight: 400; color: #EEF3FA; background: #1B2E58"><option>Giovanna</option><option>Camila</option><option>Rafaela</option><option>Jéssica</option><option>Maria Eduarda</option><option>Amanda</option></select>
+            </label>
+            <label style="display: flex; flex-direction: column; gap: 6px; font-size: 14px; font-weight: 600; color: #EEF3FA">Aprovação
+              <select style="min-height: 44px; padding: 0 12px; border: 1px solid #2C4677; border-radius: 8px; font: inherit; font-weight: 400; color: #EEF3FA; background: #1B2E58"><option>Precisa da aprovação da gestão</option><option>Não precisa (comunicação de rotina)</option></select>
+            </label>
+          </div>
+          <span style="font-size: 13px; color: #A3B4D1">Depois de enviada, o resultado entra sozinho: entregues, lidas e respostas no WhatsApp e no RCS; leituras no Yungas.</span>
+          <div style="display: flex; flex-wrap: wrap; justify-content: flex-end; gap: 10px; border-top: 1px solid #243A66; padding-top: 16px">
+            <a href="Comunicacao.dc.html" style="display: inline-flex; align-items: center; min-height: 44px; padding: 0 16px; border: 1px solid #2C4677; border-radius: 10px; color: #EEF3FA; font-weight: 600; text-decoration: none">Cancelar</a>
+            <a href="Comunicacao.dc.html" style="display: inline-flex; align-items: center; min-height: 44px; padding: 0 16px; border: 1px solid #2C4677; border-radius: 10px; color: #EEF3FA; font-weight: 600; text-decoration: none">Salvar como planejada</a>
+            <a href="Comunicacao.dc.html" style="display: inline-flex; align-items: center; min-height: 44px; padding: 0 18px; border-radius: 10px; background: #0077B6; color: #FFFFFF; font-weight: 700; text-decoration: none">Enviar para aprovação</a>
+          </div>
+        </section>
+      </div>
+
+      <aside style="flex: 1 1 340px; min-width: 0; position: sticky; top: 24px; display: flex; flex-direction: column; gap: 12px">
+        <span style="font-size: 14px; font-weight: 700; color: #A3B4D1">Prévia: {{canalNome}}</span>
+        <div style="background: #0A1430; border: 1px solid #243A66; border-radius: 28px; padding: 18px 14px; display: flex; flex-direction: column; gap: 10px">
+          <div style="display: flex; align-items: center; gap: 10px; padding: 0 6px 10px; border-bottom: 1px solid #243A66">
+            <span aria-hidden="true" style="width: 36px; height: 36px; border-radius: 50%; background: #FF8946; display: grid; place-items: center; color: #FFFFFF; font-weight: 800">a</span>
+            <div style="display: flex; flex-direction: column"><b style="font-size: 14px">Atendas</b><span style="font-size: 12px; color: #A3B4D1">{{selo}}</span></div>
+          </div>
+          <div style="align-self: flex-start; max-width: 88%; background: #15264A; border-radius: 4px 14px 14px 14px; overflow: hidden">
+            <div style="height: 120px; background: linear-gradient(135deg, #385CD5, #05C2D3); display: grid; place-items: center; color: #FFFFFF; font-size: 13px; font-weight: 700">Vídeo: Discadora no dia a dia</div>
+            <p style="margin: 0; padding: 10px 12px 0; font-size: 14px; font-weight: 700">{{titulo}}</p>
+            <p style="margin: 0; padding: 6px 12px 10px; font-size: 14px; line-height: 1.45; white-space: pre-wrap">{{previa}}</p>
+            <span style="display: block; padding: 0 12px 8px; text-align: right; font-size: 11px; color: #A3B4D1">10:00</span>
+            <div style="border-top: 1px solid #243A66; padding: 10px 12px; text-align: center; color: #9DD8FF; font-size: 14px; font-weight: 700">{{botao}}</div>
+          </div>
+        </div>
+        <span style="font-size: 13px; color: #A3B4D1">Exemplo com os dados da CDT Osasco, para a gerente Renata. A prévia muda enquanto você digita.</span>
+      </aside>
+    </div>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":3500}}'>
+class Component extends DCLogic {
+  constructor(props) { super(props); this.state = { freq: 'Uma vez', pub: 'Com um produto', canal: 'Disparo de WhatsApp', dia: 25, mes: 11, papeis: ['Franqueados', 'Gestores'],
+      titulo: 'Discadora no dia a dia', botao: 'Assistir ao vídeo',
+      texto: 'Olá, [nome]! Preparamos um vídeo curto mostrando como usar a discadora no dia a dia da [franquia]. São 2 minutos que ajudam a equipe a ligar mais e perder menos tempo. Qualquer dúvida, fale com a [cs], sua CS.' }; }
+  renderVals() {
+    const st = this.state;
+    const opt = (lista, atual, key) => lista.map(([nome, desc]) => ({ nome, desc, ativo: nome === atual, inativo: nome !== atual, pick: () => this.setState({ [key]: nome }) }));
+    const PUB = { 'Todas as franquias': [406, null, null], 'Com um produto': [154, 'Produto', 'Discadora'], 'Sem um produto': [252, 'Produto', 'Discadora'], 'Fase da jornada': [18, 'Fase', 'Onboarding'], 'Participantes de projeto': [4, 'Projeto', 'POC RCS'], 'Lista escolhida': [12, 'Lista', '12 franquias escolhidas'] };
+    const p = PUB[st.pub];
+    const rcs = st.canal === 'RCS';
+    const alcance = rcs ? Math.min(p[0], 4) : p[0] - 2;
+    const CAN = {
+      'Yungas': ['Central de comunicação da franquia. Chega para toda a equipe da unidade e fica guardado.', 'Central de comunicação'],
+      'Disparo de WhatsApp': ['Sai pela API Oficial da Atendas para o WhatsApp do gerente e do sócio. Precisa de um modelo de mensagem aprovado pela Meta.', 'Conta comercial oficial'],
+      'RCS': ['Só chega para franquias com agente RCS ativo: hoje, as da POC. As demais ficam de fora automaticamente.', 'Agente verificado'],
+    };
+    const OC = { 11: { 3: ['e'], 4: ['e'], 5: ['e'], 10: ['e'], 11: ['e', 'e'], 17: ['e'], 18: ['e', 'e', 'e'], 19: ['p'], 24: ['p', 'p'], 26: ['p'], 30: ['p'] },
+                 12: { 1: ['p'], 2: ['p'], 8: ['p'], 15: ['p', 'p'], 17: ['p'] } };
+    const ocup = OC[st.mes] || {};
+    const hoje = st.mes === 11 ? 19 : 0;
+    const inicio = st.mes === 11 ? 0 : 2;
+    const ndias = 30 + (st.mes === 12 ? 1 : 0);
+    const cal = [];
+    for (let k = 0; k < inicio; k++) cal.push({ num: '', pontos: [], qtd: '', off: 'true', sel: 'false', aria: 'vazio', borda: '0', fundo: 'transparent', corNum: '#4A628F', corQtd: '#A3B4D1', cursor: 'default', pick: () => {} });
+    for (let d = 1; d <= ndias; d++) {
+      const lista = ocup[d] || []; const passado = d < hoje; const sel = d === st.dia;
+      const n = lista.length;
+      cal.push({ num: d, pontos: lista.map((t) => ({ cor: t === 'e' ? '#6FDCCB' : '#9DB8FF' })),
+        qtd: n === 0 ? '' : (n >= 2 && !passado ? n + ' no dia' : ''), corQtd: n >= 2 ? '#F6A3A9' : '#A3B4D1',
+        off: passado ? 'true' : 'false', sel: sel ? 'true' : 'false', aria: d + ', ' + n + (n === 1 ? ' comunicação' : ' comunicações') + (passado ? ', já passou' : ''),
+        borda: sel ? '2px solid #00A8F0' : (d === hoje ? '1px solid #4A628F' : '1px solid #243A66'),
+        fundo: sel ? '#163D66' : passado ? 'transparent' : '#1B2E58', corNum: passado ? '#4A628F' : '#EEF3FA', cursor: passado ? 'not-allowed' : 'pointer',
+        pick: () => { if (!passado) this.setState({ dia: d }); } });
+    }
+    const mesNome = st.mes === 11 ? 'Novembro de 2026' : 'Dezembro de 2026';
+    const mesAnt = () => this.setState({ mes: 11, dia: 25 }); const mesProx = () => this.setState({ mes: 12, dia: 3 });
+    const q = (ocup[st.dia] || []).length;
+    const aviso = q >= 2
+      ? { titulo: 'Este dia passa do limite: ficaria com ' + (q + 1) + ' comunicações', texto: 'Já há 2 comunicações marcadas para as mesmas franquias neste dia. Escolha outro dia ou troque uma delas.', cor: '#F6A3A9', borda: '#7A3A4A', fundo: '#2E1F3A' }
+      : q === 1 ? { titulo: 'Dia com 1 comunicação já marcada', texto: 'Cabe mais esta: fica com 2, dentro do limite.', cor: '#F7B98A', borda: '#7A5232', fundo: '#2A2A44' }
+      : { titulo: 'Dia livre', texto: 'Nenhuma outra comunicação para essas franquias neste dia.', cor: '#6FDCCB', borda: '#2C6E68', fundo: 'rgba(14,159,142,0.12)' };
+    return {
+      freqs: opt([['Uma vez', 'Envio único'], ['Quadro fixo', 'Repete com frequência']], st.freq, 'freq'),
+      recorrente: st.freq === 'Quadro fixo',
+      publicos: opt([['Todas as franquias', '406'], ['Com um produto', 'ex.: quem tem discadora'], ['Sem um produto', 'ex.: quem não tem RCS'], ['Fase da jornada', 'ex.: onboarding'], ['Participantes de projeto', 'ex.: POC RCS'], ['Lista escolhida', 'franquia por franquia']], st.pub, 'pub'),
+      temFiltro: !!p[1], filtroRotulo: p[1] || '', filtroValor: p[2] || '', alcance,
+      canais: opt([['Yungas', 'Central de comunicação'], ['Disparo de WhatsApp', 'API Oficial'], ['RCS', 'Só com agente ativo']], st.canal, 'canal'),
+      canalNota: CAN[st.canal][0], selo: CAN[st.canal][1], canalNome: st.canal, ehWhats: st.canal === 'Disparo de WhatsApp',
+      cal, mesNome, mesAnt, mesProx, aviso,
+      ...(() => {
+        const R = ['Todos', 'Franqueados', 'Gestores', 'Assessores', 'Operação final'];
+        const sel = st.papeis; const todos = sel.length === 4;
+        const pick = (r) => () => { if (r === 'Todos') { this.setState({ papeis: todos ? [] : R.slice(1) }); return; }
+          this.setState({ papeis: sel.includes(r) ? sel.filter((x) => x !== r) : [...sel, r] }); };
+        const PESO = { 'Franqueados': 1.4, 'Gestores': 1, 'Assessores': 2.2, 'Operação final': 4.5 };
+        const on = (r) => r === 'Todos' ? todos : sel.includes(r);
+        const pessoas = Math.round(sel.reduce((t, r) => t + PESO[r], 0) * alcance);
+        const sub = (t) => t.split('[nome]').join('Renata').split('[franquia]').join('CDT Osasco').split('[cs]').join('Giovanna').split('[gerente]').join('Renata');
+        return {
+          papeis: R.map((r) => ({ nome: r, sel: on(r) ? 'true' : 'false', marca: on(r) ? '✓' : '+', borda: on(r) ? '2px solid #00A8F0' : '1px solid #2C4677', fundo: on(r) ? '#163D66' : '#1B2E58', peso: on(r) ? '700' : '500', pick: pick(r) })),
+          pessoas: pessoas.toLocaleString('pt-BR'),
+          titulo: st.titulo, texto: st.texto, botao: st.botao, chars: st.texto.length, previa: sub(st.texto),
+          digTitulo: (e) => this.setState({ titulo: e.target.value }), digTexto: (e) => this.setState({ texto: e.target.value }), digBotao: (e) => this.setState({ botao: e.target.value }),
+          campos: [['Nome da pessoa', '[nome]'], ['Franquia', '[franquia]'], ['Gerente', '[gerente]'], ['CS', '[cs]']].map(([nome, tag]) => ({ nome, pick: () => this.setState({ texto: st.texto + ' ' + tag }) })),
+        };
+      })(),
+    };
+  }
+}
+</script>
+</body>
+</html>

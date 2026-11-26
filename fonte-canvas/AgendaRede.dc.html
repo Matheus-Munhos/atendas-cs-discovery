@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<title>Agenda das franqueadoras</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700;800&amp;display=swap">
+<style>
+body{margin:0}
+a{color:#9DD8FF}a:hover{color:#FFFFFF}
+</style>
+</helmet>
+<div style="min-height: 1900px; background: #0E1A33; font-family: Figtree, Arial, sans-serif; color: #EEF3FA; padding: 32px 32px 56px; box-sizing: border-box">
+  <div style="max-width: 1380px; margin: 0 auto; display: flex; flex-direction: column; gap: 18px">
+    <a href="Main.dc.html" style="align-self: flex-start; display: inline-flex; align-items: center; gap: 6px; min-height: 44px; font-size: 15px; font-weight: 600; text-decoration: none">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 18l-6-6 6-6"></path></svg>
+      Minha carteira
+    </a>
+    <header style="display: flex; flex-direction: column; gap: 4px">
+      <h1 style="margin: 0; font-size: 30px; font-weight: 800; letter-spacing: -0.5px">Agenda das franqueadoras</h1>
+      <p style="margin: 0; font-size: 15px; color: #A3B4D1">Os eventos das redes (convenções, reuniões regionais, campanhas, treinamentos e fechamentos) junto com as comunicações e as reuniões do CS, para planejar sem bater datas.</p>
+    </header>
+    <div style="display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px; align-items: flex-end">
+      <div role="group" aria-label="O que mostrar" style="display: flex; flex-wrap: wrap; gap: 6px">
+        <sc-for list="{{camadas}}" as="c" hint-placeholder-count="4"><button type="button" onClick="{{c.pick}}" aria-pressed="{{c.sel}}" style="min-height: 40px; padding: 0 14px; border-radius: 999px; border: {{c.borda}}; background: {{c.fundo}}; color: #EEF3FA; font: inherit; font-size: 14px; font-weight: 600; cursor: pointer; display: inline-flex; align-items: center; gap: 8px"><span aria-hidden="true" style="width: 10px; height: 10px; border-radius: 3px; background: {{c.cor}}"></span>{{c.nome}}</button></sc-for>
+      </div>
+      <div style="display: flex; gap: 10px; align-items: flex-end">
+        <label style="display: flex; flex-direction: column; gap: 6px; font-size: 14px; font-weight: 600; color: #EEF3FA">Rede<select style="min-height: 44px; padding: 0 12px; border: 1px solid #2C4677; border-radius: 8px; font: inherit; font-weight: 400; color: #EEF3FA; background: #1B2E58"><option>Todas as redes</option><option>Cartão de TODOS</option><option>Audição de TODOS</option></select></label>
+        <button type="button" onClick="{{abrirNovo}}" style="display: inline-flex; align-items: center; justify-content: center; min-height: 44px; padding: 0 18px; border: 0; border-radius: 10px; background: #0077B6; color: #FFFFFF; font: inherit; font-weight: 700; cursor: pointer; text-decoration: none">Novo evento da rede</button>
+      </div>
+    </div>
+    <sc-if value="{{novo}}" hint-placeholder-val="{{false}}">
+      <section style="background: #15264A; border: 1px solid #243A66; border-radius: 14px; padding: 22px; display: flex; flex-direction: column; gap: 14px; border: 2px solid #00A8F0">
+        <h2 style="margin: 0; font-size: 18px; font-weight: 700">Novo evento da rede</h2>
+        <div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px">
+          <label style="display: flex; flex-direction: column; gap: 6px; font-size: 14px; font-weight: 600; color: #EEF3FA">Evento<input type="text" placeholder="Ex.: Convenção nacional" style="min-height: 44px; padding: 0 12px; border: 1px solid #2C4677; border-radius: 8px; font: inherit; font-weight: 400; color: #EEF3FA; background: #1B2E58"></label>
+          <label style="display: flex; flex-direction: column; gap: 6px; font-size: 14px; font-weight: 600; color: #EEF3FA">Rede<select style="min-height: 44px; padding: 0 12px; border: 1px solid #2C4677; border-radius: 8px; font: inherit; font-weight: 400; color: #EEF3FA; background: #1B2E58"><option>Cartão de TODOS</option><option>Audição de TODOS</option></select></label>
+          <label style="display: flex; flex-direction: column; gap: 6px; font-size: 14px; font-weight: 600; color: #EEF3FA">Tipo<select style="min-height: 44px; padding: 0 12px; border: 1px solid #2C4677; border-radius: 8px; font: inherit; font-weight: 400; color: #EEF3FA; background: #1B2E58"><option>Convenção ou encontro</option><option>Reunião regional</option><option>Campanha da rede</option><option>Treinamento da rede</option><option>Fechamento ou prazo</option><option>Feriado</option></select></label>
+          <label style="display: flex; flex-direction: column; gap: 6px; font-size: 14px; font-weight: 600; color: #EEF3FA">De<input type="date" style="min-height: 44px; padding: 0 12px; border: 1px solid #2C4677; border-radius: 8px; font: inherit; font-weight: 400; color: #EEF3FA; background: #1B2E58"></label>
+          <label style="display: flex; flex-direction: column; gap: 6px; font-size: 14px; font-weight: 600; color: #EEF3FA">Até<input type="date" style="min-height: 44px; padding: 0 12px; border: 1px solid #2C4677; border-radius: 8px; font: inherit; font-weight: 400; color: #EEF3FA; background: #1B2E58"></label>
+          <label style="display: flex; flex-direction: column; gap: 6px; font-size: 14px; font-weight: 600; color: #EEF3FA">Regionais<select style="min-height: 44px; padding: 0 12px; border: 1px solid #2C4677; border-radius: 8px; font: inherit; font-weight: 400; color: #EEF3FA; background: #1B2E58"><option>Todas</option><option>SP Minas</option><option>SP Interior</option><option>Centro Sul</option><option>Costa Leste</option><option>Equatorial</option></select></label>
+        </div>
+        <label style="display: flex; flex-direction: column; gap: 6px; font-size: 14px; font-weight: 600; color: #EEF3FA">O que muda para o CS<input type="text" placeholder="Ex.: franqueados viajando, evitar reuniões e comunicações" style="min-height: 44px; padding: 0 12px; border: 1px solid #2C4677; border-radius: 8px; font: inherit; font-weight: 400; color: #EEF3FA; background: #1B2E58"></label>
+        <label style="display: flex; align-items: center; gap: 10px; min-height: 40px; font-size: 15px"><input type="checkbox" checked style="width: 18px; height: 18px; accent-color: #00A8F0"> Avisar na Nova comunicação quando alguém marcar envio nestes dias</label>
+        <div style="display: flex; justify-content: flex-end; gap: 10px"><button type="button" onClick="{{fecharNovo}}" style="display: inline-flex; align-items: center; justify-content: center; min-height: 44px; padding: 0 16px; border: 1px solid #2C4677; border-radius: 10px; background: #1B2E58; color: #EEF3FA; font: inherit; font-weight: 600; cursor: pointer; text-decoration: none">Cancelar</button><button type="button" onClick="{{fecharNovo}}" style="display: inline-flex; align-items: center; justify-content: center; min-height: 44px; padding: 0 18px; border: 0; border-radius: 10px; background: #0077B6; color: #FFFFFF; font: inherit; font-weight: 700; cursor: pointer; text-decoration: none">Salvar evento</button></div>
+      </section>
+    </sc-if>
+    <div style="display: flex; flex-wrap: wrap; gap: 16px; align-items: flex-start">
+      <section style="flex: 999 1 760px; min-width: 0; background: #15264A; border: 1px solid #243A66; border-radius: 14px; padding: 22px; display: flex; flex-direction: column; gap: 14px">
+        <div style="display: flex; justify-content: space-between; align-items: center; gap: 10px">
+          <h2 style="margin: 0; font-size: 18px; font-weight: 700">Novembro de 2026</h2>
+          <span style="font-size: 13px; color: #A3B4D1">Hoje: 19/11</span>
+        </div>
+        <div style="display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); gap: 6px; font-size: 13px; font-weight: 600; color: #A3B4D1; text-align: center"><span>Dom</span><span>Seg</span><span>Ter</span><span>Qua</span><span>Qui</span><span>Sex</span><span>Sáb</span></div>
+        <div style="display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); gap: 6px">
+          <sc-for list="{{dias}}" as="d" hint-placeholder-count="35">
+            <div style="min-height: 104px; border-radius: 10px; border: {{d.borda}}; background: {{d.fundo}}; padding: 6px; display: flex; flex-direction: column; gap: 4px">
+              <b style="font-size: 13px; color: {{d.corNum}}">{{d.num}}</b>
+              <sc-for list="{{d.ev}}" as="e" hint-placeholder-count="1">
+                <span title="{{e.t}}" style="font-size: 11px; line-height: 1.3; padding: 3px 5px; border-radius: 5px; border-left: 3px solid {{e.cor}}; background: #1B2E58; color: #EEF3FA">{{e.t}}</span>
+              </sc-for>
+            </div>
+          </sc-for>
+        </div>
+      </section>
+      <aside style="flex: 1 1 340px; min-width: 0; background: #15264A; border: 1px solid #243A66; border-radius: 14px; padding: 22px; display: flex; flex-direction: column; gap: 14px">
+        <h2 style="margin: 0; font-size: 18px; font-weight: 700">Próximos eventos da rede</h2>
+        <sc-for list="{{proximos}}" as="p" hint-placeholder-count="5">
+          <div style="display: flex; flex-direction: column; gap: 4px; border-top: 1px solid #243A66; padding-top: 10px">
+            <span style="display: flex; justify-content: space-between; gap: 8px"><b style="font-size: 15px">{{p.t}}</b><span style="font-size: 13px; color: #A3B4D1; white-space: nowrap">{{p.quando}}</span></span>
+            <span style="font-size: 13px; color: #A3B4D1">{{p.rede}}, {{p.reg}}</span>
+            <span style="font-size: 13px; color: {{p.corImp}}; font-weight: 600">{{p.impacto}}</span>
+          </div>
+        </sc-for>
+      </aside>
+    </div>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":1900}}'>
+class Component extends DCLogic {
+  constructor(props) { super(props); this.state = { on: ['Franqueadora', 'Comunicações da Atendas', 'Reuniões das CSs'], novo: false }; }
+  renderVals() {
+    const CAM = { 'Franqueadora': '#FC843C', 'Comunicações da Atendas': '#00A8F0', 'Reuniões das CSs': '#6FDCCB', 'Feriados': '#A78BFA' };
+    const on = this.state.on;
+    const E = [
+      [2, 'Feriados', 'Finados'], [5, 'Comunicações da Atendas', 'POC RCS: convite'], [9, 'Franqueadora', 'Reunião regional SP'], [10, 'Franqueadora', 'Reunião regional SP'],
+      [11, 'Comunicações da Atendas', 'Manutenção da plataforma'], [12, 'Franqueadora', 'Campanha de filiação começa'], [15, 'Feriados', 'Proclamação da República'],
+      [18, 'Comunicações da Atendas', '3 envios'], [19, 'Reuniões das CSs', '11 reuniões'], [20, 'Feriados', 'Consciência Negra'],
+      [24, 'Franqueadora', 'Convenção nacional'], [25, 'Franqueadora', 'Convenção nacional'], [24, 'Comunicações da Atendas', 'OUVIMOS VOCÊ'], [26, 'Franqueadora', 'Treinamento da rede: cobrança'],
+      [23, 'Reuniões das CSs', '14 reuniões'], [27, 'Reuniões das CSs', '9 reuniões'], [30, 'Franqueadora', 'Fechamento do mês da rede'],
+    ];
+    const dias = [];
+    for (let d = 1; d <= 35; d++) {
+      const n = d <= 30 ? d : '';
+      const ev = d <= 30 ? E.filter((e) => e[0] === d && on.includes(e[1])).map((e) => ({ t: e[2], cor: CAM[e[1]] })) : [];
+      const conv = d === 24 || d === 25;
+      dias.push({ num: n, ev, corNum: d === 19 ? '#00A8F0' : d < 19 ? '#8FA3C4' : '#EEF3FA', borda: d === 19 ? '2px solid #00A8F0' : conv ? '1px solid #FC843C' : '1px solid #243A66', fundo: d > 30 ? 'transparent' : '#15264A' });
+    }
+    return {
+      camadas: Object.keys(CAM).map((n) => { const s = on.includes(n); return { nome: n, cor: CAM[n], sel: s ? 'true' : 'false', borda: s ? '2px solid #00A8F0' : '1px solid #2C4677', fundo: s ? '#163D66' : '#1B2E58',
+        pick: () => this.setState({ on: s ? on.filter((x) => x !== n) : [...on, n] }) }; }),
+      dias, novo: this.state.novo, abrirNovo: () => this.setState({ novo: true }), fecharNovo: () => this.setState({ novo: false }),
+      proximos: [
+        ['Consciência Negra', 'sex 20/11', 'Feriado nacional', 'Todas', 'Unidades fechadas em várias cidades: não agendar reuniões', '#F7B98A'],
+        ['Convenção nacional', '24 e 25/11', 'Cartão de TODOS', 'Todas', 'Franqueados viajando: a OUVIMOS VOCÊ de 24/11 pode ficar para 26/11', '#F6A3A9'],
+        ['Treinamento da rede: cobrança', 'qui 26/11', 'Cartão de TODOS', 'Todas', 'Bom momento para falar do Projeto de Adimplência e da IA de Voz', '#6FDCCB'],
+        ['Fechamento do mês da rede', 'seg 30/11', 'Cartão de TODOS', 'Todas', 'Gestores ocupados: evitar reuniões longas', '#F7B98A'],
+        ['Reunião regional SP', '07 e 08/12', 'Cartão de TODOS', 'SP Minas e SP Interior', 'Giovanna e Camila: apresentar a POC RCS?', '#6FDCCB'],
+      ].map(([t, quando, rede, reg, impacto, corImp]) => ({ t, quando, rede, reg, impacto, corImp })),
+    };
+  }
+}
+</script>
+</body>
+</html>

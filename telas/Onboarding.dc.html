@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<title>Onboarding de franquias</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700;800&amp;display=swap">
+<style>
+body{margin:0}
+a{color:#9DD8FF}a:hover{color:#FFFFFF}
+</style>
+</helmet>
+<div style="min-height: 1900px; background: #0E1A33; font-family: Figtree, Arial, sans-serif; color: #EEF3FA; padding: 32px 32px 56px; box-sizing: border-box">
+  <div style="max-width: 1380px; margin: 0 auto; display: flex; flex-direction: column; gap: 18px">
+    <a href="Main.dc.html" style="align-self: flex-start; display: inline-flex; align-items: center; gap: 6px; min-height: 44px; font-size: 15px; font-weight: 600; text-decoration: none">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 18l-6-6 6-6"></path></svg>
+      Minha carteira
+    </a>
+    <header style="display: flex; flex-direction: column; gap: 4px">
+      <h1 style="margin: 0; font-size: 30px; font-weight: 800; letter-spacing: -0.5px">Onboarding de franquias</h1>
+      <p style="margin: 0; font-size: 15px; color: #A3B4D1">O checklist de cada franquia nova, dos primeiros contatos até o primeiro mês. As etapas mudam conforme os produtos contratados.</p>
+    </header>
+    <div style="display: flex; flex-wrap: wrap; gap: 16px; align-items: flex-start">
+      <aside style="flex: 1 1 300px; min-width: 0; background: #15264A; border: 1px solid #243A66; border-radius: 14px; padding: 22px; display: flex; flex-direction: column; gap: 14px">
+        <h2 style="margin: 0; font-size: 17px; font-weight: 700">Franquias em onboarding</h2>
+        <sc-for list="{{lista}}" as="f" hint-placeholder-count="5">
+          <button type="button" onClick="{{f.pick}}" style="text-align: left; padding: 12px; border-radius: 10px; border: {{f.borda}}; background: {{f.fundo}}; color: #EEF3FA; font: inherit; cursor: pointer; display: flex; flex-direction: column; gap: 6px">
+            <span style="display: flex; justify-content: space-between; gap: 8px"><b>{{f.nome}}</b><span style="font-size: 13px; color: {{f.corDia}}">{{f.dia}}</span></span>
+            <span style="height: 6px; border-radius: 99px; background: #243A66"><span style="display: block; height: 6px; border-radius: 99px; background: #00A8F0; width: {{f.pct}}"></span></span>
+            <span style="font-size: 13px; color: #A3B4D1">{{f.cs}}, {{f.pct}} concluído</span>
+          </button>
+        </sc-for>
+        <span style="font-size: 13px; color: #A3B4D1">Meta: terminar o onboarding em até 30 dias.</span>
+      </aside>
+      <section style="flex: 999 1 640px; min-width: 0; display: flex; flex-direction: column; gap: 14px">
+        <div style="background: #15264A; border: 1px solid #243A66; border-radius: 14px; padding: 22px; display: flex; flex-direction: column; gap: 14px">
+          <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-start; gap: 10px">
+            <div style="display: flex; flex-direction: column; gap: 4px"><h2 style="margin: 0; font-size: 22px; font-weight: 800">CDT Santo André</h2><span style="font-size: 14px; color: #C6D3E6">SP Minas, CS Giovanna. Entrou em 17/11. Dia 3 de 30.</span><span style="font-size: 14px; color: #C6D3E6">Contratou: WhatsApp API Oficial, Commit Silver.</span></div>
+            <a href="Ficha.dc.html" style="display: inline-flex; align-items: center; justify-content: center; min-height: 44px; padding: 0 16px; border: 1px solid #2C4677; border-radius: 10px; background: #1B2E58; color: #EEF3FA; font: inherit; font-weight: 600; cursor: pointer; text-decoration: none">Abrir ficha</a>
+          </div>
+          <div style="display: flex; align-items: center; gap: 12px"><div style="flex: 1; height: 10px; border-radius: 99px; background: #243A66"><div style="height: 10px; border-radius: 99px; background: #00A8F0; width: {{progresso}}"></div></div><b>{{progresso}}</b></div>
+        </div>
+        <sc-for list="{{etapas}}" as="e" hint-placeholder-count="4">
+          <div style="background: #15264A; border: 1px solid #243A66; border-radius: 14px; padding: 22px; display: flex; flex-direction: column; gap: 14px">
+            <div style="display: flex; justify-content: space-between; align-items: baseline; gap: 10px; flex-wrap: wrap"><h3 style="margin: 0; font-size: 17px; font-weight: 700">{{e.nome}}</h3><span style="font-size: 13px; font-weight: 700; color: {{e.cor}}">{{e.sit}}</span></div>
+            <sc-for list="{{e.itens}}" as="i" hint-placeholder-count="4">
+              <label style="display: grid; grid-template-columns: 24px minmax(0, 1fr) auto; gap: 10px; align-items: center; min-height: 40px; font-size: 15px; border-top: 1px solid #243A66; padding-top: 6px">
+                <input type="checkbox" checked="{{i.ok}}" onChange="{{i.toggle}}" style="width: 20px; height: 20px; accent-color: #0E9F8E">
+                <span style="color: {{i.cor}}">{{i.t}}</span>
+                <span style="font-size: 12px; font-weight: 700; color: {{i.corQuem}}">{{i.quem}}</span>
+              </label>
+            </sc-for>
+          </div>
+        </sc-for>
+      </section>
+    </div>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":1900}}'>
+class Component extends DCLogic {
+  constructor(props) { super(props); this.state = { sel: 'CDT Santo André', feitos: ['a1', 'a2', 'a3', 'b1'] }; }
+  renderVals() {
+    const E = [
+      ['Boas-vindas', [['a1', 'Equipe cadastrada no portal', 'CS'], ['a2', 'Reunião de boas-vindas gravada', 'CS'], ['a3', 'Acesso ao Minha Atendas liberado', 'Atendas'], ['a4', 'Instruções do Minha Atendas enviadas', 'CS']]],
+      ['Implantação do WhatsApp API Oficial', [['b1', 'Contrato assinado', 'Jurídico'], ['b2', 'BM e número oficial criados', 'API Oficial'], ['b3', 'Modelos de mensagem aprovados', 'API Oficial'], ['b4', 'Primeiro disparo feito', 'Franquia']]],
+      ['Treinamento', [['c1', 'Treinamento agendado', 'CS'], ['c2', 'Treinamento realizado e gravado', 'CS'], ['c3', 'Nota da franquia para o treinamento', 'Franquia']]],
+      ['Primeiro mês', [['d1', 'Primeira reunião de acompanhamento', 'CS'], ['d2', 'Saúde avaliada e fase mudada para "Em acompanhamento"', 'CS']]],
+    ];
+    const QC = { 'CS': '#9DD8FF', 'Atendas': '#AFC0F7', 'Jurídico': '#AFC0F7', 'API Oficial': '#AFC0F7', 'Franquia': '#F7B98A' };
+    const f = this.state.feitos;
+    const tot = E.reduce((t, e) => t + e[1].length, 0);
+    const pct = Math.round(f.length / tot * 100) + '%';
+    const L = [['CDT Santo André', 'Giovanna', 'Dia 3', 0], ['CDT Itapetininga', 'Camila', 'Dia 12', 46], ['CDT Joinville', 'Rafaela', 'Dia 21', 69], ['CDT Juazeiro do Norte', 'Maria Eduarda', 'Dia 34', 77], ['CDT Cabo Frio', 'Jéssica', 'Dia 8', 31]];
+    return {
+      progresso: pct,
+      lista: L.map(([nome, cs, dia, p]) => ({ nome, cs, dia: dia + (Number(dia.slice(4)) > 30 ? ': atrasado' : ''), corDia: Number(dia.slice(4)) > 30 ? '#F6A3A9' : '#A3B4D1',
+        pct: nome === 'CDT Santo André' ? pct : p + '%', borda: nome === this.state.sel ? '2px solid #00A8F0' : '1px solid #243A66', fundo: nome === this.state.sel ? '#163D66' : '#1B2E58', pick: () => this.setState({ sel: nome }) })),
+      etapas: E.map(([nome, it]) => { const n = it.filter((i) => f.includes(i[0])).length;
+        return { nome, sit: n === it.length ? 'Concluída' : n ? n + ' de ' + it.length : 'Não começou', cor: n === it.length ? '#6FDCCB' : n ? '#F7B98A' : '#A3B4D1',
+          itens: it.map(([id, t, quem]) => ({ t, quem, ok: f.includes(id), cor: f.includes(id) ? '#A3B4D1' : '#EEF3FA', corQuem: QC[quem],
+            toggle: () => this.setState({ feitos: f.includes(id) ? f.filter((x) => x !== id) : [...f, id] }) })) }; }),
+    };
+  }
+}
+</script>
+</body>
+</html>

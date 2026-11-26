@@ -1,0 +1,142 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<title>Cancelamentos e retenção</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700;800&amp;display=swap">
+<style>
+body{margin:0}
+a{color:#9DD8FF}a:hover{color:#FFFFFF}
+</style>
+</helmet>
+<div style="min-height: 2100px; background: #0E1A33; font-family: Figtree, Arial, sans-serif; color: #EEF3FA; padding: 32px 32px 56px; box-sizing: border-box">
+  <div style="max-width: 1380px; margin: 0 auto; display: flex; flex-direction: column; gap: 18px">
+    <header style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-end; gap: 16px">
+      <div style="display: flex; flex-direction: column; gap: 4px">
+        <h1 style="margin: 0; font-size: 30px; font-weight: 800; letter-spacing: -0.5px">Cancelamentos e retenção</h1>
+        <p style="margin: 0; font-size: 15px; color: #A3B4D1">Novembro de 2026. Churn é qualquer perda de receita: cancelamento total, cancelamento de produto ou redução (downgrade).</p>
+      </div>
+      <a href="Registrar.dc.html" style="display: inline-flex; align-items: center; min-height: 44px; padding: 0 18px; border-radius: 10px; background: #0077B6; color: #FFFFFF; font-weight: 700; text-decoration: none">Registrar pedido de cancelamento</a>
+    </header>
+
+    <section aria-label="Números do mês" style="display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 12px">
+      <sc-for list="{{nums}}" as="n" hint-placeholder-count="6">
+        <div style="background: #15264A; border: 1px solid #243A66; border-radius: 14px; padding: 16px 18px; display: flex; flex-direction: column; gap: 4px">
+          <span style="font-size: 14px; font-weight: 600; color: #A3B4D1">{{n.nome}}</span>
+          <span style="font-size: 26px; font-weight: 800; color: {{n.cor}}">{{n.valor}}</span>
+          <span style="font-size: 13px; color: #A3B4D1">{{n.detalhe}}</span>
+        </div>
+      </sc-for>
+    </section>
+
+    <div style="display: flex; flex-wrap: wrap; gap: 16px; align-items: stretch">
+      <section aria-labelledby="h-tipo" style="flex: 1 1 420px; background: #15264A; border: 1px solid #243A66; border-radius: 14px; padding: 20px 22px; display: flex; flex-direction: column; gap: 12px">
+        <h2 id="h-tipo" style="margin: 0; font-size: 17px; font-weight: 700">Pedidos por tipo</h2>
+        <sc-for list="{{tipos}}" as="t" hint-placeholder-count="3">
+          <div style="display: grid; grid-template-columns: 200px minmax(0, 1fr) 140px; gap: 12px; align-items: center; font-size: 14px">
+            <span><b>{{t.nome}}</b><br><span style="font-size: 13px; color: #A3B4D1">{{t.desc}}</span></span>
+            <div style="height: 14px; border-radius: 99px; background: #1E3360"><div style="height: 14px; border-radius: 99px; background: #0077B6; width: {{t.largura}}"></div></div>
+            <span style="text-align: right"><b>{{t.qtd}}</b> <span style="color: #A3B4D1">{{t.mrr}}</span></span>
+          </div>
+        </sc-for>
+      </section>
+      <section aria-labelledby="h-mot" style="flex: 1 1 420px; background: #15264A; border: 1px solid #243A66; border-radius: 14px; padding: 20px 22px; display: flex; flex-direction: column; gap: 12px">
+        <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: baseline; gap: 8px"><h2 id="h-mot" style="margin: 0; font-size: 17px; font-weight: 700">Motivos</h2><span style="font-size: 13px; color: #A3B4D1">Evitável mede o trabalho do CS; inevitável, não</span></div>
+        <sc-for list="{{motivos}}" as="m" hint-placeholder-count="5">
+          <div style="display: grid; grid-template-columns: minmax(0, 1fr) 100px 30px; gap: 10px; align-items: center; font-size: 14px">
+            <span>{{m.nome}}</span>
+            <span style="justify-self: start; font-size: 12px; font-weight: 700; color: {{m.cor}}; background: {{m.fundo}}; padding: 2px 9px; border-radius: 999px">{{m.tipo}}</span>
+            <b style="text-align: right">{{m.qtd}}</b>
+          </div>
+        </sc-for>
+      </section>
+    </div>
+
+    <div style="display: flex; flex-wrap: wrap; gap: 16px; align-items: flex-start">
+      <section aria-labelledby="h-ped" style="flex: 999 1 720px; min-width: 0; background: #15264A; border: 1px solid #243A66; border-radius: 14px; padding: 20px 22px; display: flex; flex-direction: column; gap: 4px">
+        <h2 id="h-ped" style="margin: 0 0 8px; font-size: 17px; font-weight: 700">Pedidos do mês</h2>
+        <div style="display: grid; grid-template-columns: 180px 1.1fr 110px 1.2fr 130px; gap: 10px; padding-bottom: 8px; border-bottom: 1px solid #243A66; font-size: 13px; font-weight: 600; color: #A3B4D1"><span>Franquia</span><span>Tipo e produto</span><span style="text-align: right">MRR</span><span>Motivo</span><span>Situação</span></div>
+        <sc-for list="{{pedidos}}" as="p" hint-placeholder-count="8">
+          <button type="button" onClick="{{p.pick}}" style="display: grid; grid-template-columns: 180px 1.1fr 110px 1.2fr 130px; gap: 10px; align-items: center; padding: 10px 0; border: 0; border-bottom: 1px solid #1E3360; background: {{p.fundoSel}}; font: inherit; font-size: 14px; color: #EEF3FA; text-align: left; cursor: pointer">
+            <span><b>{{p.f}}</b><br><span style="font-size: 13px; color: #A3B4D1">{{p.cs}}</span></span>
+            <span>{{p.tipo}}<br><span style="font-size: 13px; color: #A3B4D1">{{p.produto}}</span></span>
+            <span style="text-align: right; font-weight: 700">{{p.mrr}}</span>
+            <span>{{p.motivo}}<br><span style="font-size: 12px; font-weight: 700; color: {{p.corEv}}">{{p.ev}}</span></span>
+            <span style="justify-self: start; font-size: 13px; font-weight: 700; color: {{p.cor}}; background: {{p.fundo}}; padding: 3px 10px; border-radius: 999px">{{p.sit}}</span>
+          </button>
+        </sc-for>
+      </section>
+
+      <section aria-labelledby="h-det" style="flex: 1 1 380px; min-width: 0; background: #15264A; border: 2px solid #0077B6; border-radius: 14px; padding: 20px 22px; display: flex; flex-direction: column; gap: 12px">
+        <div style="display: flex; flex-direction: column; gap: 4px">
+          <h2 id="h-det" style="margin: 0; font-size: 19px; font-weight: 800">{{sel.f}}</h2>
+          <span style="font-size: 14px; color: #C6D3E6">{{sel.tipo}}: {{sel.produto}}. {{sel.mrr}} por mês em jogo.</span>
+          <span style="font-size: 14px; color: #C6D3E6">Vale a partir de {{sel.efetiva}}.</span>
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 0">
+          <sc-for list="{{sel.hist}}" as="h" hint-placeholder-count="4">
+            <div style="display: grid; grid-template-columns: 52px minmax(0, 1fr); gap: 10px; padding: 9px 0; border-top: 1px solid #1E3360; font-size: 14px"><b>{{h.d}}</b><span style="color: #C6D3E6">{{h.t}}</span></div>
+          </sc-for>
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 4px; padding: 12px 14px; border-radius: 10px; background: #1B2E58; font-size: 14px"><b>O que oferecemos para reter</b><span style="color: #C6D3E6">{{sel.oferta}}</span></div>
+        <div style="display: flex; flex-wrap: wrap; gap: 8px">
+          <button type="button" style="min-height: 44px; padding: 0 14px; border: 0; border-radius: 10px; background: #0E9F8E; color: #FFFFFF; font: inherit; font-weight: 700; cursor: pointer">Retida</button>
+          <button type="button" style="min-height: 44px; padding: 0 14px; border: 1px solid #2C4677; border-radius: 10px; background: #15264A; color: #EEF3FA; font: inherit; font-weight: 600; cursor: pointer">Reduzida</button>
+          <button type="button" style="min-height: 44px; padding: 0 14px; border: 1px solid #7A3A4A; border-radius: 10px; background: #15264A; color: #F6A3A9; font: inherit; font-weight: 600; cursor: pointer">Cancelada</button>
+        </div>
+        <p style="margin: 0; font-size: 13px; color: #A3B4D1; border-top: 1px solid #1E3360; padding-top: 10px">Cancelamento e redução avisam o Financeiro e o Jurídico. Ofertas com desconto passam pela <a href="Aprovacoes.dc.html">Central de aprovações</a>.</p>
+      </section>
+    </div>
+    <p style="margin: 0; font-size: 13px; color: #A3B4D1">Números de exemplo. Clique num pedido para ver a tratativa.</p>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":2100}}'>
+class Component extends DCLogic {
+  constructor(props) { super(props); this.state = { sel: 'CDT Recife' }; }
+  renderVals() {
+    const ST = { 'Em retenção': ['#AFC0F7', 'rgba(48,84,204,0.32)'], 'Retida': ['#6FDCCB', 'rgba(14,159,142,0.22)'], 'Reduzida': ['#F7B98A', 'rgba(233,134,47,0.22)'], 'Cancelada': ['#F6A3A9', 'rgba(217,64,74,0.24)'] };
+    const P = [
+      ['CDT Recife', 'Maria Eduarda', 'Cancelamento de produto', 'Discadora', 760, 'Qualidade das ligações', true, 'Em retenção', '15/12',
+        'Revisão técnica com a Implantação e um mês com 50% de desconto, aguardando sua aprovação.',
+        [['05/11', 'Sócio pediu o cancelamento da discadora por ligações caindo.'], ['06/11', 'Reunião gravada com a Implantação: problema na operadora identificado.'], ['12/11', 'Oferta de revisão técnica e desconto enviada para aprovação.']]],
+      ['CDT Maringá', 'Rafaela', 'Cancelamento total', 'Mensageria e discadora', 1340, 'Preço acima da concorrência', true, 'Em retenção', '20/12',
+        'Proposta da discadora com licença por canal e comparativo de custo total.', [['10/11', 'Sócio comunicou que vai trocar de fornecedor.'], ['14/11', 'Reunião gravada: concorrente 25% mais barato na discadora.']]],
+      ['CDT Mossoró', 'Maria Eduarda', 'Cancelamento total', 'Mensageria', 1200, 'Unidade encerrada', false, 'Cancelada', '30/11', 'Nenhuma: a unidade fechou.', [['03/11', 'Franqueado informou o encerramento da unidade.']]],
+      ['CDT Florianópolis', 'Rafaela', 'Redução', 'Commit Gold para Silver', 500, 'Uso abaixo do contratado', true, 'Reduzida', '01/12', 'Plano de uso para voltar ao Gold em 3 meses.', [['04/11', 'Pediu para reduzir o commit.']]],
+      ['CDT Caxias', 'Maria Eduarda', 'Redução', 'Discadora, de 6 para 4 canais', 440, 'Sem orçamento agora', true, 'Reduzida', '01/12', 'Retomar 6 canais em fevereiro.', [['07/11', 'Pediu para reduzir canais.']]],
+      ['CDT Campo Grande', 'Rafaela', 'Cancelamento de produto', 'IA de voz', 900, 'Não vê valor', true, 'Retida', '—', 'Novo treinamento com o gerente novo.', [['06/11', 'Novo gerente quis cancelar a IA de voz.'], ['11/11', 'Treinamento feito; decidiu manter.']]],
+      ['CDT Parnaíba', 'Maria Eduarda', 'Cancelamento de produto', 'RCS', 600, 'Não vê valor', true, 'Retida', '—', 'Resultados da POC apresentados ao sócio.', [['08/11', 'Pediu o cancelamento do RCS.']]],
+      ['CDT Juazeiro', 'Jéssica', 'Redução', 'Commit Silver para Bronze', 300, 'Sem orçamento agora', true, 'Retida', '—', 'Parcelamento do saldo do commit.', [['09/11', 'Pediu para reduzir o commit.']]],
+    ];
+    const brl = (v) => 'R$ ' + v.toLocaleString('pt-BR');
+    const pedidos = P.map(([f, cs, tipo, produto, mrr, motivo, evit, sit]) => ({ f, cs, tipo, produto, mrr: brl(mrr), motivo, sit,
+      ev: evit ? 'Evitável' : 'Inevitável', corEv: evit ? '#F7B98A' : '#A3B4D1', cor: ST[sit][0], fundo: ST[sit][1],
+      fundoSel: f === this.state.sel ? '#1B2E58' : 'transparent', pick: () => this.setState({ sel: f }) }));
+    const s = P.find((p) => p[0] === this.state.sel);
+    return {
+      nums: [
+        { nome: 'Pedidos no mês', valor: 8, detalhe: '2 ainda em retenção', cor: '#EEF3FA' },
+        { nome: 'MRR em risco', valor: 'R$ 2.100', detalhe: 'nos pedidos em retenção', cor: '#F7B98A' },
+        { nome: 'Retidas', valor: '3 de 6', detalhe: '50% dos pedidos decididos', cor: '#6FDCCB' },
+        { nome: 'MRR perdido', valor: 'R$ 2.140', detalhe: '1 cancelamento e 2 reduções', cor: '#F6A3A9' },
+        { nome: 'Franquias que saíram', valor: 1, detalhe: 'unidade encerrada, inevitável', cor: '#EEF3FA' },
+        { nome: 'MRR líquido', valor: 'R$ 5.690', detalhe: 'MRR novo menos o perdido', cor: '#6FDCCB' },
+      ],
+      tipos: [['Cancelamento total', 'Encerra todos os contratos diretos', 2, 'R$ 2.540'], ['Cancelamento de produto', 'Cancela um produto e mantém outro', 3, 'R$ 2.260'], ['Redução', 'Continua pagando menos', 3, 'R$ 1.240']]
+        .map(([nome, desc, qtd, mrr]) => ({ nome, desc, qtd, mrr, largura: Math.round(qtd / 3 * 100) + '%' })),
+      motivos: [['Não vê valor', true, 2], ['Sem orçamento agora', true, 2], ['Preço acima da concorrência', true, 1], ['Qualidade das ligações', true, 1], ['Uso abaixo do contratado', true, 1], ['Unidade encerrada', false, 1]]
+        .map(([nome, ev, qtd]) => ({ nome, qtd, tipo: ev ? 'Evitável' : 'Inevitável', cor: ev ? '#F7B98A' : '#C6D3E6', fundo: ev ? 'rgba(233,134,47,0.22)' : '#1B2E58' })),
+      pedidos,
+      sel: { f: s[0], tipo: s[2], produto: s[3], mrr: brl(s[4]), efetiva: s[8], oferta: s[9], hist: s[10].map(([d, t]) => ({ d, t })) },
+    };
+  }
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,212 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<title>Atendas Vision</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700;800&amp;display=swap">
+<style>
+body{margin:0}
+a{color:#9DD8FF}a:hover{color:#FFFFFF}
+</style>
+</helmet>
+<div style="min-height: 2000px; background: #0E1A33; font-family: Figtree, Arial, sans-serif; color: #EEF3FA; padding: 32px 32px 56px; box-sizing: border-box">
+  <div style="max-width: 1380px; margin: 0 auto; display: flex; flex-direction: column; gap: 20px">
+    <header style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-end; gap: 16px">
+      <div style="display: flex; flex-direction: column; gap: 4px">
+        <h1 style="margin: 0; font-size: 30px; font-weight: 800; letter-spacing: -0.5px">Atendas Vision</h1>
+        <p style="margin: 0; font-size: 15px; color: #A3B4D1">Vídeos legendados para as estratégias de comunicação. O time de CS pede; a gestão aprova e acompanha a produção.</p>
+      </div>
+      <div style="display: flex; gap: 10px; flex-wrap: wrap">
+        <a href="Biblioteca.dc.html" style="display: inline-flex; align-items: center; min-height: 44px; padding: 0 14px; border: 1px solid #2C4677; border-radius: 10px; background: #15264A; color: #EEF3FA; font: inherit; font-weight: 600; cursor: pointer; text-decoration: none">Ver biblioteca</a>
+        <button type="button" onClick="{{abrirPedido}}" style="min-height: 44px; padding: 0 16px; border: 0; border-radius: 10px; background: #0077B6; color: #FFFFFF; font: inherit; font-weight: 700; cursor: pointer">Pedir vídeo</button>
+      </div>
+    </header>
+
+    <section aria-label="Capacidade do mês" style="background: #15264A; border: 1px solid #243A66; border-radius: 14px; padding: 18px 22px; display: flex; flex-wrap: wrap; align-items: center; gap: 24px">
+      <div style="display: flex; flex-direction: column; gap: 2px"><span style="font-size: 14px; font-weight: 600; color: #A3B4D1">Capacidade de novembro</span><span style="font-size: 32px; font-weight: 800">26 <span style="font-size: 16px; font-weight: 500; color: #A3B4D1">de 30 vídeos comprometidos</span></span></div>
+      <div style="flex: 1 1 300px; display: flex; height: 14px; border-radius: 99px; overflow: hidden; background: #1E3360" role="img" aria-label="14 entregues, 12 em produção, 4 livres">
+        <div style="width: 47%; background: #0E9F8E"></div><div style="width: 40%; background: #0077B6"></div>
+      </div>
+      <div style="display: flex; gap: 14px; font-size: 13px; color: #C6D3E6"><span>14 entregues</span><span>12 em produção</span><span>4 livres</span></div>
+    </section>
+
+    <sc-if value="{{pedidoAberto}}" hint-placeholder-val="{{false}}">
+      <section aria-labelledby="h-ped" style="background: #15264A; border: 1px solid #243A66; border-radius: 14px; border: 2px solid #0077B6; padding: 22px; display: flex; flex-direction: column; gap: 14px">
+        <h2 id="h-ped" style="margin: 0; font-size: 20px; font-weight: 800">Pedir vídeo</h2>
+        <div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px">
+          <label style="display: flex; flex-direction: column; gap: 6px; font-size: 14px; font-weight: 600">Tema
+            <input type="text" placeholder="Ex.: como ler a fatura no Minha Atendas" style="min-height: 44px; padding: 0 12px; border: 1px solid #2C4677; border-radius: 8px; font: inherit; font-weight: 400; color: #EEF3FA; background: #15264A">
+          </label>
+          <label style="display: flex; flex-direction: column; gap: 6px; font-size: 14px; font-weight: 600">O que a franquia precisa entender
+            <input type="text" placeholder="A mensagem principal, em uma frase" style="min-height: 44px; padding: 0 12px; border: 1px solid #2C4677; border-radius: 8px; font: inherit; font-weight: 400; color: #EEF3FA; background: #15264A">
+          </label>
+          <label style="display: flex; flex-direction: column; gap: 6px; font-size: 14px; font-weight: 600">Público
+            <select style="min-height: 44px; padding: 0 12px; border: 1px solid #2C4677; border-radius: 8px; font: inherit; font-weight: 400; color: #EEF3FA; background: #15264A"><option>Todas as franquias</option><option>Uma regional</option><option>Franquias com um produto</option><option>Um grupo específico</option></select>
+          </label>
+          <label style="display: flex; flex-direction: column; gap: 6px; font-size: 14px; font-weight: 600">Onde vai ser usado
+            <select style="min-height: 44px; padding: 0 12px; border: 1px solid #2C4677; border-radius: 8px; font: inherit; font-weight: 400; color: #EEF3FA; background: #15264A"><option>Disparo de WhatsApp</option><option>Yungas</option><option>RCS</option><option>Instagram</option><option>King Post</option></select>
+          </label>
+          <label style="display: flex; flex-direction: column; gap: 6px; font-size: 14px; font-weight: 600">Preciso até
+            <input type="date" value="2026-12-04" style="min-height: 44px; padding: 0 12px; border: 1px solid #2C4677; border-radius: 8px; font: inherit; font-weight: 400; color: #EEF3FA; background: #15264A">
+          </label>
+          <label style="display: flex; flex-direction: column; gap: 6px; font-size: 14px; font-weight: 600">Ligar a uma comunicação do calendário
+            <select style="min-height: 44px; padding: 0 12px; border: 1px solid #2C4677; border-radius: 8px; font: inherit; font-weight: 400; color: #EEF3FA; background: #15264A"><option>Nenhuma por enquanto</option><option>24/11, WhatsApp: discadora no dia a dia</option></select>
+          </label>
+        </div>
+        <div style="display: flex; justify-content: flex-end; gap: 10px"><button type="button" onClick="{{fecharPedido}}" style="min-height: 44px; padding: 0 14px; border: 1px solid #2C4677; border-radius: 10px; background: #15264A; color: #EEF3FA; font: inherit; font-weight: 600; cursor: pointer">Cancelar</button><button type="button" onClick="{{fecharPedido}}" style="min-height: 44px; padding: 0 16px; border: 0; border-radius: 10px; background: #0077B6; color: #FFFFFF; font: inherit; font-weight: 700; cursor: pointer">Enviar pedido</button></div>
+      </section>
+    </sc-if>
+    <div role="tablist" aria-label="Seções" style="display: flex; flex-wrap: wrap; gap: 4px; border-bottom: 1px solid #243A66">
+      <sc-for list="{{abas}}" as="a" hint-placeholder-count="2">
+        <sc-if value="{{a.ativo}}" hint-placeholder-val="{{false}}">
+          <button type="button" role="tab" aria-selected="true" onClick="{{a.pick}}" style="min-height: 44px; padding: 0 16px; border: 0; border-bottom: 3px solid #0077B6; background: transparent; color: #EEF3FA; font: inherit; font-size: 15px; font-weight: 700; cursor: pointer">{{a.nome}}</button>
+        </sc-if>
+        <sc-if value="{{a.inativo}}" hint-placeholder-val="{{true}}">
+          <button type="button" role="tab" aria-selected="false" onClick="{{a.pick}}" style="min-height: 44px; padding: 0 16px; border: 0; border-bottom: 3px solid transparent; background: transparent; color: #A3B4D1; font: inherit; font-size: 15px; font-weight: 500; cursor: pointer">{{a.nome}}</button>
+        </sc-if>
+      </sc-for>
+    </div>
+
+    <sc-if value="{{verCal}}" hint-placeholder-val="{{true}}">
+      <div style="display: flex; flex-wrap: wrap; gap: 16px; align-items: flex-start">
+        <section aria-labelledby="h-calv" style="flex: 999 1 760px; min-width: 0; background: #15264A; border: 1px solid #243A66; border-radius: 14px; padding: 22px; display: flex; flex-direction: column; gap: 12px">
+          <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 10px">
+            <h2 id="h-calv" style="margin: 0; font-size: 18px; font-weight: 700">Entregas de novembro</h2>
+            <div style="display: flex; flex-wrap: wrap; gap: 14px; font-size: 13px; color: #C6D3E6">
+              <span style="display: inline-flex; align-items: center; gap: 6px"><span style="width: 12px; height: 12px; border-radius: 3px; background: #0E9F8E"></span>Feito</span>
+              <span style="display: inline-flex; align-items: center; gap: 6px"><span style="width: 12px; height: 12px; border-radius: 3px; background: #0077B6"></span>Em produção</span>
+              <span style="display: inline-flex; align-items: center; gap: 6px"><span style="width: 12px; height: 12px; border-radius: 3px; background: #D9404A"></span>Atrasado</span>
+              <span style="display: inline-flex; align-items: center; gap: 6px"><span style="width: 12px; height: 12px; border-radius: 3px; border: 2px solid #8696AB; box-sizing: border-box"></span>Pendente</span>
+            </div>
+          </div>
+          <div style="display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 6px; font-size: 13px; color: #A3B4D1; font-weight: 600">
+            <span>Segunda</span><span>Terça</span><span>Quarta</span><span>Quinta</span><span>Sexta</span>
+          </div>
+          <div style="display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 6px">
+            <sc-for list="{{diasV}}" as="d" hint-placeholder-count="25">
+              <div style="min-height: 104px; border: {{d.borda}}; border-radius: 10px; padding: 8px; display: flex; flex-direction: column; gap: 5px; background: {{d.fundo}}">
+                <span style="font-size: 13px; font-weight: 700; color: {{d.corNum}}">{{d.num}}</span>
+                <sc-for list="{{d.itens}}" as="v" hint-placeholder-count="1">
+                  <div style="border: 1px solid #243A66; border-left: 4px solid {{v.cor}}; border-radius: 6px; padding: 4px 6px; background: #15264A; font-size: 12px; line-height: 1.3; display: flex; flex-direction: column; gap: 1px">
+                    <b>{{v.tema}}</b><span style="color: {{v.corTxt}}">{{v.status}}</span>
+                  </div>
+                </sc-for>
+              </div>
+            </sc-for>
+          </div>
+        </section>
+
+        <section aria-labelledby="h-resv" style="flex: 1 1 340px; min-width: 0; display: flex; flex-direction: column; gap: 12px">
+          <div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px">
+            <div style="background: #15264A; border: 1px solid #243A66; border-radius: 14px; padding: 14px 16px; display: flex; flex-direction: column; gap: 2px"><span style="font-size: 13px; font-weight: 600; color: #A3B4D1">Feitos</span><span style="font-size: 26px; font-weight: 800; color: #6FDCCB">{{totFeito}}</span></div>
+            <div style="background: #15264A; border: 1px solid #243A66; border-radius: 14px; padding: 14px 16px; display: flex; flex-direction: column; gap: 2px"><span style="font-size: 13px; font-weight: 600; color: #A3B4D1">Em produção</span><span style="font-size: 26px; font-weight: 800">{{totProd}}</span></div>
+            <div style="background: #15264A; border: 1px solid #7A3A4A; border-radius: 14px; padding: 14px 16px; display: flex; flex-direction: column; gap: 2px"><span style="font-size: 13px; font-weight: 600; color: #A3B4D1">Atrasados</span><span style="font-size: 26px; font-weight: 800; color: #F6A3A9">{{totAtr}}</span></div>
+            <div style="background: #15264A; border: 1px solid #243A66; border-radius: 14px; padding: 14px 16px; display: flex; flex-direction: column; gap: 2px"><span style="font-size: 13px; font-weight: 600; color: #A3B4D1">Pendentes</span><span style="font-size: 26px; font-weight: 800">{{totPend}}</span></div>
+          </div>
+          <div style="background: #15264A; border: 1px solid #243A66; border-radius: 14px; padding: 18px 20px; display: flex; flex-direction: column; gap: 8px">
+            <h2 id="h-resv" style="margin: 0; font-size: 17px; font-weight: 700">O que falta entregar</h2>
+            <sc-for list="{{faltam}}" as="f" hint-placeholder-count="5">
+              <div style="display: flex; justify-content: space-between; gap: 10px; border-top: 1px solid #1E3360; padding-top: 8px; font-size: 14px">
+                <span><b>{{f.tema}}</b><br><span style="font-size: 13px; color: #A3B4D1">{{f.status}}</span></span>
+                <span style="white-space: nowrap; font-weight: 600; color: {{f.corTxt}}">{{f.data}}</span>
+              </div>
+            </sc-for>
+          </div>
+        </section>
+      </div>
+    </sc-if>
+
+    <sc-if value="{{verPedidos}}" hint-placeholder-val="{{true}}">
+      <section aria-labelledby="h-pds" style="background: #15264A; border: 1px solid #243A66; border-radius: 14px; padding: 22px; display: flex; flex-direction: column; gap: 10px">
+        <div style="display: flex; justify-content: space-between; align-items: baseline; gap: 10px; flex-wrap: wrap"><h2 id="h-pds" style="margin: 0; font-size: 18px; font-weight: 700">Pedidos esperando sua decisão</h2><span style="font-size: 14px; color: #A3B4D1">Cabem mais 4 vídeos em novembro</span></div>
+        <sc-for list="{{pedidos}}" as="p" hint-placeholder-count="4">
+          <div style="display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 12px; align-items: center; border-top: 1px solid #1E3360; padding-top: 10px">
+            <div style="display: flex; flex-direction: column; gap: 2px; font-size: 14px"><b>{{p.tema}}</b><span style="font-size: 13px; color: #A3B4D1">{{p.cs}}. {{p.detalhe}}</span></div>
+            <div style="display: flex; gap: 6px; flex-wrap: wrap"><button type="button" style="min-height: 44px; padding: 0 14px; border: 1px solid #2C4677; border-radius: 10px; background: #15264A; color: #EEF3FA; font: inherit; font-weight: 600; cursor: pointer; min-height: 40px">Juntar com outro</button><button type="button" style="min-height: 44px; padding: 0 14px; border: 1px solid #2C4677; border-radius: 10px; background: #15264A; color: #EEF3FA; font: inherit; font-weight: 600; cursor: pointer; min-height: 40px">Para dezembro</button><button type="button" style="min-height: 44px; padding: 0 16px; border: 0; border-radius: 10px; background: #0077B6; color: #FFFFFF; font: inherit; font-weight: 700; cursor: pointer; min-height: 40px">Aprovar</button></div>
+          </div>
+        </sc-for>
+      </section>
+    </sc-if>
+
+    <sc-if value="{{verProducao}}" hint-placeholder-val="{{false}}">
+      <div style="display: flex; flex-direction: column; gap: 12px">
+        <div style="display: flex; justify-content: space-between; align-items: center; gap: 10px; flex-wrap: wrap">
+          <span style="font-size: 14px; color: #A3B4D1">O andamento é atualizado pelo time de CS ou pela gestão.</span>
+          <button type="button" style="min-height: 44px; padding: 0 14px; border: 1px solid #2C4677; border-radius: 10px; background: #15264A; color: #EEF3FA; font: inherit; font-weight: 600; cursor: pointer">Copiar pauta da semana para a Atendas Vision</button>
+        </div>
+        <div style="overflow-x: auto; padding-bottom: 6px">
+          <div style="display: grid; grid-auto-flow: column; grid-auto-columns: 230px; gap: 10px; align-items: start">
+            <sc-for list="{{colunas}}" as="c" hint-placeholder-count="5">
+              <div style="background: #112042; border-radius: 12px; padding: 10px; display: flex; flex-direction: column; gap: 8px; min-height: 140px">
+                <div style="display: flex; justify-content: space-between; padding: 2px 4px 4px"><b style="font-size: 13px">{{c.nome}}</b><span style="font-size: 13px; color: #A3B4D1">{{c.qtd}}</span></div>
+                <sc-for list="{{c.itens}}" as="v" hint-placeholder-count="2">
+                  <div style="background: #15264A; border: 1px solid #243A66; border-radius: 10px; padding: 10px 12px; display: flex; flex-direction: column; gap: 3px; font-size: 13px">
+                    <b style="font-size: 14px">{{v.tema}}</b><span style="color: #A3B4D1">{{v.uso}}</span><span style="color: {{v.cor}}; font-weight: 600">{{v.prazo}}</span>
+                  </div>
+                </sc-for>
+              </div>
+            </sc-for>
+          </div>
+        </div>
+      </div>
+    </sc-if>
+    <p style="margin: 0; font-size: 13px; color: #A3B4D1">Temas e números de exemplo.</p>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":2000}}'>
+class Component extends DCLogic {
+  constructor(props) { super(props); this.state = { aba: 'Calendário', pedido: false }; }
+  renderVals() {
+    const ST = { ok: ['#6FDCCB', 'rgba(14,159,142,0.22)'], at: ['#F7B98A', 'rgba(233,134,47,0.22)'], ri: ['#F6A3A9', 'rgba(217,64,74,0.24)'], az: ['#AFC0F7', 'rgba(48,84,204,0.32)'], ci: ['#C6D3E6', '#1B2E58'] };
+    const tag = (k) => ({ cor: ST[k][0], fundo: ST[k][1] });
+    const abasDe = (lista, atual, set) => lista.map((a) => ({ nome: a, ativo: a === atual, inativo: a !== atual, pick: () => set(a) }));
+    const V = [
+      ['Roteiro', 'Discadora no dia a dia', 'WhatsApp, 24/11', 'Entrega 21/11', false],
+      ['Roteiro', 'Como responder ao transbordo da adimplência', 'Yungas', 'Entrega 28/11', false],
+      ['Produção', 'Primeiro acesso ao Minha Atendas', 'WhatsApp, lote 3', 'Entrega 22/11', false],
+      ['Produção', 'KYC passo a passo', 'Yungas', 'Atrasado desde 18/11', true],
+      ['Legenda', 'OUVIMOS VOCÊ: semana 4', 'Yungas, 24/11', 'Entrega 21/11', false],
+      ['Aguardando aprovação', 'Convite POC RCS: segunda turma', 'RCS', 'Enviado há 2 dias', false],
+      ['Aprovado', 'Fatura no Minha Atendas', 'Usado em 04/11', 'Na biblioteca', false],
+    ];
+    const etapas = ['Roteiro', 'Produção', 'Legenda', 'Aguardando aprovação', 'Aprovado'];
+    const K = { f: ['#6FDCCB', 'Feito', '#6FDCCB'], p: ['#0077B6', 'Em produção', '#C6D3E6'], a: ['#D9404A', 'Atrasado', '#F6A3A9'], n: ['#8696AB', 'Pendente', '#A3B4D1'] };
+    const ENT = [
+      [3, 'f', 'OUVIMOS VOCÊ: KYC'], [3, 'f', 'Fatura no Minha Atendas'], [4, 'f', 'Boas práticas de transbordo'], [5, 'f', 'Convite POC RCS'],
+      [6, 'f', 'Discadora: primeiros passos'], [9, 'f', 'OUVIMOS VOCÊ: semana 2'], [10, 'f', 'Manutenção da plataforma'], [11, 'f', 'Treinamento de KYC'],
+      [12, 'f', 'Commit: como funciona o saldo'], [13, 'f', 'Novidades da versão 2.4.0'], [16, 'f', 'OUVIMOS VOCÊ: semana 3'], [17, 'f', 'Minha Atendas: lote 2'],
+      [17, 'f', 'Resultados parciais da POC'], [18, 'f', 'Pesquisa de satisfação'], [18, 'a', 'KYC passo a passo'],
+      [20, 'p', 'Convite POC RCS: 2ª turma'], [21, 'p', 'Discadora no dia a dia'], [21, 'p', 'OUVIMOS VOCÊ: semana 4'], [22, 'p', 'Primeiro acesso ao Minha Atendas'],
+      [24, 'n', 'Como contestar uma fatura'], [25, 'n', 'URA reversa na cobrança'], [26, 'n', 'Fechamento do mês'], [27, 'n', 'IA de voz: demonstração'],
+      [28, 'p', 'Transbordo da adimplência'], [30, 'n', 'Agenda de dezembro'], [30, 'n', 'Retrospectiva 2026'],
+    ];
+    const nums = [2,3,4,5,6, 9,10,11,12,13, 16,17,18,19,20, 23,24,25,26,27, 30,31,32,33,34];
+    const diasV = nums.map((n) => { const itens = ENT.filter((e) => e[0] === n).map(([, k, tema]) => ({ tema, cor: K[k][0], status: K[k][1], corTxt: K[k][2] }));
+      const fora = n > 30; return { num: fora ? '' : n, itens, borda: n === 19 ? '2px solid #0077B6' : '1px solid #1E3360', fundo: fora ? '#112042' : '#FFFFFF', corNum: n === 19 ? '#0077B6' : '#A3B4D1' }; });
+    const conta = (k) => ENT.filter((e) => e[1] === k).length;
+    const faltam = ENT.filter((e) => e[1] !== 'f').sort((a, b) => (a[1] === 'a' ? -1 : 0) - (b[1] === 'a' ? -1 : 0) || a[0] - b[0]).slice(0, 7)
+      .map(([d, k, tema]) => ({ tema, status: K[k][1], corTxt: K[k][2], data: k === 'a' ? 'desde ' + d + '/11' : d + '/11' }));
+    return {
+      diasV, faltam, totFeito: conta('f') + ' de 30', totProd: conta('p'), totAtr: conta('a'), totPend: conta('n'),
+      abas: abasDe(['Calendário', 'Pedidos', 'Produção'], this.state.aba, (a) => this.setState({ aba: a })),
+      verCal: this.state.aba === 'Calendário', verPedidos: this.state.aba === 'Pedidos', verProducao: this.state.aba === 'Produção',
+      pedidoAberto: this.state.pedido, abrirPedido: () => this.setState({ pedido: true }), fecharPedido: () => this.setState({ pedido: false }),
+      pedidos: [
+        ['Como contestar uma fatura', 'Rafaela', 'Para todas as franquias, Yungas. Precisa até 01/12'],
+        ['Discadora: como ler os relatórios', 'Giovanna', 'Franquias com discadora, WhatsApp. Precisa até 05/12'],
+        ['Transbordo da adimplência: boas práticas', 'Maria Eduarda', 'Parecido com um vídeo em roteiro: dá para juntar'],
+        ['Boas-vindas para franquias novas', 'Camila', 'Onboarding, WhatsApp. Precisa até 10/12'],
+      ].map(([tema, cs, detalhe]) => ({ tema, cs, detalhe })),
+      colunas: etapas.map((e) => { const itens = V.filter((v) => v[0] === e).map(([, tema, uso, prazo, atr]) => ({ tema, uso, prazo, cor: atr ? '#F6A3A9' : '#A3B4D1' })); return { nome: e, qtd: itens.length, itens }; }),
+    };
+  }
+}
+</script>
+</body>
+</html>

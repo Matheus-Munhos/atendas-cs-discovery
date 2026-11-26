@@ -1,0 +1,168 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<title>Aderência aos produtos</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700;800&amp;display=swap">
+<style>
+body{margin:0}
+a{color:#9DD8FF}a:hover{color:#FFFFFF}
+</style>
+</helmet>
+<div style="min-height: 2600px; background: #0E1A33; font-family: Figtree, Arial, sans-serif; color: #EEF3FA; padding: 32px 32px 56px; box-sizing: border-box">
+  <div style="max-width: 1380px; margin: 0 auto; display: flex; flex-direction: column; gap: 18px">
+    <header style="display: flex; flex-direction: column; gap: 4px">
+      <h1 style="margin: 0; font-size: 30px; font-weight: 800; letter-spacing: -0.5px">Aderência aos produtos</h1>
+      <p style="margin: 0; font-size: 15px; color: #A3B4D1">O que cada franquia contratou dos 7 produtos principais da Atendas. No WhatsApp API Oficial e no RCS aparece o plano de commit. Adicionais, KYC e Projeto de Adimplência ficam fora da conta.</p>
+    </header>
+
+    <section aria-label="Resumo" style="display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px">
+      <sc-for list="{{nums}}" as="n" hint-placeholder-count="4">
+        <div style="background: #15264A; border: 1px solid #243A66; border-radius: 14px; padding: 16px 18px; display: flex; flex-direction: column; gap: 4px">
+          <span style="font-size: 14px; font-weight: 600; color: #A3B4D1">{{n.nome}}</span>
+          <span style="font-size: 28px; font-weight: 800">{{n.valor}}</span>
+          <span style="font-size: 13px; color: #A3B4D1">{{n.detalhe}}</span>
+        </div>
+      </sc-for>
+    </section>
+
+    <div style="display: flex; flex-wrap: wrap; gap: 16px; align-items: stretch">
+      <section aria-labelledby="h-prod" style="flex: 1 1 560px; background: #15264A; border: 1px solid #243A66; border-radius: 14px; padding: 20px 22px; display: flex; flex-direction: column; gap: 12px">
+        <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: baseline; gap: 8px"><h2 id="h-prod" style="margin: 0; font-size: 17px; font-weight: 700">Aderência por produto</h2><span style="font-size: 13px; color: #A3B4D1">% das 406 franquias</span></div>
+        <sc-for list="{{porProduto}}" as="p" hint-placeholder-count="7">
+          <div style="display: grid; grid-template-columns: 190px minmax(0, 1fr) 120px; gap: 12px; align-items: center; font-size: 14px">
+            <b>{{p.nome}}</b>
+            <div style="display: flex; height: 18px; border-radius: 5px; overflow: hidden; background: #1E3360">
+              <div style="width: {{p.w1}}; background: #0E9F8E"></div><div style="width: {{p.w2}}; background: #7F9BF2"></div>
+            </div>
+            <span style="text-align: right"><b>{{p.pct}}</b> <span style="color: #A3B4D1; font-size: 13px">{{p.extra}}</span></span>
+          </div>
+        </sc-for>
+        <div style="display: flex; gap: 16px; font-size: 13px; color: #C6D3E6"><span style="display: inline-flex; align-items: center; gap: 6px"><span style="width: 12px; height: 12px; border-radius: 3px; background: #0E9F8E"></span>Contratado</span><span style="display: inline-flex; align-items: center; gap: 6px"><span style="width: 12px; height: 12px; border-radius: 3px; background: #7F9BF2"></span>Em POC ou negociação</span></div>
+      </section>
+
+      <section aria-labelledby="h-niv" style="flex: 1 1 520px; background: #15264A; border: 1px solid #243A66; border-radius: 14px; padding: 20px 22px; display: flex; flex-direction: column; gap: 12px">
+        <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: baseline; gap: 8px"><h2 id="h-niv" style="margin: 0; font-size: 17px; font-weight: 700">Nível de aderência por regional</h2><span style="font-size: 13px; color: #A3B4D1">Baixa: 1 ou 2 produtos. Média: 3 ou 4. Alta: 5 a 7.</span></div>
+        <sc-for list="{{niveis}}" as="n" hint-placeholder-count="6">
+          <div style="display: grid; grid-template-columns: 120px minmax(0, 1fr) 70px; gap: 12px; align-items: center; font-size: 14px">
+            <b>{{n.nome}}</b>
+            <div style="display: flex; height: 22px; border-radius: 6px; overflow: hidden; gap: 2px" role="img" aria-label="{{n.aria}}">
+              <div style="flex: {{n.b}}; background: #F4B183; color: #5A2A06; font-size: 12px; font-weight: 700; display: grid; place-items: center">{{n.b}}%</div>
+              <div style="flex: {{n.m}}; background: #7FB8E0; color: #062C4A; font-size: 12px; font-weight: 700; display: grid; place-items: center">{{n.m}}%</div>
+              <div style="flex: {{n.a}}; background: #0E9F8E; color: #FFFFFF; font-size: 12px; font-weight: 700; display: grid; place-items: center">{{n.a}}%</div>
+            </div>
+            <span style="text-align: right; font-weight: 700">{{n.media}}</span>
+          </div>
+        </sc-for>
+        <div style="display: flex; flex-wrap: wrap; gap: 16px; font-size: 13px; color: #C6D3E6"><span style="display: inline-flex; align-items: center; gap: 6px"><span style="width: 12px; height: 12px; border-radius: 3px; background: #F4B183"></span>Baixa</span><span style="display: inline-flex; align-items: center; gap: 6px"><span style="width: 12px; height: 12px; border-radius: 3px; background: #7FB8E0"></span>Média</span><span style="display: inline-flex; align-items: center; gap: 6px"><span style="width: 12px; height: 12px; border-radius: 3px; background: #0E9F8E"></span>Alta</span><span>À direita, média de produtos por franquia</span></div>
+      </section>
+    </div>
+
+    <section aria-labelledby="h-mat" style="background: #15264A; border: 1px solid #243A66; border-radius: 14px; padding: 20px 22px; display: flex; flex-direction: column; gap: 14px">
+      <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-end; gap: 12px">
+        <div style="display: flex; flex-direction: column; gap: 2px"><h2 id="h-mat" style="margin: 0; font-size: 17px; font-weight: 700">Franquias e produtos</h2><span style="font-size: 13px; color: #A3B4D1">Use "Sem o produto" para achar oportunidades: franquias que ainda não têm aquele produto.</span></div>
+        <div style="display: flex; flex-wrap: wrap; gap: 10px">
+          <label style="display: flex; flex-direction: column; gap: 4px; font-size: 13px; font-weight: 600">Regional
+            <select onChange="{{fReg}}" style="min-height: 44px; padding: 0 12px; border: 1px solid #2C4677; border-radius: 8px; font: inherit; font-weight: 400; color: #EEF3FA; background: #15264A"><option>Todas</option><option>SP Minas</option><option>SP Interior</option><option>Centro Sul</option><option>Costa Leste</option><option>Equatorial</option></select>
+          </label>
+          <label style="display: flex; flex-direction: column; gap: 4px; font-size: 13px; font-weight: 600">Nível
+            <select onChange="{{fNiv}}" style="min-height: 44px; padding: 0 12px; border: 1px solid #2C4677; border-radius: 8px; font: inherit; font-weight: 400; color: #EEF3FA; background: #15264A"><option>Todos</option><option>Baixa</option><option>Média</option><option>Alta</option></select>
+          </label>
+          <label style="display: flex; flex-direction: column; gap: 4px; font-size: 13px; font-weight: 600">Sem o produto
+            <select onChange="{{fSem}}" style="min-height: 44px; padding: 0 12px; border: 1px solid #2C4677; border-radius: 8px; font: inherit; font-weight: 400; color: #EEF3FA; background: #15264A"><option>Qualquer</option><option>WhatsApp API Oficial</option><option>RCS</option><option>Telefonia</option><option>Portabilidade</option><option>Discadora/URA Reversa</option><option>CRM</option><option>IA de Voz</option></select>
+          </label>
+        </div>
+      </div>
+
+      <div style="overflow-x: auto">
+        <div style="min-width: 1180px; display: flex; flex-direction: column">
+          <div style="display: grid; grid-template-columns: 200px repeat(7, minmax(0, 1fr)) 210px; gap: 8px; padding-bottom: 10px; border-bottom: 1px solid #243A66; font-size: 13px; font-weight: 600; color: #A3B4D1; align-items: end">
+            <span>Franquia</span>
+            <sc-for list="{{produtos}}" as="p" hint-placeholder-count="7"><span style="text-align: center; line-height: 1.25">{{p}}</span></sc-for>
+            <span>Nível de aderência</span>
+          </div>
+          <sc-for list="{{linhas}}" as="l" hint-placeholder-count="12">
+            <div style="display: grid; grid-template-columns: 200px repeat(7, minmax(0, 1fr)) 210px; gap: 8px; padding: 10px 0; border-bottom: 1px solid #1E3360; align-items: center; font-size: 14px">
+              <a href="Ficha.dc.html" style="text-decoration: none; color: #EEF3FA"><b>{{l.f}}</b><br><span style="font-size: 13px; color: #A3B4D1">{{l.reg}}, {{l.cs}}</span></a>
+              <sc-for list="{{l.cels}}" as="c" hint-placeholder-count="7">
+                <span title="{{c.titulo}}" style="justify-self: center; display: grid; place-items: center; min-width: 72px; height: 32px; padding: 0 8px; box-sizing: border-box; border-radius: 8px; font-size: 12px; font-weight: 700; color: {{c.cor}}; background: {{c.fundo}}; border: {{c.borda}}">{{c.txt}}</span>
+              </sc-for>
+              <div style="display: flex; flex-direction: column; gap: 4px">
+                <div style="display: flex; gap: 3px" role="img" aria-label="{{l.aria}}">
+                  <sc-for list="{{l.pontos}}" as="p" hint-placeholder-count="7"><span style="flex: 1; height: 10px; border-radius: 3px; background: {{p.cor}}"></span></sc-for>
+                </div>
+                <span style="font-size: 13px; font-weight: 700; color: {{l.corNivel}}">{{l.nivel}}: {{l.qtd}} de 7</span>
+              </div>
+            </div>
+          </sc-for>
+          <sc-if value="{{vazio}}" hint-placeholder-val="{{false}}"><p style="margin: 0; padding: 16px 0; color: #A3B4D1; font-size: 14px">Nenhuma franquia com esses filtros.</p></sc-if>
+        </div>
+      </div>
+      <div style="display: flex; flex-wrap: wrap; gap: 14px; font-size: 13px; color: #C6D3E6">
+        <span style="display: inline-flex; align-items: center; gap: 6px"><span style="padding: 2px 8px; border-radius: 6px; background: #0E9F8E; color: #FFFFFF; font-weight: 700">✓</span>Contratado</span>
+        <span style="display: inline-flex; align-items: center; gap: 6px"><span style="padding: 2px 8px; border-radius: 6px; background: rgba(48,84,204,0.32); color: #AFC0F7; font-weight: 700">POC</span>Em POC</span>
+        <span style="display: inline-flex; align-items: center; gap: 6px"><span style="padding: 2px 8px; border-radius: 6px; border: 1px dashed #AFC0F7; color: #AFC0F7; font-weight: 700">Negociação</span>Oportunidade aberta</span>
+        <span style="display: inline-flex; align-items: center; gap: 6px"><span style="padding: 2px 8px; border-radius: 6px; background: rgba(233,134,47,0.22); color: #F7B98A; font-weight: 700">Recusou</span>Recusou, com data para retomar</span>
+        <span style="display: inline-flex; align-items: center; gap: 6px"><span style="padding: 2px 8px; border-radius: 6px; background: #0E1A33; color: #8FA3C4; font-weight: 700">—</span>Não contratado</span>
+      </div>
+    </section>
+    <p style="margin: 0; font-size: 13px; color: #A3B4D1">Números e franquias de exemplo. Clique numa franquia para abrir a ficha.</p>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":2600}}'>
+class Component extends DCLogic {
+  constructor(props) { super(props); this.state = { reg: 'Todas', niv: 'Todos', sem: 'Qualquer' }; }
+  renderVals() {
+    const PRODS = ['WhatsApp API Oficial', 'RCS', 'Telefonia', 'Portabilidade', 'Discadora/URA Reversa', 'CRM', 'IA de Voz'];
+    const PLANO = { B: 'Bronze', S: 'Silver', G: 'Gold', P: 'Platinum' };
+    const CEL = {
+      c: { txt: '✓', cor: '#FFFFFF', fundo: '#0E9F8E', borda: '0', titulo: 'Contratado' },
+      p: { txt: 'POC', cor: '#AFC0F7', fundo: 'rgba(48,84,204,0.32)', borda: '0', titulo: 'Em POC' },
+      n: { txt: 'Negociação', cor: '#AFC0F7', fundo: '#15264A', borda: '1px dashed #AFC0F7', titulo: 'Oportunidade aberta' },
+      r: { txt: 'Recusou', cor: '#F7B98A', fundo: 'rgba(233,134,47,0.22)', borda: '0', titulo: 'Recusou, com data para retomar' },
+      x: { txt: '—', cor: '#8FA3C4', fundo: '#0E1A33', borda: '0', titulo: 'Não contratado' },
+    };
+    const F = [
+      ['CDT Guarulhos', 'SP Minas', 'Giovanna', 'Gxccxnc'], ['CDT Itaquera', 'SP Minas', 'Giovanna', 'Sxccxxx'], ['CDT Osasco', 'SP Minas', 'Giovanna', 'Bpxxrxr'],
+      ['CDT Santo Amaro', 'SP Minas', 'Giovanna', 'Sxxxnxx'], ['CDT Ribeirão Preto', 'SP Interior', 'Camila', 'PSccccx'], ['CDT Franca', 'SP Interior', 'Camila', 'Gnccxxc'],
+      ['CDT Campinas', 'SP Interior', 'Camila', 'Bxxxxcx'], ['CDT Curitiba', 'Centro Sul', 'Rafaela', 'Sxcccxx'], ['CDT Maringá', 'Centro Sul', 'Rafaela', 'Bxxxrxx'],
+      ['CDT Niterói', 'Costa Leste', 'Jéssica', 'Gxccccc'], ['CDT Vitória', 'Costa Leste', 'Jéssica', 'Sxxxxcn'], ['CDT Salvador', 'Costa Leste', 'Jéssica', 'Gxccxxc'],
+      ['CDT Picos', 'Equatorial', 'Maria Eduarda', 'Bpxxxxx'], ['CDT Fortaleza', 'Equatorial', 'Maria Eduarda', 'Sxnccxx'], ['CDT Belém', 'Equatorial', 'Maria Eduarda', 'xxxxxxx'],
+    ];
+    const nivelDe = (q) => q >= 5 ? ['Alta', '#6FDCCB'] : q >= 3 ? ['Média', '#8CC4EE'] : ['Baixa', '#F7B98A'];
+    let linhas = F.map(([f, reg, cs, cod]) => {
+      const qtd = [...cod].filter((x) => x === 'c' || PLANO[x]).length;
+      const [nivel, corNivel] = nivelDe(qtd);
+      return { f, reg, cs, cod, qtd, nivel, corNivel,
+        cels: [...cod].map((k) => PLANO[k] ? { ...CEL.c, txt: PLANO[k], titulo: 'Contratado: Commit ' + PLANO[k] } : CEL[k]),
+        pontos: Array.from({ length: 7 }, (_, i) => ({ cor: i < qtd ? corNivel : '#1E3360' })),
+        aria: f + ': ' + qtd + ' de 7 produtos, aderência ' + nivel.toLowerCase() };
+    });
+    const st = this.state;
+    linhas = linhas.filter((l) => (st.reg === 'Todas' || l.reg === st.reg) && (st.niv === 'Todos' || l.nivel === st.niv) && (st.sem === 'Qualquer' || !(l.cod[PRODS.indexOf(st.sem)] === 'c' || PLANO[l.cod[PRODS.indexOf(st.sem)]])))
+      .sort((a, b) => b.qtd - a.qtd);
+    const P = [['WhatsApp API Oficial', 81, 3], ['Telefonia', 46, 2], ['Discadora/URA Reversa', 38, 6], ['Portabilidade', 29, 2], ['CRM', 24, 2], ['IA de Voz', 12, 4], ['RCS', 4, 3]];
+    return {
+      produtos: PRODS, linhas, vazio: linhas.length === 0,
+      fReg: (e) => this.setState({ reg: e.target.value }), fNiv: (e) => this.setState({ niv: e.target.value }), fSem: (e) => this.setState({ sem: e.target.value }),
+      nums: [
+        { nome: 'Produtos por franquia', valor: '2,2 de 7', detalhe: 'média da carteira; era 2,1 em outubro' },
+        { nome: 'Aderência alta', valor: '9%', detalhe: '37 franquias com 5 produtos ou mais' },
+        { nome: 'Mais contratado', valor: 'API Oficial', detalhe: '81% das franquias' },
+        { nome: 'Maior espaço para crescer', valor: 'RCS', detalhe: '4% contratado, 3% em POC ou negociação' },
+      ],
+      porProduto: P.map(([nome, c, n]) => ({ nome, w1: c + '%', w2: n + '%', pct: c + '%', extra: '+' + n + '% em andamento' })),
+      niveis: [['Time', 48, 43, 9, '2,2'], ['SP Minas', 41, 47, 12, '2,5'], ['SP Interior', 38, 49, 13, '2,6'], ['Centro Sul', 55, 39, 6, '1,9'], ['Costa Leste', 44, 45, 11, '2,4'], ['Equatorial', 63, 33, 4, '1,7']]
+        .map(([nome, b, m, a, media]) => ({ nome, b, m, a, media, aria: nome + ': ' + b + '% baixa, ' + m + '% média, ' + a + '% alta' })),
+    };
+  }
+}
+</script>
+</body>
+</html>

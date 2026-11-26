@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<title>Carteira geral</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700;800&amp;display=swap">
+<style>
+body{margin:0}
+a{color:#9DD8FF}a:hover{color:#FFFFFF}
+</style>
+</helmet>
+<div style="min-height: 1700px; background: #0E1A33; font-family: Figtree, Arial, sans-serif; color: #EEF3FA; padding: 32px 32px 56px; box-sizing: border-box">
+  <div style="max-width: 1380px; margin: 0 auto; display: flex; flex-direction: column; gap: 18px">
+    <a href="Visao.dc.html" style="align-self: flex-start; display: inline-flex; align-items: center; gap: 6px; min-height: 44px; font-size: 15px; font-weight: 600; text-decoration: none">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 18l-6-6 6-6"></path></svg>
+      Visão geral
+    </a>
+    <header style="display: flex; flex-direction: column; gap: 4px">
+      <h1 style="margin: 0; font-size: 30px; font-weight: 800; letter-spacing: -0.5px">Carteira geral</h1>
+      <p style="margin: 0; font-size: 15px; color: #A3B4D1">Todas as franquias da Atendas, de todas as CSs. Para a gestão encontrar, filtrar, transferir e exportar.</p>
+    </header>
+    <section aria-label="Resumo" style="display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 12px">
+      <sc-for list="{{nums}}" as="n" hint-placeholder-count="5">
+        <div style="background: #15264A; border: 1px solid #243A66; border-radius: 14px; padding: 14px 16px; display: flex; flex-direction: column; gap: 2px"><span style="font-size: 13px; color: #A3B4D1; font-weight: 600">{{n.nome}}</span><b style="font-size: 26px; color: {{n.cor}}">{{n.valor}}</b></div>
+      </sc-for>
+    </section>
+    <section style="background: #15264A; border: 1px solid #243A66; border-radius: 14px; padding: 22px; display: flex; flex-direction: column; gap: 14px">
+      <div style="display: flex; flex-wrap: wrap; gap: 10px; align-items: flex-end">
+        <label style="display: flex; flex-direction: column; gap: 6px; font-size: 14px; font-weight: 600; color: #EEF3FA; flex: 2 1 240px">Buscar<input type="search" placeholder="Franquia, cidade, gerente ou código" style="min-height: 44px; padding: 0 12px; border: 1px solid #2C4677; border-radius: 8px; font: inherit; font-weight: 400; color: #EEF3FA; background: #1B2E58"></label>
+        <label style="display: flex; flex-direction: column; gap: 6px; font-size: 14px; font-weight: 600; color: #EEF3FA; flex: 1 1 150px">CS<select onChange="{{fCs}}" style="min-height: 44px; padding: 0 12px; border: 1px solid #2C4677; border-radius: 8px; font: inherit; font-weight: 400; color: #EEF3FA; background: #1B2E58"><option>Todas</option><option>Giovanna</option><option>Camila</option><option>Rafaela</option><option>Jéssica</option><option>Maria Eduarda</option></select></label>
+        <label style="display: flex; flex-direction: column; gap: 6px; font-size: 14px; font-weight: 600; color: #EEF3FA; flex: 1 1 150px">Saúde<select onChange="{{fSaude}}" style="min-height: 44px; padding: 0 12px; border: 1px solid #2C4677; border-radius: 8px; font: inherit; font-weight: 400; color: #EEF3FA; background: #1B2E58"><option>Todas</option><option>Saudável</option><option>Atenção</option><option>Risco</option></select></label>
+        <label style="display: flex; flex-direction: column; gap: 6px; font-size: 14px; font-weight: 600; color: #EEF3FA; flex: 1 1 150px">Fase<select style="min-height: 44px; padding: 0 12px; border: 1px solid #2C4677; border-radius: 8px; font: inherit; font-weight: 400; color: #EEF3FA; background: #1B2E58"><option>Todas</option><option>Onboarding</option><option>Em acompanhamento</option><option>Em expansão</option><option>Em risco</option></select></label>
+        <label style="display: flex; flex-direction: column; gap: 6px; font-size: 14px; font-weight: 600; color: #EEF3FA; flex: 1 1 150px">Aderência<select style="min-height: 44px; padding: 0 12px; border: 1px solid #2C4677; border-radius: 8px; font: inherit; font-weight: 400; color: #EEF3FA; background: #1B2E58"><option>Todas</option><option>Baixa</option><option>Média</option><option>Alta</option></select></label>
+      </div>
+      <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 10px">
+        <span style="font-size: 14px; color: #C6D3E6">{{contagem}}</span>
+        <div style="display: flex; gap: 8px"><a href="Config.dc.html" style="display: inline-flex; align-items: center; justify-content: center; min-height: 44px; padding: 0 16px; border: 1px solid #2C4677; border-radius: 10px; background: #1B2E58; color: #EEF3FA; font: inherit; font-weight: 600; cursor: pointer; text-decoration: none">Transferir selecionadas</a><button type="button" style="display: inline-flex; align-items: center; justify-content: center; min-height: 44px; padding: 0 16px; border: 1px solid #2C4677; border-radius: 10px; background: #1B2E58; color: #EEF3FA; font: inherit; font-weight: 600; cursor: pointer; text-decoration: none">Exportar lista</button><a href="Importacao.dc.html" style="display: inline-flex; align-items: center; justify-content: center; min-height: 44px; padding: 0 18px; border: 0; border-radius: 10px; background: #0077B6; color: #FFFFFF; font: inherit; font-weight: 700; cursor: pointer; text-decoration: none">Adicionar franquia</a></div>
+      </div>
+      <div style="overflow-x: auto"><div style="min-width: 1160px; display: flex; flex-direction: column">
+        <div style="display: grid; grid-template-columns: 36px 220px 160px 120px 150px 130px 110px 110px minmax(0, 1fr); gap: 10px; padding-bottom: 8px; border-bottom: 1px solid #243A66; font-size: 13px; font-weight: 600; color: #A3B4D1; align-items: end">
+          <span><span style="position: absolute; left: -9999px">Selecionar</span><input type="checkbox" style="width: 18px; height: 18px; accent-color: #00A8F0"></span><span>Franquia</span><span>Regional e CS</span><span>Saúde</span><span>Fase</span><span>Última reunião</span><span>Produtos</span><span style="text-align: right">MRR</span><span>Alertas</span>
+        </div>
+        <sc-for list="{{linhas}}" as="l" hint-placeholder-count="12">
+          <div style="display: grid; grid-template-columns: 36px 220px 160px 120px 150px 130px 110px 110px minmax(0, 1fr); gap: 10px; padding: 10px 0; border-bottom: 1px solid #243A66; font-size: 14px; align-items: center">
+            <input type="checkbox" aria-label="Selecionar {{l.f}}" style="width: 18px; height: 18px; accent-color: #00A8F0">
+            <a href="Ficha.dc.html" style="text-decoration: none; color: #EEF3FA"><b>{{l.f}}</b><br><span style="font-size: 12px; color: #A3B4D1">{{l.cod}}</span></a>
+            <span>{{l.reg}}<br><span style="font-size: 13px; color: #A3B4D1">{{l.cs}}</span></span>
+            <span style="justify-self: start; font-size: 13px; font-weight: 700; color: {{l.cor}}; background: {{l.fundo}}; padding: 3px 10px; border-radius: 999px">{{l.saude}}</span>
+            <span style="color: #C6D3E6">{{l.fase}}</span>
+            <span style="color: {{l.corReu}}">{{l.reu}}</span>
+            <span>{{l.prod}} de 7</span>
+            <span style="text-align: right; font-weight: 600">{{l.mrr}}</span>
+            <span style="font-size: 13px; color: #F7B98A">{{l.alerta}}</span>
+          </div>
+        </sc-for>
+      </div></div>
+    </section>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":1700}}'>
+class Component extends DCLogic {
+  constructor(props) { super(props); this.state = { cs: 'Todas', saude: 'Todas' }; }
+  renderVals() {
+    const TAG = { ok: ['#6FDCCB', 'rgba(14,159,142,0.22)'], at: ['#F7B98A', 'rgba(233,134,47,0.22)'], ri: ['#F6A3A9', 'rgba(217,64,74,0.24)'], az: ['#AFC0F7', 'rgba(48,84,204,0.32)'], ci: ['#C6D3E6', '#1B2E58'] };
+    const K = { 'Saudável': 'ok', 'Atenção': 'at', 'Risco': 'ri' };
+    const F = [
+      ['CDT Guarulhos', 'CDT-1011', 'SP Minas', 'Giovanna', 'Saudável', 'Em expansão', 'há 13 dias', 5, 'R$ 2.480', ''],
+      ['CDT Osasco', 'CDT-1007', 'SP Minas', 'Giovanna', 'Risco', 'Em risco', 'há 47 dias', 2, 'R$ 890', 'Sem reunião há 47 dias'],
+      ['CDT Ribeirão Preto', 'CDT-2001', 'SP Interior', 'Camila', 'Saudável', 'Em expansão', 'há 5 dias', 6, 'R$ 3.900', ''],
+      ['CDT Franca', 'CDT-2004', 'SP Interior', 'Camila', 'Atenção', 'Em acompanhamento', 'há 22 dias', 4, 'R$ 1.640', 'Indicada para a POC RCS'],
+      ['CDT Curitiba', 'CDT-3002', 'Centro Sul', 'Rafaela', 'Saudável', 'Em acompanhamento', 'há 9 dias', 4, 'R$ 1.720', ''],
+      ['CDT Maringá', 'CDT-3011', 'Centro Sul', 'Rafaela', 'Risco', 'Em risco', 'há 9 dias', 1, 'R$ 1.340', 'Pedido de cancelamento'],
+      ['CDT Campo Grande', 'CDT-3020', 'Centro Sul', 'Rafaela', 'Atenção', 'Em acompanhamento', 'há 16 dias', 3, 'R$ 1.100', 'Troca de gerente'],
+      ['CDT Niterói', 'CDT-4003', 'Costa Leste', 'Jéssica', 'Saudável', 'Em expansão', 'há 3 dias', 6, 'R$ 3.150', ''],
+      ['CDT Salvador', 'CDT-4010', 'Costa Leste', 'Jéssica', 'Saudável', 'Em acompanhamento', 'há 11 dias', 4, 'R$ 1.900', ''],
+      ['CDT Recife', 'CDT-5006', 'Equatorial', 'Maria Eduarda', 'Risco', 'Em risco', 'há 14 dias', 3, 'R$ 1.460', 'Pedido de cancelamento'],
+      ['CDT Teresina', 'CDT-5014', 'Equatorial', 'Maria Eduarda', 'Risco', 'Em risco', 'há 58 dias', 2, 'R$ 700', 'Boletos em aberto'],
+      ['CDT Santo André', 'CDT-1043', 'SP Minas', 'Giovanna', 'Atenção', 'Onboarding', 'hoje, 15h', 1, 'R$ 700', 'Onboarding: dia 3 de 30'],
+    ];
+    const st = this.state;
+    const linhas = F.filter((f) => (st.cs === 'Todas' || f[3] === st.cs) && (st.saude === 'Todas' || f[4] === st.saude))
+      .map(([f, cod, reg, cs, saude, fase, reu, prod, mrr, alerta]) => ({ f, cod, reg, cs, saude, fase, reu, prod, mrr, alerta, cor: TAG[K[saude]][0], fundo: TAG[K[saude]][1], corReu: reu.includes('47') || reu.includes('58') ? '#F6A3A9' : '#C6D3E6' }));
+    return {
+      linhas, contagem: (st.cs === 'Todas' && st.saude === 'Todas') ? 'Mostrando 12 de 406 franquias (exemplo)' : linhas.length + ' franquias com esses filtros (exemplo)',
+      fCs: (e) => this.setState({ cs: e.target.value }), fSaude: (e) => this.setState({ saude: e.target.value }),
+      nums: [{ nome: 'Franquias', valor: '406', cor: '#EEF3FA' }, { nome: 'Saudáveis', valor: '247', cor: '#6FDCCB' }, { nome: 'Em atenção', valor: '100', cor: '#F7B98A' }, { nome: 'Em risco', valor: '59', cor: '#F6A3A9' }, { nome: 'Em onboarding', valor: '18', cor: '#AFC0F7' }],
+    };
+  }
+}
+</script>
+</body>
+</html>

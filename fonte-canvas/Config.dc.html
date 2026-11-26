@@ -1,0 +1,693 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<title>Configurações</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700;800&amp;display=swap">
+<style>
+body{margin:0}
+a{color:#9DD8FF}a:hover{color:#FFFFFF}
+</style>
+</helmet>
+<div style="min-height: 2200px; background: #0E1A33; font-family: Figtree, Arial, sans-serif; color: #EEF3FA; padding: 32px 32px 56px; box-sizing: border-box">
+  <div style="max-width: 1280px; margin: 0 auto; display: flex; flex-direction: column; gap: 20px">
+
+    <header style="display: flex; flex-direction: column; gap: 4px">
+      <h1 style="margin: 0; font-size: 30px; font-weight: 800; letter-spacing: -0.5px">Configurações</h1>
+      <p style="margin: 0; font-size: 15px; color: #A3B4D1">Só a gestão altera. O que muda aqui aparece no registro, na ficha e nos acompanhamentos de todas as CSs.</p>
+    </header>
+
+    <div role="tablist" aria-label="Seções das configurações" style="display: flex; flex-wrap: wrap; gap: 4px; border-bottom: 1px solid #243A66">
+      <sc-for list="{{abas}}" as="a" hint-placeholder-count="3">
+        <sc-if value="{{a.ativo}}" hint-placeholder-val="{{false}}">
+          <button type="button" role="tab" aria-selected="true" onClick="{{a.pick}}" style="min-height: 44px; padding: 0 16px; border: 0; border-bottom: 3px solid #0077B6; background: transparent; color: #EEF3FA; font: inherit; font-size: 15px; font-weight: 700; cursor: pointer">{{a.nome}}</button>
+        </sc-if>
+        <sc-if value="{{a.inativo}}" hint-placeholder-val="{{true}}">
+          <button type="button" role="tab" aria-selected="false" onClick="{{a.pick}}" style="min-height: 44px; padding: 0 16px; border: 0; border-bottom: 3px solid transparent; background: transparent; color: #A3B4D1; font: inherit; font-size: 15px; font-weight: 500; cursor: pointer">{{a.nome}}</button>
+        </sc-if>
+      </sc-for>
+    </div>
+
+    <sc-if value="{{verProdutos}}" hint-placeholder-val="{{true}}">
+      <div style="display: flex; flex-wrap: wrap; gap: 20px; align-items: flex-start">
+        <section aria-labelledby="h-cat" style="flex: 999 1 560px; min-width: 0; background: #15264A; border: 1px solid #243A66; border-radius: 14px; padding: 22px; display: flex; flex-direction: column; gap: 14px">
+          <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 10px">
+            <div style="display: flex; flex-direction: column; gap: 2px">
+              <h2 id="h-cat" style="margin: 0; font-size: 18px; font-weight: 700">Catálogo de produtos</h2>
+              <span style="font-size: 14px; color: #A3B4D1">O que as franquias podem contratar ou ativar. Serviço novo entra aqui e passa a aparecer no registro, na ficha, no upsell e na aderência.</span>
+            </div>
+            <button type="button" style="min-height: 44px; padding: 0 16px; border: 0; border-radius: 10px; background: #0077B6; color: #FFFFFF; font: inherit; font-weight: 700; cursor: pointer">Novo serviço</button>
+          </div>
+          <div style="overflow-x: auto">
+            <table style="width: 100%; min-width: 640px; border-collapse: collapse; font-size: 14px">
+              <thead>
+                <tr style="text-align: left; color: #A3B4D1; font-size: 13px">
+                  <th style="padding: 0 12px 10px 0; font-weight: 600; border-bottom: 1px solid #243A66">Produto</th>
+                  <th style="padding: 0 12px 10px; font-weight: 600; border-bottom: 1px solid #243A66">Situação</th>
+                  <th style="padding: 0 12px 10px; font-weight: 600; border-bottom: 1px solid #243A66">Setup e mensalidade</th>
+                  <th style="padding: 0 0 10px 12px; font-weight: 600; border-bottom: 1px solid #243A66">Nota no registro</th>
+                </tr>
+              </thead>
+              <tbody>
+                <sc-for list="{{produtos}}" as="p" hint-placeholder-count="8">
+                  <tr>
+                    <td style="padding: 0; border-bottom: 1px solid #1E3360">
+                      <button type="button" onClick="{{p.pick}}" style="width: 100%; min-height: 48px; padding: 6px 12px 6px 0; border: 0; background: transparent; text-align: left; font: inherit; color: #EEF3FA; cursor: pointer; display: flex; flex-direction: column; gap: 2px"><b>{{p.nome}}</b><sc-if value="{{p.franqueadora}}" hint-placeholder-val="{{false}}"><span style="font-size: 12px; color: #A3B4D1">Contratado pela franqueadora</span></sc-if></button>
+                    </td>
+                    <td style="padding: 0 12px; border-bottom: 1px solid #1E3360">
+                      <sc-if value="{{p.disponivel}}" hint-placeholder-val="{{true}}"><span style="font-size: 13px; font-weight: 700; color: #6FDCCB; background: rgba(14,159,142,0.22); padding: 3px 10px; border-radius: 999px">{{p.situacao}}</span></sc-if>
+                      <sc-if value="{{p.outro}}" hint-placeholder-val="{{false}}"><span style="font-size: 13px; font-weight: 700; color: #C6D3E6; background: #1B2E58; padding: 3px 10px; border-radius: 999px">{{p.situacao}}</span></sc-if>
+                    </td>
+                    <td style="padding: 0 12px; border-bottom: 1px solid #1E3360; color: #C6D3E6">{{p.valores}}</td>
+                    <td style="padding: 0 0 0 12px; border-bottom: 1px solid #1E3360; color: #C6D3E6">{{p.nota}}</td>
+                  </tr>
+                </sc-for>
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <section aria-labelledby="h-edit" style="flex: 1 1 380px; min-width: 0; background: #15264A; border: 1px solid #243A66; border-radius: 14px; padding: 22px; display: flex; flex-direction: column; gap: 14px">
+          <h2 id="h-edit" style="margin: 0; font-size: 18px; font-weight: 700">Editar: {{sel.nome}}</h2>
+          <label style="display: flex; flex-direction: column; gap: 6px; font-size: 14px; font-weight: 600">Nome
+            <input type="text" value="{{sel.nome}}" style="min-height: 44px; padding: 0 12px; border: 1px solid #2C4677; border-radius: 8px; font: inherit; font-weight: 400; color: #EEF3FA; background: #15264A">
+          </label>
+          <label style="display: flex; flex-direction: column; gap: 6px; font-size: 14px; font-weight: 600">Situação
+            <select style="min-height: 44px; padding: 0 12px; border: 1px solid #2C4677; border-radius: 8px; font: inherit; font-weight: 400; color: #EEF3FA; background: #15264A"><option>Disponível para oferta</option><option>Só para quem já tem</option><option>Em POC</option><option>Descontinuado</option></select>
+          </label>
+          <label style="display: flex; flex-direction: column; gap: 6px; font-size: 14px; font-weight: 600">Quem contrata
+            <select style="min-height: 44px; padding: 0 12px; border: 1px solid #2C4677; border-radius: 8px; font: inherit; font-weight: 400; color: #EEF3FA; background: #15264A"><option>{{sel.contratante}}</option><option>A franquia, em contrato direto</option><option>A franqueadora, para a rede</option></select>
+          </label>
+          <p style="margin: 0; font-size: 13px; color: #A3B4D1">Produtos contratados pela franqueadora não contam como contrato da franquia: quem só tem esses produtos e contrata algo direto gera um upsell.</p>
+          <div style="display: flex; flex-direction: column; gap: 12px; padding: 14px; border: 1px solid #243A66; border-radius: 12px; background: #112042">
+            <span style="font-size: 15px; font-weight: 700">Valores de tabela</span>
+            <div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px">
+              <label style="display: flex; flex-direction: column; gap: 6px; font-size: 14px; font-weight: 600">Setup (cobrado uma vez)
+                <input type="text" value="{{sel.setup}}" style="min-height: 44px; padding: 0 12px; border: 1px solid #2C4677; border-radius: 8px; font: inherit; font-weight: 400; color: #EEF3FA; background: #15264A">
+              </label>
+              <label style="display: flex; flex-direction: column; gap: 6px; font-size: 14px; font-weight: 600">Mensalidade (recorrente)
+                <input type="text" value="{{sel.mensal}}" style="min-height: 44px; padding: 0 12px; border: 1px solid #2C4677; border-radius: 8px; font: inherit; font-weight: 400; color: #EEF3FA; background: #15264A">
+              </label>
+              <label style="display: flex; flex-direction: column; gap: 6px; font-size: 14px; font-weight: 600">Cobrado por
+                <select style="min-height: 44px; padding: 0 12px; border: 1px solid #2C4677; border-radius: 8px; font: inherit; font-weight: 400; color: #EEF3FA; background: #15264A"><option>{{sel.cobranca}}</option><option>Franquia</option><option>Canal</option><option>Consumo</option><option>Consulta</option></select>
+              </label>
+
+            </div>
+            <p style="margin: 0; font-size: 13px; color: #A3B4D1">Esses valores entram sozinhos numa nova oportunidade. Qualquer valor abaixo da tabela vai para a sua aprovação.</p>
+          </div>
+          <sc-if value="{{sel.temPlanos}}" hint-placeholder-val="{{true}}">
+            <div style="display: flex; flex-direction: column; gap: 8px; padding: 14px; border: 1px solid #243A66; border-radius: 12px; background: #112042">
+              <b style="font-size: 15px">Planos de commit</b>
+              <span style="font-size: 13px; color: #A3B4D1">Contratar este produto é sempre por um plano. Cada plano tem a mensalidade e o saldo de mensagens.</span>
+              <div style="display: grid; grid-template-columns: 1.4fr 1fr 1.2fr; gap: 8px; font-size: 12px; font-weight: 700; color: #A3B4D1"><span>Plano</span><span>Mensalidade</span><span>Saldo de mensagens</span></div>
+              <sc-for list="{{sel.planos}}" as="pl" hint-placeholder-count="4">
+                <div style="display: grid; grid-template-columns: 1.4fr 1fr 1.2fr; gap: 8px; align-items: center">
+                  <b style="font-size: 14px">{{pl.n}}</b>
+                  <input type="text" placeholder="R$ [valor]" aria-label="Mensalidade do {{pl.n}}" style="min-height: 44px; padding: 0 12px; border: 1px solid #2C4677; border-radius: 8px; font: inherit; font-weight: 400; color: #EEF3FA; background: #1B2E58; min-height: 40px">
+                  <input type="text" placeholder="[quantidade]" aria-label="Saldo do {{pl.n}}" style="min-height: 44px; padding: 0 12px; border: 1px solid #2C4677; border-radius: 8px; font: inherit; font-weight: 400; color: #EEF3FA; background: #1B2E58; min-height: 40px">
+                </div>
+              </sc-for>
+              <button type="button" style="align-self: flex-start; min-height: 40px; padding: 0; border: 0; background: transparent; color: #9DD8FF; font: inherit; font-size: 14px; font-weight: 600; cursor: pointer">Adicionar plano</button>
+            </div>
+          </sc-if>
+          <fieldset style="border: 0; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 6px">
+            <legend style="font-size: 14px; font-weight: 600; padding: 0; margin-bottom: 6px">Etapas depois do contrato assinado</legend>
+            <sc-for list="{{sel.etapas}}" as="e" hint-placeholder-count="3">
+              <div style="display: flex; align-items: center; gap: 10px; font-size: 14px; min-height: 36px; padding: 0 10px; border: 1px solid #1E3360; border-radius: 8px">
+                <span style="font-weight: 700; color: #A3B4D1">{{e.n}}</span><span>{{e.nome}}</span>
+              </div>
+            </sc-for>
+            <button type="button" style="align-self: flex-start; min-height: 40px; padding: 0; border: 0; background: transparent; color: #0077B6; font: inherit; font-size: 14px; font-weight: 600; cursor: pointer">Adicionar etapa</button>
+          </fieldset>
+          <label style="display: flex; align-items: center; gap: 10px; min-height: 44px; font-size: 15px"><input type="checkbox" checked style="width: 18px; height: 18px; accent-color: #00A8F0"> Pedir nota deste produto no registro de atendimento</label>
+          <label style="display: flex; align-items: center; gap: 10px; min-height: 44px; font-size: 15px"><input type="checkbox" checked style="width: 18px; height: 18px; accent-color: #00A8F0"> Conta para a meta de upsell</label>
+          <div style="display: flex; justify-content: flex-end; gap: 10px; border-top: 1px solid #1E3360; padding-top: 14px">
+            <button type="button" style="min-height: 44px; padding: 0 16px; border: 1px solid #2C4677; border-radius: 10px; background: #15264A; color: #EEF3FA; font: inherit; font-weight: 600; cursor: pointer">Cancelar</button>
+            <button type="button" style="min-height: 44px; padding: 0 18px; border: 0; border-radius: 10px; background: #0077B6; color: #FFFFFF; font: inherit; font-weight: 700; cursor: pointer">Salvar produto</button>
+          </div>
+        </section>
+      </div>
+    </sc-if>
+
+    <sc-if value="{{verProjetos}}" hint-placeholder-val="{{false}}">
+      <div style="display: flex; flex-wrap: wrap; gap: 20px; align-items: flex-start">
+        <section aria-labelledby="h-proj" style="flex: 1 1 380px; min-width: 0; background: #15264A; border: 1px solid #243A66; border-radius: 14px; padding: 22px; display: flex; flex-direction: column; gap: 12px">
+          <div style="display: flex; justify-content: space-between; align-items: center; gap: 10px">
+            <h2 id="h-proj" style="margin: 0; font-size: 18px; font-weight: 700">Projetos e POCs</h2>
+            <button type="button" onClick="{{abrirNovo}}" style="min-height: 44px; padding: 0 16px; border: 0; border-radius: 10px; background: #0077B6; color: #FFFFFF; font: inherit; font-weight: 700; cursor: pointer">Novo projeto</button>
+          </div>
+          <sc-if value="{{novo}}" hint-placeholder-val="{{true}}">
+            <div style="padding: 14px; border: 2px solid #0077B6; border-radius: 12px; display: flex; flex-direction: column; gap: 4px; background: #1B2E58">
+              <div style="display: flex; justify-content: space-between; gap: 8px"><span style="font-weight: 700">Novo projeto</span><span style="font-size: 13px; font-weight: 700; color: #F7B98A">Rascunho</span></div>
+              <span style="font-size: 14px; color: #A3B4D1">Ainda não aparece para as CSs</span>
+            </div>
+          </sc-if>
+          <button type="button" onClick="{{abrirRcs}}" style="text-align: left; padding: 14px; border: {{bordaRcs}}; border-radius: 12px; display: flex; flex-direction: column; gap: 4px; background: #15264A; font: inherit; color: #EEF3FA; cursor: pointer">
+            <span style="display: flex; justify-content: space-between; gap: 8px; width: 100%"><span style="font-weight: 700">POC RCS</span><span style="font-size: 13px; font-weight: 700; color: #6FDCCB">Em andamento</span></span>
+            <span style="font-size: 14px; color: #A3B4D1">90 dias, 4 franquias participando</span>
+          </button>
+          <div style="padding: 14px; border: 1px solid #243A66; border-radius: 12px; display: flex; flex-direction: column; gap: 4px">
+            <div style="display: flex; justify-content: space-between; gap: 8px"><span style="font-weight: 700">Minha Atendas</span><span style="font-size: 13px; font-weight: 700; color: #6FDCCB">Em andamento</span></div>
+            <span style="font-size: 14px; color: #A3B4D1">Liberação de acesso para todas as franquias</span>
+          </div>
+          <p style="margin: 0; font-size: 13px; color: #A3B4D1">Projetos encerrados ficam arquivados com os resultados.</p>
+        </section>
+
+        <sc-if value="{{novo}}" hint-placeholder-val="{{true}}">
+        <section aria-labelledby="h-novo" style="flex: 999 1 560px; min-width: 0; background: #15264A; border: 1px solid #243A66; border-radius: 14px; padding: 22px; display: flex; flex-direction: column; gap: 22px">
+          <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 10px">
+            <h2 id="h-novo" style="margin: 0; font-size: 18px; font-weight: 700">Novo projeto</h2>
+            <label style="display: flex; align-items: center; gap: 8px; font-size: 14px; font-weight: 600">Começar a partir de
+              <select style="min-height: 44px; padding: 0 12px; border: 1px solid #2C4677; border-radius: 8px; font: inherit; font-weight: 400; color: #EEF3FA; background: #15264A"><option>Projeto em branco</option><option>Cópia da POC RCS</option><option>Cópia do Minha Atendas</option></select>
+            </label>
+          </div>
+
+          <div style="display: flex; flex-direction: column; gap: 12px">
+            <span style="font-size: 15px; font-weight: 700">1. O projeto</span>
+            <div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px">
+              <label style="grid-column: span 2; display: flex; flex-direction: column; gap: 6px; font-size: 14px; font-weight: 600">Nome
+                <input type="text" placeholder="Ex.: POC IA de voz" style="min-height: 44px; padding: 0 12px; border: 1px solid #2C4677; border-radius: 8px; font: inherit; font-weight: 400; color: #EEF3FA; background: #15264A">
+              </label>
+              <label style="display: flex; flex-direction: column; gap: 6px; font-size: 14px; font-weight: 600">Tipo
+                <select style="min-height: 44px; padding: 0 12px; border: 1px solid #2C4677; border-radius: 8px; font: inherit; font-weight: 400; color: #EEF3FA; background: #15264A"><option>POC</option><option>Piloto</option><option>Lançamento</option><option>Campanha</option><option>Onboarding de nova franquia</option></select>
+              </label>
+              <label style="grid-column: span 2; display: flex; flex-direction: column; gap: 6px; font-size: 14px; font-weight: 600">Objetivo
+                <input type="text" placeholder="O que o projeto precisa provar ou entregar" style="min-height: 44px; padding: 0 12px; border: 1px solid #2C4677; border-radius: 8px; font: inherit; font-weight: 400; color: #EEF3FA; background: #15264A">
+              </label>
+              <label style="display: flex; flex-direction: column; gap: 6px; font-size: 14px; font-weight: 600">Produto ligado
+                <select style="min-height: 44px; padding: 0 12px; border: 1px solid #2C4677; border-radius: 8px; font: inherit; font-weight: 400; color: #EEF3FA; background: #15264A"><option>Nenhum</option><option>IA de voz</option><option>RCS</option><option>Discadora</option><option>KYC</option></select>
+              </label>
+              <label style="display: flex; flex-direction: column; gap: 6px; font-size: 14px; font-weight: 600">Responsável
+                <select style="min-height: 44px; padding: 0 12px; border: 1px solid #2C4677; border-radius: 8px; font: inherit; font-weight: 400; color: #EEF3FA; background: #15264A"><option>Amanda</option><option>Giovanna</option><option>Camila</option><option>Rafaela</option><option>Jéssica</option><option>Maria Eduarda</option></select>
+              </label>
+            </div>
+          </div>
+
+          <div style="display: flex; flex-direction: column; gap: 12px">
+            <span style="font-size: 15px; font-weight: 700">2. Período e entrada de franquias</span>
+            <div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px">
+              <label style="display: flex; flex-direction: column; gap: 6px; font-size: 14px; font-weight: 600">Início
+                <input type="date" style="min-height: 44px; padding: 0 12px; border: 1px solid #2C4677; border-radius: 8px; font: inherit; font-weight: 400; color: #EEF3FA; background: #15264A">
+              </label>
+              <label style="display: flex; flex-direction: column; gap: 6px; font-size: 14px; font-weight: 600">Aceita novas franquias até
+                <input type="date" style="min-height: 44px; padding: 0 12px; border: 1px solid #2C4677; border-radius: 8px; font: inherit; font-weight: 400; color: #EEF3FA; background: #15264A">
+              </label>
+              <label style="display: flex; flex-direction: column; gap: 6px; font-size: 14px; font-weight: 600">Quem inclui franquias
+                <select style="min-height: 44px; padding: 0 12px; border: 1px solid #2C4677; border-radius: 8px; font: inherit; font-weight: 400; color: #EEF3FA; background: #15264A"><option>CS indica, gestão aprova</option><option>CS inclui direto</option><option>Só a gestão inclui</option></select>
+              </label>
+            </div>
+          </div>
+
+          <div style="display: flex; flex-direction: column; gap: 10px">
+            <span style="font-size: 15px; font-weight: 700">3. Fases e o que a CS confere em cada uma</span>
+            <sc-for list="{{novasFases}}" as="f" hint-placeholder-count="1">
+              <div style="display: grid; grid-template-columns: 2fr 1fr 4fr; gap: 10px; padding: 12px; border: 1px solid #243A66; border-radius: 10px">
+                <label style="display: flex; flex-direction: column; gap: 6px; font-size: 14px; font-weight: 600">Fase {{f.n}}
+                  <input type="text" placeholder="Nome da fase" style="min-height: 44px; padding: 0 12px; border: 1px solid #2C4677; border-radius: 8px; font: inherit; font-weight: 400; color: #EEF3FA; background: #15264A">
+                </label>
+                <label style="display: flex; flex-direction: column; gap: 6px; font-size: 14px; font-weight: 600">Dias
+                  <input type="number" min="1" placeholder="30" style="min-height: 44px; padding: 0 12px; border: 1px solid #2C4677; border-radius: 8px; font: inherit; font-weight: 400; color: #EEF3FA; background: #15264A">
+                </label>
+                <label style="display: flex; flex-direction: column; gap: 6px; font-size: 14px; font-weight: 600">O que conferir (um item por linha)
+                  <textarea rows="2" style="padding: 10px 12px; border: 1px solid #2C4677; border-radius: 8px; font: inherit; font-weight: 400; color: #EEF3FA; resize: vertical"></textarea>
+                </label>
+              </div>
+            </sc-for>
+            <button type="button" onClick="{{addFase}}" style="align-self: flex-start; min-height: 40px; padding: 0; border: 0; background: transparent; color: #0077B6; font: inherit; font-size: 14px; font-weight: 600; cursor: pointer">Adicionar fase</button>
+          </div>
+
+          <div style="display: flex; flex-direction: column; gap: 10px">
+            <span style="font-size: 15px; font-weight: 700">4. Informações de cada franquia participante</span>
+            <sc-for list="{{novosCampos}}" as="c" hint-placeholder-count="1">
+              <div style="display: grid; grid-template-columns: 2fr 1fr 2fr; gap: 10px">
+                <label style="display: flex; flex-direction: column; gap: 6px; font-size: 14px; font-weight: 600">Campo
+                  <input type="text" placeholder="Ex.: caso de uso" style="min-height: 44px; padding: 0 12px; border: 1px solid #2C4677; border-radius: 8px; font: inherit; font-weight: 400; color: #EEF3FA; background: #15264A">
+                </label>
+                <label style="display: flex; flex-direction: column; gap: 6px; font-size: 14px; font-weight: 600">Tipo
+                  <select style="min-height: 44px; padding: 0 12px; border: 1px solid #2C4677; border-radius: 8px; font: inherit; font-weight: 400; color: #EEF3FA; background: #15264A"><option>Lista de opções</option><option>Sim ou não</option><option>Texto</option><option>Número</option><option>Data</option></select>
+                </label>
+                <label style="display: flex; flex-direction: column; gap: 6px; font-size: 14px; font-weight: 600">Opções (se for lista)
+                  <input type="text" placeholder="Separadas por vírgula" style="min-height: 44px; padding: 0 12px; border: 1px solid #2C4677; border-radius: 8px; font: inherit; font-weight: 400; color: #EEF3FA; background: #15264A">
+                </label>
+              </div>
+            </sc-for>
+            <button type="button" onClick="{{addCampo}}" style="align-self: flex-start; min-height: 40px; padding: 0; border: 0; background: transparent; color: #0077B6; font: inherit; font-size: 14px; font-weight: 600; cursor: pointer">Adicionar campo</button>
+          </div>
+
+          <div style="display: flex; flex-direction: column; gap: 10px">
+            <span style="font-size: 15px; font-weight: 700">5. Indicadores a acompanhar</span>
+            <sc-for list="{{novosInd}}" as="d" hint-placeholder-count="1">
+              <div style="display: grid; grid-template-columns: 2fr 1.4fr 1fr; gap: 10px">
+                <label style="display: flex; flex-direction: column; gap: 6px; font-size: 14px; font-weight: 600">Indicador
+                  <input type="text" placeholder="Ex.: ligações atendidas pela IA" style="min-height: 44px; padding: 0 12px; border: 1px solid #2C4677; border-radius: 8px; font: inherit; font-weight: 400; color: #EEF3FA; background: #15264A">
+                </label>
+                <label style="display: flex; flex-direction: column; gap: 6px; font-size: 14px; font-weight: 600">Quem informa
+                  <select style="min-height: 44px; padding: 0 12px; border: 1px solid #2C4677; border-radius: 8px; font: inherit; font-weight: 400; color: #EEF3FA; background: #15264A"><option>A CS preenche</option><option>Time de API Oficial</option><option>Operações</option><option>Financeiro</option></select>
+                </label>
+                <label style="display: flex; flex-direction: column; gap: 6px; font-size: 14px; font-weight: 600">Frequência
+                  <select style="min-height: 44px; padding: 0 12px; border: 1px solid #2C4677; border-radius: 8px; font: inherit; font-weight: 400; color: #EEF3FA; background: #15264A"><option>A cada 15 dias</option><option>Semanal</option><option>Mensal</option><option>Só no fim</option></select>
+                </label>
+              </div>
+            </sc-for>
+            <button type="button" onClick="{{addInd}}" style="align-self: flex-start; min-height: 40px; padding: 0; border: 0; background: transparent; color: #0077B6; font: inherit; font-size: 14px; font-weight: 600; cursor: pointer">Adicionar indicador</button>
+          </div>
+
+          <div style="display: flex; flex-direction: column; gap: 6px">
+            <span style="font-size: 15px; font-weight: 700">6. Encerramento</span>
+            <label style="display: flex; align-items: center; gap: 10px; min-height: 44px; font-size: 15px"><input type="checkbox" checked style="width: 18px; height: 18px; accent-color: #00A8F0"> Pedir a decisão da franquia no fim e o motivo quando não continuar</label>
+            <label style="display: flex; align-items: center; gap: 10px; min-height: 44px; font-size: 15px"><input type="checkbox" checked style="width: 18px; height: 18px; accent-color: #00A8F0"> Pedir nota da franquia para o projeto no meio e no fim</label>
+            <label style="display: flex; align-items: center; gap: 10px; min-height: 44px; font-size: 15px"><input type="checkbox" style="width: 18px; height: 18px; accent-color: #00A8F0"> Quem continuar vira oportunidade no pipeline de Upsell</label>
+          </div>
+
+          <div style="display: flex; flex-wrap: wrap; justify-content: flex-end; gap: 10px; border-top: 1px solid #1E3360; padding-top: 16px">
+            <button type="button" onClick="{{abrirRcs}}" style="min-height: 44px; padding: 0 16px; border: 1px solid #2C4677; border-radius: 10px; background: #15264A; color: #EEF3FA; font: inherit; font-weight: 600; cursor: pointer">Descartar</button>
+            <button type="button" style="min-height: 44px; padding: 0 16px; border: 1px solid #2C4677; border-radius: 10px; background: #15264A; color: #EEF3FA; font: inherit; font-weight: 600; cursor: pointer">Salvar rascunho</button>
+            <button type="button" style="min-height: 44px; padding: 0 18px; border: 0; border-radius: 10px; background: #0077B6; color: #FFFFFF; font: inherit; font-weight: 700; cursor: pointer">Publicar e escolher franquias</button>
+          </div>
+        </section>
+        </sc-if>
+        <sc-if value="{{verRcs}}" hint-placeholder-val="{{false}}">
+        <section aria-labelledby="h-poc" style="flex: 999 1 560px; min-width: 0; background: #15264A; border: 1px solid #243A66; border-radius: 14px; padding: 22px; display: flex; flex-direction: column; gap: 18px">
+          <h2 id="h-poc" style="margin: 0; font-size: 18px; font-weight: 700">Editar: POC RCS</h2>
+          <div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px">
+            <label style="display: flex; flex-direction: column; gap: 6px; font-size: 14px; font-weight: 600">Nome
+              <input type="text" value="POC RCS" style="min-height: 44px; padding: 0 12px; border: 1px solid #2C4677; border-radius: 8px; font: inherit; font-weight: 400; color: #EEF3FA; background: #15264A">
+            </label>
+            <label style="display: flex; flex-direction: column; gap: 6px; font-size: 14px; font-weight: 600">Produto ligado
+              <select style="min-height: 44px; padding: 0 12px; border: 1px solid #2C4677; border-radius: 8px; font: inherit; font-weight: 400; color: #EEF3FA; background: #15264A"><option>RCS</option><option>Nenhum</option></select>
+            </label>
+            <label style="grid-column: span 2; display: flex; flex-direction: column; gap: 6px; font-size: 14px; font-weight: 600">Objetivo
+              <input type="text" value="Gerar cases de uso de RCS com franquias interessadas" style="min-height: 44px; padding: 0 12px; border: 1px solid #2C4677; border-radius: 8px; font: inherit; font-weight: 400; color: #EEF3FA; background: #15264A">
+            </label>
+          </div>
+
+          <div style="display: flex; flex-direction: column; gap: 12px; padding: 16px; border: 1px solid #243A66; border-radius: 12px; background: #112042">
+            <span style="font-size: 15px; font-weight: 700">Período e participantes</span>
+            <div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px">
+              <label style="display: flex; flex-direction: column; gap: 6px; font-size: 14px; font-weight: 600">Início do projeto
+                <input type="date" value="2026-11-01" style="min-height: 44px; padding: 0 12px; border: 1px solid #2C4677; border-radius: 8px; font: inherit; font-weight: 400; color: #EEF3FA; background: #15264A">
+              </label>
+              <label style="display: flex; flex-direction: column; gap: 6px; font-size: 14px; font-weight: 600">Aceita novas franquias até
+                <input type="date" value="2026-12-15" style="min-height: 44px; padding: 0 12px; border: 1px solid #2C4677; border-radius: 8px; font: inherit; font-weight: 400; color: #EEF3FA; background: #15264A">
+              </label>
+              <label style="display: flex; flex-direction: column; gap: 6px; font-size: 14px; font-weight: 600">Entrada de novas franquias
+                <select style="min-height: 44px; padding: 0 12px; border: 1px solid #2C4677; border-radius: 8px; font: inherit; font-weight: 400; color: #EEF3FA; background: #15264A"><option>CS indica, gestão aprova</option><option>CS inclui direto</option><option>Só a gestão inclui</option></select>
+              </label>
+            </div>
+            <p style="margin: 0; font-size: 13px; color: #A3B4D1">Cada franquia conta os prazos das fases a partir da própria data de entrada. Quem entra depois não perde dias.</p>
+
+            <sc-if value="{{temIndicacoes}}" hint-placeholder-val="{{true}}">
+              <div style="display: flex; flex-direction: column; gap: 8px; padding: 12px 14px; border-radius: 10px; background: #2A2A44; border: 1px solid #7A5232">
+                <span style="font-size: 14px; font-weight: 700; color: #F7B98A">Indicações aguardando sua aprovação</span>
+                <sc-for list="{{indicacoes}}" as="i" hint-placeholder-count="1">
+                  <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 8px; font-size: 14px">
+                    <span><b>{{i.franquia}}</b>, indicada por {{i.cs}} em {{i.data}}. {{i.obs}}</span>
+                    <div style="display: flex; gap: 6px">
+                      <button type="button" onClick="{{i.recusar}}" style="min-height: 40px; padding: 0 12px; border: 1px solid #2C4677; border-radius: 8px; background: #15264A; color: #EEF3FA; font: inherit; font-size: 14px; font-weight: 600; cursor: pointer">Recusar</button>
+                      <button type="button" onClick="{{i.aprovar}}" style="min-height: 40px; padding: 0 12px; border: 0; border-radius: 8px; background: #0077B6; color: #FFFFFF; font: inherit; font-size: 14px; font-weight: 700; cursor: pointer">Aprovar entrada</button>
+                    </div>
+                  </div>
+                </sc-for>
+              </div>
+            </sc-if>
+
+            <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 8px">
+              <span style="font-size: 14px; font-weight: 600">{{qtdPart}} franquias participando</span>
+              <button type="button" style="min-height: 40px; padding: 0 12px; border: 1px solid #2C4677; border-radius: 8px; background: #15264A; color: #EEF3FA; font: inherit; font-size: 14px; font-weight: 600; cursor: pointer">Adicionar franquias</button>
+            </div>
+            <div style="overflow-x: auto">
+              <table style="width: 100%; min-width: 600px; border-collapse: collapse; font-size: 14px; background: #15264A">
+                <thead>
+                  <tr style="text-align: left; color: #A3B4D1; font-size: 13px">
+                    <th style="padding: 8px 12px; font-weight: 600; border-bottom: 1px solid #243A66">Franquia</th>
+                    <th style="padding: 8px 12px; font-weight: 600; border-bottom: 1px solid #243A66">CS</th>
+                    <th style="padding: 8px 12px; font-weight: 600; border-bottom: 1px solid #243A66">Entrou em</th>
+                    <th style="padding: 8px 12px; font-weight: 600; border-bottom: 1px solid #243A66">Fase</th>
+                    <th style="padding: 8px 12px; font-weight: 600; border-bottom: 1px solid #243A66"><span style="position: absolute; left: -9999px">Ações</span></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <sc-for list="{{participantes}}" as="p" hint-placeholder-count="4">
+                    <tr>
+                      <td style="padding: 8px 12px; border-bottom: 1px solid #1E3360; font-weight: 700">{{p.franquia}}</td>
+                      <td style="padding: 8px 12px; border-bottom: 1px solid #1E3360">{{p.cs}}</td>
+                      <td style="padding: 8px 12px; border-bottom: 1px solid #1E3360">{{p.entrada}}</td>
+                      <td style="padding: 8px 12px; border-bottom: 1px solid #1E3360; color: #C6D3E6">{{p.fase}}</td>
+                      <td style="padding: 4px 12px; border-bottom: 1px solid #1E3360; text-align: right">
+                        <button type="button" onClick="{{p.tirar}}" style="min-height: 40px; padding: 0 8px; border: 0; background: transparent; color: #F6A3A9; font: inherit; font-size: 13px; font-weight: 600; cursor: pointer">Saiu do projeto</button>
+                      </td>
+                    </tr>
+                  </sc-for>
+                </tbody>
+              </table>
+            </div>
+            <p style="margin: 0; font-size: 13px; color: #A3B4D1">Quem sai do projeto fica no histórico, com a data e o motivo.</p>
+          </div>
+
+          <div style="display: flex; flex-direction: column; gap: 8px">
+            <span style="font-size: 14px; font-weight: 600">Fases e o que a CS confere em cada uma</span>
+            <sc-for list="{{fases}}" as="f" hint-placeholder-count="3">
+              <div style="border: 1px solid #243A66; border-radius: 10px; padding: 12px 14px; display: flex; flex-direction: column; gap: 6px">
+                <div style="display: flex; justify-content: space-between; gap: 8px; flex-wrap: wrap"><span style="font-weight: 700">{{f.n}}. {{f.nome}}</span><span style="font-size: 13px; color: #A3B4D1">{{f.duracao}}</span></div>
+                <span style="font-size: 14px; color: #C6D3E6">{{f.itens}}</span>
+              </div>
+            </sc-for>
+            <button type="button" style="align-self: flex-start; min-height: 40px; padding: 0; border: 0; background: transparent; color: #0077B6; font: inherit; font-size: 14px; font-weight: 600; cursor: pointer">Adicionar fase</button>
+          </div>
+
+          <div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px">
+            <div style="display: flex; flex-direction: column; gap: 8px">
+              <span style="font-size: 14px; font-weight: 600">Informações de cada franquia</span>
+              <span style="font-size: 14px; color: #C6D3E6">Caso de uso (adimplência, vendas, refiliação)</span>
+              <span style="font-size: 14px; color: #C6D3E6">Tem commit ativo (sim ou não)</span>
+              <button type="button" style="align-self: flex-start; min-height: 40px; padding: 0; border: 0; background: transparent; color: #0077B6; font: inherit; font-size: 14px; font-weight: 600; cursor: pointer">Adicionar campo</button>
+            </div>
+            <div style="display: flex; flex-direction: column; gap: 8px">
+              <span style="font-size: 14px; font-weight: 600">Indicadores a acompanhar</span>
+              <span style="font-size: 14px; color: #C6D3E6">Mensagens enviadas</span>
+              <span style="font-size: 14px; color: #C6D3E6">Taxa de leitura</span>
+              <span style="font-size: 14px; color: #C6D3E6">Resultado do caso de uso</span>
+              <span style="font-size: 14px; color: #C6D3E6">Nota da franquia para o projeto</span>
+              <button type="button" style="align-self: flex-start; min-height: 40px; padding: 0; border: 0; background: transparent; color: #0077B6; font: inherit; font-size: 14px; font-weight: 600; cursor: pointer">Adicionar indicador</button>
+            </div>
+          </div>
+          <label style="display: flex; align-items: center; gap: 10px; min-height: 44px; font-size: 15px"><input type="checkbox" checked style="width: 18px; height: 18px; accent-color: #00A8F0"> No fim, pedir a decisão da franquia e o motivo quando não continuar</label>
+          <div style="display: flex; justify-content: flex-end; gap: 10px; border-top: 1px solid #1E3360; padding-top: 14px">
+            <button type="button" style="min-height: 44px; padding: 0 16px; border: 1px solid #2C4677; border-radius: 10px; background: #15264A; color: #EEF3FA; font: inherit; font-weight: 600; cursor: pointer">Cancelar</button>
+            <button type="button" style="min-height: 44px; padding: 0 18px; border: 0; border-radius: 10px; background: #0077B6; color: #FFFFFF; font: inherit; font-weight: 700; cursor: pointer">Salvar projeto</button>
+          </div>
+        </section>
+        </sc-if>
+      </div>
+    </sc-if>
+
+    <sc-if value="{{verListas}}" hint-placeholder-val="{{false}}">
+      <section aria-labelledby="h-listas" style="background: #15264A; border: 1px solid #243A66; border-radius: 14px; padding: 22px; display: flex; flex-direction: column; gap: 14px">
+        <div style="display: flex; flex-direction: column; gap: 4px">
+          <h2 id="h-listas" style="margin: 0; font-size: 18px; font-weight: 700">Listas do registro de atendimento</h2>
+          <p style="margin: 0; font-size: 14px; color: #A3B4D1">Um item que já foi usado não é apagado, é arquivado. Assim os números dos meses anteriores continuam comparáveis.</p>
+        </div>
+        <div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px">
+          <sc-for list="{{listas}}" as="l" hint-placeholder-count="6">
+            <div style="border: 1px solid #243A66; border-radius: 12px; padding: 14px 16px; display: flex; flex-direction: column; gap: 6px">
+              <div style="display: flex; justify-content: space-between; align-items: center; gap: 8px">
+                <span style="font-weight: 700">{{l.nome}}</span>
+                <button type="button" style="min-height: 36px; padding: 0 8px; border: 0; background: transparent; color: #0077B6; font: inherit; font-size: 14px; font-weight: 600; cursor: pointer">Editar</button>
+              </div>
+              <span style="font-size: 13px; color: #A3B4D1">{{l.itens}}</span>
+            </div>
+          </sc-for>
+        </div>
+      </section>
+    </sc-if>
+    <sc-if value="{{verMetas}}" hint-placeholder-val="{{false}}">
+      <section aria-labelledby="h-met" style="background: #15264A; border: 1px solid #243A66; border-radius: 14px; padding: 22px; display: flex; flex-direction: column; gap: 14px">
+        <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 10px">
+          <div style="display: flex; flex-direction: column; gap: 2px">
+            <h2 id="h-met" style="margin: 0; font-size: 18px; font-weight: 700">Metas de dezembro de 2026</h2>
+            <span style="font-size: 14px; color: #A3B4D1">Defina antes do mês começar. Metas de meses passados ficam guardadas como estavam.</span>
+          </div>
+          <div style="display: flex; gap: 8px">
+            <button type="button" style="min-height: 44px; padding: 0 14px; border: 1px solid #2C4677; border-radius: 10px; background: #15264A; color: #EEF3FA; font: inherit; font-weight: 600; cursor: pointer">Copiar de novembro</button>
+            <button type="button" style="min-height: 44px; padding: 0 16px; border: 0; border-radius: 10px; background: #0077B6; color: #FFFFFF; font: inherit; font-weight: 700; cursor: pointer">Nova meta</button>
+          </div>
+        </div>
+        <div style="overflow-x: auto">
+          <table style="width: 100%; min-width: 820px; border-collapse: collapse; font-size: 14px">
+            <thead><tr style="text-align: left; color: #A3B4D1; font-size: 13px">
+              <th style="padding: 0 12px 10px 0; font-weight: 600; border-bottom: 1px solid #243A66">Meta</th>
+              <th style="padding: 0 12px 10px; font-weight: 600; border-bottom: 1px solid #243A66">Nível</th>
+              <th style="padding: 0 12px 10px; font-weight: 600; border-bottom: 1px solid #243A66">Como é calculada</th>
+              <th style="padding: 0 0 10px 12px; font-weight: 600; border-bottom: 1px solid #243A66">Valor</th>
+            </tr></thead>
+            <tbody>
+              <tr>
+                <td style="padding: 10px 12px 10px 0; border-bottom: 1px solid #1E3360; font-weight: 700">MRR novo da área</td>
+                <td style="padding: 10px 12px; border-bottom: 1px solid #1E3360">Geral da área</td>
+                <td style="padding: 10px 12px; border-bottom: 1px solid #1E3360"><select style="min-height: 40px; padding: 0 10px; border: 1px solid #2C4677; border-radius: 8px; font: inherit; font-weight: 400; color: #EEF3FA; background: #15264A"><option>Valor próprio da área</option><option>Valor próprio da área</option><option>Soma das metas das CSs</option><option>Igual para cada CS</option></select></td>
+                <td style="padding: 10px 0 10px 12px; border-bottom: 1px solid #1E3360"><input type="text" value="R$ 12.000" style="min-height: 40px; padding: 0 10px; border: 1px solid #2C4677; border-radius: 8px; font: inherit; font-weight: 400; color: #EEF3FA; background: #15264A; width: 160px"></td>
+              </tr>
+              <tr>
+                <td style="padding: 10px 12px 10px 0; border-bottom: 1px solid #1E3360; font-weight: 700">Base saudável</td>
+                <td style="padding: 10px 12px; border-bottom: 1px solid #1E3360">Geral da área</td>
+                <td style="padding: 10px 12px; border-bottom: 1px solid #1E3360"><select style="min-height: 40px; padding: 0 10px; border: 1px solid #2C4677; border-radius: 8px; font: inherit; font-weight: 400; color: #EEF3FA; background: #15264A"><option>Valor próprio da área</option><option>Valor próprio da área</option><option>Soma das metas das CSs</option><option>Igual para cada CS</option></select></td>
+                <td style="padding: 10px 0 10px 12px; border-bottom: 1px solid #1E3360"><input type="text" value="70% das franquias" style="min-height: 40px; padding: 0 10px; border: 1px solid #2C4677; border-radius: 8px; font: inherit; font-weight: 400; color: #EEF3FA; background: #15264A; width: 160px"></td>
+              </tr>
+              <tr>
+                <td style="padding: 10px 12px 10px 0; border-bottom: 1px solid #1E3360; font-weight: 700">Inadimplência regularizada</td>
+                <td style="padding: 10px 12px; border-bottom: 1px solid #1E3360">Geral da área</td>
+                <td style="padding: 10px 12px; border-bottom: 1px solid #1E3360"><select style="min-height: 40px; padding: 0 10px; border: 1px solid #2C4677; border-radius: 8px; font: inherit; font-weight: 400; color: #EEF3FA; background: #15264A"><option>Valor próprio da área</option><option>Valor próprio da área</option><option>Soma das metas das CSs</option><option>Igual para cada CS</option></select></td>
+                <td style="padding: 10px 0 10px 12px; border-bottom: 1px solid #1E3360"><input type="text" value="70% das notificadas" style="min-height: 40px; padding: 0 10px; border: 1px solid #2C4677; border-radius: 8px; font: inherit; font-weight: 400; color: #EEF3FA; background: #15264A; width: 160px"></td>
+              </tr>
+              <tr>
+                <td style="padding: 10px 12px 10px 0; border-bottom: 1px solid #1E3360; font-weight: 700">Retenção</td>
+                <td style="padding: 10px 12px; border-bottom: 1px solid #1E3360">Geral da área</td>
+                <td style="padding: 10px 12px; border-bottom: 1px solid #1E3360"><select style="min-height: 40px; padding: 0 10px; border: 1px solid #2C4677; border-radius: 8px; font: inherit; font-weight: 400; color: #EEF3FA; background: #15264A"><option>Valor próprio da área</option><option>Valor próprio da área</option><option>Soma das metas das CSs</option><option>Igual para cada CS</option></select></td>
+                <td style="padding: 10px 0 10px 12px; border-bottom: 1px solid #1E3360"><input type="text" value="70% dos pedidos de cancelamento" style="min-height: 40px; padding: 0 10px; border: 1px solid #2C4677; border-radius: 8px; font: inherit; font-weight: 400; color: #EEF3FA; background: #15264A; width: 160px"></td>
+              </tr>
+              <tr>
+                <td style="padding: 10px 12px 10px 0; border-bottom: 1px solid #1E3360; font-weight: 700">Reuniões gravadas</td>
+                <td style="padding: 10px 12px; border-bottom: 1px solid #1E3360">Individual</td>
+                <td style="padding: 10px 12px; border-bottom: 1px solid #1E3360"><select style="min-height: 40px; padding: 0 10px; border: 1px solid #2C4677; border-radius: 8px; font: inherit; font-weight: 400; color: #EEF3FA; background: #15264A"><option>Igual para cada CS</option><option>Valor próprio da área</option><option>Soma das metas das CSs</option><option>Igual para cada CS</option></select></td>
+                <td style="padding: 10px 0 10px 12px; border-bottom: 1px solid #1E3360"><input type="text" value="70% da carteira" style="min-height: 40px; padding: 0 10px; border: 1px solid #2C4677; border-radius: 8px; font: inherit; font-weight: 400; color: #EEF3FA; background: #15264A; width: 160px"></td>
+              </tr>
+              <tr>
+                <td style="padding: 10px 12px 10px 0; border-bottom: 1px solid #1E3360; font-weight: 700">Upsells (novos contratos)</td>
+                <td style="padding: 10px 12px; border-bottom: 1px solid #1E3360">Individual</td>
+                <td style="padding: 10px 12px; border-bottom: 1px solid #1E3360"><select style="min-height: 40px; padding: 0 10px; border: 1px solid #2C4677; border-radius: 8px; font: inherit; font-weight: 400; color: #EEF3FA; background: #15264A"><option>Igual para cada CS</option><option>Valor próprio da área</option><option>Soma das metas das CSs</option><option>Igual para cada CS</option></select></td>
+                <td style="padding: 10px 0 10px 12px; border-bottom: 1px solid #1E3360"><input type="text" value="5 por CS" style="min-height: 40px; padding: 0 10px; border: 1px solid #2C4677; border-radius: 8px; font: inherit; font-weight: 400; color: #EEF3FA; background: #15264A; width: 160px"></td>
+              </tr>
+              <tr>
+                <td style="padding: 10px 12px 10px 0; border-bottom: 1px solid #1E3360; font-weight: 700">Nota média</td>
+                <td style="padding: 10px 12px; border-bottom: 1px solid #1E3360">Individual</td>
+                <td style="padding: 10px 12px; border-bottom: 1px solid #1E3360"><select style="min-height: 40px; padding: 0 10px; border: 1px solid #2C4677; border-radius: 8px; font: inherit; font-weight: 400; color: #EEF3FA; background: #15264A"><option>Igual para cada CS</option><option>Valor próprio da área</option><option>Soma das metas das CSs</option><option>Igual para cada CS</option></select></td>
+                <td style="padding: 10px 0 10px 12px; border-bottom: 1px solid #1E3360"><input type="text" value="8" style="min-height: 40px; padding: 0 10px; border: 1px solid #2C4677; border-radius: 8px; font: inherit; font-weight: 400; color: #EEF3FA; background: #15264A; width: 160px"></td>
+              </tr>
+              <tr>
+                <td style="padding: 10px 12px 10px 0; border-bottom: 1px solid #1E3360; font-weight: 700">King Post</td>
+                <td style="padding: 10px 12px; border-bottom: 1px solid #1E3360">Individual</td>
+                <td style="padding: 10px 12px; border-bottom: 1px solid #1E3360"><select style="min-height: 40px; padding: 0 10px; border: 1px solid #2C4677; border-radius: 8px; font: inherit; font-weight: 400; color: #EEF3FA; background: #15264A"><option>Igual para cada CS</option><option>Valor próprio da área</option><option>Soma das metas das CSs</option><option>Igual para cada CS</option></select></td>
+                <td style="padding: 10px 0 10px 12px; border-bottom: 1px solid #1E3360"><input type="text" value="100% das definidas" style="min-height: 40px; padding: 0 10px; border: 1px solid #2C4677; border-radius: 8px; font: inherit; font-weight: 400; color: #EEF3FA; background: #15264A; width: 160px"></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <p style="margin: 0; font-size: 13px; color: #A3B4D1">"Igual para cada CS" aplica o mesmo valor a todas. Para ajustar uma CS específica, como em férias ou com carteira menor, clique na meta e defina a exceção.</p>
+      </section>
+    </sc-if>
+    <sc-if value="{{verUsuarios}}" hint-placeholder-val="{{false}}">
+      <div style="display: flex; flex-wrap: wrap; gap: 20px; align-items: flex-start">
+        <section aria-labelledby="h-us" style="flex: 1 1 420px; min-width: 0; background: #15264A; border: 1px solid #243A66; border-radius: 14px; padding: 22px; display: flex; flex-direction: column; gap: 12px">
+          <div style="display: flex; justify-content: space-between; align-items: center; gap: 10px">
+            <h2 id="h-us" style="margin: 0; font-size: 18px; font-weight: 700">Usuários</h2>
+            <button type="button" style="min-height: 44px; padding: 0 16px; border: 0; border-radius: 10px; background: #0077B6; color: #FFFFFF; font: inherit; font-weight: 700; cursor: pointer">Novo usuário</button>
+          </div>
+          <sc-for list="{{usuarios}}" as="u" hint-placeholder-count="7">
+            <button type="button" onClick="{{u.pick}}" style="text-align: left; display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 4px 12px; padding: 12px 14px; border: {{u.borda}}; border-radius: 10px; background: #15264A; font: inherit; color: #EEF3FA; cursor: pointer">
+              <b style="font-size: 15px">{{u.nome}}</b>
+              <span style="font-size: 13px; font-weight: 700; color: #C6D3E6; background: #1B2E58; padding: 2px 9px; border-radius: 999px">{{u.perfil}}</span>
+              <span style="font-size: 13px; color: #A3B4D1">{{u.email}}</span>
+              <span style="font-size: 13px; color: #A3B4D1">{{u.qtd}} abas</span>
+            </button>
+          </sc-for>
+        </section>
+
+        <section aria-labelledby="h-acesso" style="flex: 999 1 560px; min-width: 0; background: #15264A; border: 1px solid #243A66; border-radius: 14px; padding: 22px; display: flex; flex-direction: column; gap: 18px">
+          <h2 id="h-acesso" style="margin: 0; font-size: 18px; font-weight: 700">Acesso de {{atual.nome}}</h2>
+          <div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px">
+            <label style="display: flex; flex-direction: column; gap: 6px; font-size: 14px; font-weight: 600">Nome
+              <input type="text" value="{{atual.nome}}" style="min-height: 44px; padding: 0 12px; border: 1px solid #2C4677; border-radius: 8px; font: inherit; font-weight: 400; color: #EEF3FA; background: #15264A">
+            </label>
+            <label style="display: flex; flex-direction: column; gap: 6px; font-size: 14px; font-weight: 600">E-mail corporativo
+              <input type="email" value="{{atual.email}}" style="min-height: 44px; padding: 0 12px; border: 1px solid #2C4677; border-radius: 8px; font: inherit; font-weight: 400; color: #EEF3FA; background: #15264A">
+            </label>
+            <label style="display: flex; flex-direction: column; gap: 6px; font-size: 14px; font-weight: 600">Perfil
+              <select onChange="{{trocarPerfil}}" style="min-height: 44px; padding: 0 12px; border: 1px solid #2C4677; border-radius: 8px; font: inherit; font-weight: 400; color: #EEF3FA; background: #15264A"><option>{{atual.perfil}}</option><option>CS</option><option>Gestão</option><option>Diretoria</option><option>Personalizado</option></select>
+            </label>
+            <label style="display: flex; flex-direction: column; gap: 6px; font-size: 14px; font-weight: 600">Dados que vê
+              <select style="min-height: 44px; padding: 0 12px; border: 1px solid #2C4677; border-radius: 8px; font: inherit; font-weight: 400; color: #EEF3FA; background: #15264A"><option>{{atual.dados}}</option><option>Só a própria carteira</option><option>Todas as regionais</option></select>
+            </label>
+          </div>
+          <p style="margin: 0; font-size: 13px; color: #A3B4D1">O perfil marca as abas de partida. Marque ou desmarque à vontade; o perfil vira "Personalizado".</p>
+
+          <div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px">
+            <sc-for list="{{grupos}}" as="g" hint-placeholder-count="4">
+              <fieldset style="border: 1px solid #243A66; border-radius: 12px; padding: 12px 14px; margin: 0; display: flex; flex-direction: column; gap: 2px">
+                <legend style="font-size: 14px; font-weight: 700; padding: 0 6px">{{g.nome}}</legend>
+                <sc-for list="{{g.abas}}" as="a" hint-placeholder-count="3">
+                  <label style="display: flex; align-items: center; gap: 10px; min-height: 40px; font-size: 15px">
+                    <input type="checkbox" checked="{{a.on}}" onChange="{{a.toggle}}" style="width: 18px; height: 18px; accent-color: #00A8F0"> {{a.nome}}
+                  </label>
+                </sc-for>
+              </fieldset>
+            </sc-for>
+          </div>
+
+          <fieldset style="border: 0; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 2px">
+            <legend style="font-size: 14px; font-weight: 700; padding: 0; margin-bottom: 6px">Pode aprovar</legend>
+            <label style="display: flex; align-items: center; gap: 10px; min-height: 40px; font-size: 15px"><input type="checkbox" checked="{{atual.aprova}}" style="width: 18px; height: 18px; accent-color: #00A8F0"> Descontos em oportunidades</label>
+                        <label style="display: flex; align-items: center; gap: 10px; min-height: 40px; font-size: 15px"><input type="checkbox" checked="{{atual.aprova}}" style="width: 18px; height: 18px; accent-color: #00A8F0"> Entrada de franquias em projetos</label>
+          </fieldset>
+
+          <div style="display: flex; flex-wrap: wrap; justify-content: space-between; gap: 10px; border-top: 1px solid #1E3360; padding-top: 16px">
+            <button type="button" style="min-height: 44px; padding: 0 16px; border: 1px solid #7A3A4A; border-radius: 10px; background: #15264A; color: #F6A3A9; font: inherit; font-weight: 600; cursor: pointer">Desativar acesso</button>
+            <div style="display: flex; gap: 10px">
+              <button type="button" style="min-height: 44px; padding: 0 16px; border: 1px solid #2C4677; border-radius: 10px; background: #15264A; color: #EEF3FA; font: inherit; font-weight: 600; cursor: pointer">Enviar nova senha</button>
+              <button type="button" style="min-height: 44px; padding: 0 18px; border: 0; border-radius: 10px; background: #0077B6; color: #FFFFFF; font: inherit; font-weight: 700; cursor: pointer">Salvar acesso</button>
+            </div>
+          </div>
+          <p style="margin: 0; font-size: 13px; color: #A3B4D1">Quem sai da empresa tem o acesso desativado, não apagado: os registros continuam com o nome de quem fez.</p>
+        </section>
+      </div>
+    </sc-if>
+    <sc-if value="{{verEquipe}}" hint-placeholder-val="{{false}}">
+      <div style="display: flex; flex-wrap: wrap; gap: 20px; align-items: flex-start">
+        <section aria-labelledby="h-eq" style="flex: 999 1 560px; min-width: 0; background: #15264A; border: 1px solid #243A66; border-radius: 14px; padding: 22px; display: flex; flex-direction: column; gap: 12px">
+          <div style="display: flex; justify-content: space-between; align-items: center; gap: 10px; flex-wrap: wrap"><h2 id="h-eq" style="margin: 0; font-size: 18px; font-weight: 700">Equipe de CS e carteiras</h2><a href="Importacao.dc.html" style="display: inline-flex; align-items: center; min-height: 40px; padding: 0 14px; border-radius: 8px; background: #0077B6; color: #FFFFFF; font-weight: 700; text-decoration: none">Carga de franquias</a></div>
+          <table style="width: 100%; border-collapse: collapse; font-size: 14px">
+            <thead><tr style="text-align: left; color: #A3B4D1; font-size: 13px">
+              <th style="padding: 0 12px 10px 0; font-weight: 600; border-bottom: 1px solid #243A66">CS</th>
+              <th style="padding: 0 12px 10px; font-weight: 600; border-bottom: 1px solid #243A66">Regional</th>
+              <th style="padding: 0 0 10px 12px; font-weight: 600; border-bottom: 1px solid #243A66">Franquias</th>
+            </tr></thead>
+            <tbody>
+              <tr><td style="padding: 12px 12px 12px 0; border-bottom: 1px solid #1E3360; font-weight: 700">Giovanna</td><td style="padding: 12px; border-bottom: 1px solid #1E3360">SP Minas</td><td style="padding: 12px 0 12px 12px; border-bottom: 1px solid #1E3360">92</td></tr>
+              <tr><td style="padding: 12px 12px 12px 0; border-bottom: 1px solid #1E3360; font-weight: 700">Camila</td><td style="padding: 12px; border-bottom: 1px solid #1E3360">SP Interior</td><td style="padding: 12px 0 12px 12px; border-bottom: 1px solid #1E3360">78</td></tr>
+              <tr><td style="padding: 12px 12px 12px 0; border-bottom: 1px solid #1E3360; font-weight: 700">Rafaela</td><td style="padding: 12px; border-bottom: 1px solid #1E3360">Centro Sul</td><td style="padding: 12px 0 12px 12px; border-bottom: 1px solid #1E3360">85</td></tr>
+              <tr><td style="padding: 12px 12px 12px 0; border-bottom: 1px solid #1E3360; font-weight: 700">Jéssica</td><td style="padding: 12px; border-bottom: 1px solid #1E3360">Costa Leste</td><td style="padding: 12px 0 12px 12px; border-bottom: 1px solid #1E3360">81</td></tr>
+              <tr><td style="padding: 12px 12px 12px 0; font-weight: 700">Maria Eduarda</td><td style="padding: 12px">Equatorial</td><td style="padding: 12px 0 12px 12px">75</td></tr>
+            </tbody>
+          </table>
+          <p style="margin: 0; font-size: 13px; color: #A3B4D1">Números de franquias de exemplo.</p>
+        </section>
+        <section aria-labelledby="h-transf" style="flex: 1 1 380px; min-width: 0; background: #15264A; border: 1px solid #243A66; border-radius: 14px; padding: 22px; display: flex; flex-direction: column; gap: 14px">
+          <h2 id="h-transf" style="margin: 0; font-size: 18px; font-weight: 700">Transferir carteira</h2>
+          <label style="display: flex; flex-direction: column; gap: 6px; font-size: 14px; font-weight: 600">De
+            <select style="min-height: 44px; padding: 0 12px; border: 1px solid #2C4677; border-radius: 8px; font: inherit; font-weight: 400; color: #EEF3FA; background: #15264A"><option>Camila (SP Interior)</option><option>Giovanna (SP Minas)</option></select>
+          </label>
+          <label style="display: flex; flex-direction: column; gap: 6px; font-size: 14px; font-weight: 600">Para
+            <select style="min-height: 44px; padding: 0 12px; border: 1px solid #2C4677; border-radius: 8px; font: inherit; font-weight: 400; color: #EEF3FA; background: #15264A"><option>Nova CS</option><option>Giovanna (SP Minas)</option></select>
+          </label>
+          <label style="display: flex; flex-direction: column; gap: 6px; font-size: 14px; font-weight: 600">Quais franquias
+            <select style="min-height: 44px; padding: 0 12px; border: 1px solid #2C4677; border-radius: 8px; font: inherit; font-weight: 400; color: #EEF3FA; background: #15264A"><option>A carteira inteira</option><option>Escolher franquias</option></select>
+          </label>
+          <label style="display: flex; flex-direction: column; gap: 6px; font-size: 14px; font-weight: 600">A partir de
+            <input type="date" value="2026-12-01" style="min-height: 44px; padding: 0 12px; border: 1px solid #2C4677; border-radius: 8px; font: inherit; font-weight: 400; color: #EEF3FA; background: #15264A">
+          </label>
+          <p style="margin: 0; font-size: 13px; color: #A3B4D1">Histórico, notas, oportunidades, demandas e projetos vão junto. As metas do mês contam para quem estava com a franquia em cada registro.</p>
+          <button type="button" style="min-height: 44px; padding: 0 18px; border: 0; border-radius: 10px; background: #0077B6; color: #FFFFFF; font: inherit; font-weight: 700; cursor: pointer">Transferir</button>
+        </section>
+      </div>
+    </sc-if>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":2200}}'>
+class Component extends DCLogic {
+  constructor(props) { super(props); this.state = { usuario: 'Rafaela', acessos: null, perfilSel: null, aba: 'Produtos', prod: 'WhatsApp API Oficial', novo: true, nf: 2, nc: 1, ni: 1,
+      part: [
+        { franquia: 'CDT Osasco', cs: 'Giovanna', entrada: '01/11', fase: 'Criação do agente, dia 19 de 30' },
+        { franquia: 'CDT Picos', cs: 'Maria Eduarda', entrada: '01/11', fase: 'Criação do agente, dia 19 de 30' },
+        { franquia: 'CDT Boa Vista', cs: 'Maria Eduarda', entrada: '01/11', fase: 'Criação do agente, dia 19 de 30' },
+        { franquia: 'CDT Limoeiro', cs: 'Maria Eduarda', entrada: '10/11', fase: 'Criação do agente, dia 10 de 30' },
+      ],
+      ind: [{ franquia: 'CDT Franca', cs: 'Camila', data: '18/11', obs: 'Quer testar o caso de uso de vendas.' }] }; }
+  renderVals() {
+    const abas = ['Produtos', 'Projetos e POCs', 'Metas', 'Usuários e acessos', 'Equipe e carteiras', 'Listas do registro'];
+    const C = ['Commit Bronze', 'Commit Silver', 'Commit Gold', 'Commit Platinum'];
+    const lista = [
+      { nome: 'WhatsApp API Oficial', planos: C, situacao: 'Disponível para oferta', cobranca: 'Plano de commit', nota: 'Sim', etapas: ['Contrato no Jurídico', 'Cobrança no Financeiro', 'BM e número oficial (API Oficial)', 'Modelos de mensagem aprovados', 'Treinamento'] },
+      { nome: 'RCS', planos: C, situacao: 'Em POC', cobranca: 'Plano de commit', nota: 'Sim', etapas: ['Contrato no Jurídico', 'Criação do agente (API Oficial)', 'Aprovação de marca e operadoras', 'Treinamento'] },
+      { nome: 'Telefonia', situacao: 'Disponível para oferta', cobranca: 'Mês', nota: 'Sim', etapas: ['Contrato no Jurídico', 'Cobrança no Financeiro', 'Implantação da telefonia', 'Treinamento'] },
+      { nome: 'Portabilidade', situacao: 'Disponível para oferta', cobranca: 'Número', nota: 'Não', etapas: ['Contrato no Jurídico', 'Pedido de portabilidade na operadora', 'Número ativo na Atendas'] },
+      { nome: 'Discadora/URA Reversa', setup: 'R$ 1.500 por canal', mensal: 'R$ 220 por canal', situacao: 'Disponível para oferta', cobranca: 'Canal', nota: 'Sim', etapas: ['Contrato no Jurídico', 'Cobrança no Financeiro', 'Implantação da telefonia', 'Treinamento'] },
+      { nome: 'Provedor WhatsApp API Oficial Adicional', situacao: 'Só para quem já tem', cobranca: 'Número', nota: 'Não', etapas: ['Aditivo no Jurídico', 'Número adicional (API Oficial)'] },
+      { nome: 'WhatsApp RCS Adicional', situacao: 'Só para quem já tem', cobranca: 'Agente', nota: 'Não', etapas: ['Aditivo no Jurídico', 'Agente adicional (API Oficial)'] },
+      { nome: 'CRM', situacao: 'Disponível para oferta', cobranca: 'Mês', nota: 'Sim', etapas: ['Contrato no Jurídico', 'Configuração do CRM', 'Treinamento'] },
+      { nome: 'IA de Voz', situacao: 'Disponível para oferta', cobranca: 'Consumo', nota: 'Sim', etapas: ['Contrato no Jurídico', 'Configuração do fluxo', 'Treinamento'] },
+      { nome: 'KYC', franqueadora: true, situacao: 'Só para quem já tem', cobranca: 'Consulta', nota: 'Sim', etapas: ['Ativação pela franqueadora'] },
+      { nome: 'Projeto de Adimplência (CDT)', franqueadora: true, situacao: 'Só para quem já tem', cobranca: 'Consumo', nota: 'Sim', etapas: ['Ativação pela franqueadora'] },
+    ];
+    const atual = lista.find((p) => p.nome === this.state.prod) || lista[0];
+    const part = this.state.part, ind = this.state.ind;
+    const extra = {
+      qtdPart: part.length,
+      participantes: part.map((p) => ({ ...p, tirar: () => this.setState({ part: part.filter((x) => x !== p) }) })),
+      temIndicacoes: ind.length > 0,
+      indicacoes: ind.map((i) => ({ ...i,
+        aprovar: () => this.setState({ ind: ind.filter((x) => x !== i), part: [...part, { franquia: i.franquia, cs: i.cs, entrada: '19/11', fase: 'Criação do agente, dia 1 de 30' }] }),
+        recusar: () => this.setState({ ind: ind.filter((x) => x !== i) }) })),
+    };
+    const GR = [
+      ['Dia a dia', ['Minha carteira', 'Registrar atendimento', 'Upsell', 'Resumo da semana', 'Biblioteca']],
+      ['Acompanhamentos', ['Inadimplência', 'Projetos piloto', 'Comunicação']],
+      ['Conteúdo', ['King Post', 'Atendas Vision']],
+      ['Gestão', ['Visão da diretoria', 'Visão geral', 'Meta do time', 'Saúde da base', 'Alertas', 'Configurações']],
+    ];
+    const todas = GR.flatMap((g) => g[1]);
+    const PRESET = {
+      'CS': todas.filter((a) => !['Visão da diretoria', 'Visão geral', 'Meta do time', 'Configurações'].includes(a)),
+      'Gestão': todas,
+      'Diretoria': ['Visão da diretoria', 'Upsell', 'Resumo da semana', 'Visão geral', 'Meta do time', 'Saúde da base', 'Alertas', 'Inadimplência'],
+    };
+    const USERS = [
+      ['Amanda', 'amanda@atendas.com.br', 'Gestão'], ['Giovanna', 'giovanna@atendas.com.br', 'CS'], ['Camila', 'camila@atendas.com.br', 'CS'],
+      ['Rafaela', 'rafaela@atendas.com.br', 'CS'], ['Jéssica', 'jessica@atendas.com.br', 'CS'], ['Maria Eduarda', 'mariaeduarda@atendas.com.br', 'CS'],
+      ['Diretoria', 'diretoria@atendas.com.br', 'Diretoria'],
+    ];
+    const u = USERS.find((x) => x[0] === this.state.usuario) || USERS[0];
+    const perfil = this.state.perfilSel || u[2];
+    const acessos = this.state.acessos || PRESET[perfil] || PRESET['CS'];
+    const usuarioVals = {
+      usuarios: USERS.map(([nome, email, p]) => ({ nome, email, perfil: p, qtd: (nome === u[0] ? acessos : PRESET[p]).length,
+        borda: nome === u[0] ? '2px solid #0077B6' : '1px solid #243A66',
+        pick: () => this.setState({ usuario: nome, acessos: null, perfilSel: null }) })),
+      atual: { nome: u[0], email: u[1], perfil, dados: perfil === 'CS' ? 'Só a própria carteira' : 'Todas as regionais', aprova: perfil === 'Gestão' },
+      trocarPerfil: (e) => { const p = e.target.value; this.setState({ perfilSel: p, acessos: PRESET[p] || acessos }); },
+      grupos: GR.map(([nome, abas]) => ({ nome, abas: abas.map((a) => ({ nome: a, on: acessos.includes(a),
+        toggle: () => this.setState({ perfilSel: 'Personalizado', acessos: acessos.includes(a) ? acessos.filter((x) => x !== a) : [...acessos, a] }) })) })),
+    };
+    return {
+      ...usuarioVals,
+      ...extra,
+      novo: this.state.novo, verRcs: !this.state.novo,
+      bordaRcs: this.state.novo ? '1px solid #243A66' : '2px solid #0077B6',
+      abrirNovo: () => this.setState({ novo: true }), abrirRcs: () => this.setState({ novo: false }),
+      novasFases: Array.from({ length: this.state.nf }, (_, i) => ({ n: i + 1 })),
+      novosCampos: Array.from({ length: this.state.nc }, (_, i) => ({ n: i + 1 })),
+      novosInd: Array.from({ length: this.state.ni }, (_, i) => ({ n: i + 1 })),
+      addFase: () => this.setState({ nf: this.state.nf + 1 }),
+      addCampo: () => this.setState({ nc: this.state.nc + 1 }),
+      addInd: () => this.setState({ ni: this.state.ni + 1 }),
+      abas: abas.map((a) => ({ nome: a, ativo: a === this.state.aba, inativo: a !== this.state.aba, pick: () => this.setState({ aba: a }) })),
+      verProdutos: this.state.aba === 'Produtos', verProjetos: this.state.aba === 'Projetos e POCs', verListas: this.state.aba === 'Listas do registro', verEquipe: this.state.aba === 'Equipe e carteiras', verMetas: this.state.aba === 'Metas', verUsuarios: this.state.aba === 'Usuários e acessos',
+      produtos: lista.map((p) => ({ ...p, valores: p.planos ? '4 planos de commit' : p.setup ? p.setup + ' + ' + p.mensal : 'R$ [setup] + R$ [mensal]', disponivel: p.situacao === 'Disponível para oferta', outro: p.situacao !== 'Disponível para oferta', pick: () => this.setState({ prod: p.nome }) })),
+      sel: { temPlanos: !!atual.planos, planos: (atual.planos || []).map((n) => ({ n })), contratante: atual.franqueadora ? 'A franqueadora, para a rede' : 'A franquia, em contrato direto', nome: atual.nome, cobranca: atual.cobranca, setup: atual.setup || 'R$ [valor]', mensal: atual.mensal || 'R$ [valor]', etapas: atual.etapas.map((e, i) => ({ n: i + 1, nome: e })) },
+      fases: [
+        { n: 1, nome: 'Criação do agente', duracao: '30 dias', itens: 'Dados e imagens enviados pela franquia; formulário do time de API Oficial; validação do agente; aprovação de marca e operadoras; agente no ar' },
+        { n: 2, nome: 'Uso efetivo', duracao: '60 dias', itens: 'Indicadores preenchidos a cada 15 dias; reunião de meio de período com nota da franquia' },
+        { n: 3, nome: 'Decisão', duracao: 'Até o último dia', itens: 'Continua com a Atendas (paga a implantação) ou não continua, com o motivo' },
+      ],
+      listas: [
+        { nome: 'Motivos de recusa', itens: '9 itens, de "Preço acima da concorrência" a "Outro motivo"' },
+        { nome: 'Assuntos do atendimento', itens: '8 itens, de "Acompanhamento" a "Inadimplência com a Atendas"' },
+        { nome: 'Dores relatadas', itens: '7 itens, de "KYC" a "Nenhuma"' },
+        { nome: 'Áreas internas', itens: 'Financeiro, Jurídico, Desenvolvimento, Implantação, Suporte, API Oficial' },
+        { nome: 'Funções na equipe da franquia', itens: 'Gerente, Sócio, Coordenador, Financeiro, Assessor, Operação final, Outra função' },
+        { nome: 'Canais de comunicação', itens: 'Yungas, disparo de WhatsApp, RCS' },
+        { nome: 'Motivos de nota abaixo de 5', itens: 'Uma lista por foco: geral, suporte, adimplência e cada produto' },
+        { nome: 'Temas de melhoria da plataforma', itens: 'Relatórios, facilidade de uso, velocidade, integração, novo recurso, suporte, preço' },
+        { nome: 'Motivos de cancelamento', itens: 'Cada motivo marcado como evitável ou inevitável, como unidade encerrada' },
+        { nome: 'Redes de clientes', itens: 'Cartão de TODOS e outras redes. Define regras como vender com boleto em aberto' },
+      ],
+    };
+  }
+}
+</script>
+</body>
+</html>

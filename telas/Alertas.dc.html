@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<title>Alertas</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700;800&amp;display=swap">
+<style>
+body{margin:0}
+a{color:#9DD8FF}a:hover{color:#FFFFFF}
+</style>
+</helmet>
+<div style="min-height: 1500px; background: #0E1A33; font-family: Figtree, Arial, sans-serif; color: #EEF3FA; padding: 32px 32px 56px; box-sizing: border-box">
+  <div style="max-width: 1380px; margin: 0 auto; display: flex; flex-direction: column; gap: 18px">
+    <header style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-end; gap: 16px">
+      <div style="display: flex; flex-direction: column; gap: 4px">
+        <h1 style="margin: 0; font-size: 30px; font-weight: 800; letter-spacing: -0.5px">Alertas</h1>
+        <p style="margin: 0; font-size: 15px; color: #A3B4D1">Sinais de que uma franquia precisa de atenção antes de virar cancelamento. Clique num tipo para filtrar.</p>
+      </div>
+      <div role="group" aria-label="Filtrar por regional" style="display: flex; flex-wrap: wrap; gap: 4px; background: #15264A; border: 1px solid #243A66; border-radius: 12px; padding: 4px">
+        <sc-for list="{{regs}}" as="r" hint-placeholder-count="6">
+          <sc-if value="{{r.ativo}}" hint-placeholder-val="{{false}}"><button type="button" onClick="{{r.pick}}" aria-pressed="true" style="min-height: 40px; padding: 0 12px; border: 0; border-radius: 8px; background: #00A8F0; color: #04213F; font: inherit; font-size: 14px; font-weight: 600; cursor: pointer">{{r.nome}}</button></sc-if>
+          <sc-if value="{{r.inativo}}" hint-placeholder-val="{{true}}"><button type="button" onClick="{{r.pick}}" aria-pressed="false" style="min-height: 40px; padding: 0 12px; border: 0; border-radius: 8px; background: transparent; color: #A3B4D1; font: inherit; font-size: 14px; font-weight: 500; cursor: pointer">{{r.nome}}</button></sc-if>
+        </sc-for>
+      </div>
+    </header>
+    <section aria-label="Tipos de alerta" style="display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 10px">
+      <sc-for list="{{tipos}}" as="t" hint-placeholder-count="10">
+        <button type="button" onClick="{{t.pick}}" aria-pressed="{{t.sel}}" style="text-align: left; background: #15264A; border: 1px solid #243A66; border-radius: 14px; border: {{t.borda}}; padding: 12px 14px; display: flex; flex-direction: column; gap: 2px; font: inherit; color: #EEF3FA; cursor: pointer">
+          <b style="font-size: 24px; color: {{t.cor}}">{{t.qtd}}</b><span style="font-size: 13px; font-weight: 600">{{t.nome}}</span>
+        </button>
+      </sc-for>
+    </section>
+    <div style="display: flex; flex-wrap: wrap; gap: 16px; align-items: stretch"><section aria-labelledby="h-lis" style="flex: 999 1 760px; min-width: 0; background: #15264A; border: 1px solid #243A66; border-radius: 14px; padding: 20px 22px; display: flex; flex-direction: column; gap: 12px">
+        <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: baseline; gap: 8px"><h2 id="h-lis" style="margin: 0; font-size: 17px; font-weight: 700">{{tituloLista}}</h2><p style="margin: 0; font-size: 13px; color: #A3B4D1">Mais antigos primeiro</p></div>
+        <div style="display: grid; grid-template-columns: 200px minmax(0, 1fr) 150px 120px; gap: 10px; padding-bottom: 8px; border-bottom: 1px solid #243A66; font-size: 13px; font-weight: 600; color: #A3B4D1"><span>Franquia</span><span>Alerta e ação sugerida</span><span>Há quanto tempo</span><span></span></div>
+        <sc-for list="{{lista}}" as="a" hint-placeholder-count="8">
+          <div style="display: grid; grid-template-columns: 200px minmax(0, 1fr) 150px 120px; gap: 10px; align-items: center; padding: 8px 0; border-bottom: 1px solid #1E3360; font-size: 14px">
+            <span><b>{{a.f}}</b><br><span style="font-size: 13px; color: #A3B4D1">{{a.cs}}</span></span>
+            <span><span style="font-size: 12px; font-weight: 700; color: {{a.cor}}; background: {{a.fundo}}; padding: 2px 8px; border-radius: 999px">{{a.tipo}}</span><br><span style="font-size: 13px; color: #C6D3E6">{{a.acao}}</span></span>
+            <span style="color: #C6D3E6">{{a.tempo}}</span>
+            <a href="Ficha.dc.html" style="display: inline-flex; align-items: center; justify-content: center; min-height: 40px; padding: 0 12px; border: 1px solid #2C4677; border-radius: 8px; background: #15264A; color: #EEF3FA; font: inherit; font-size: 14px; font-weight: 600; cursor: pointer; text-decoration: none">Abrir ficha</a>
+          </div>
+        </sc-for>
+      </section><section aria-labelledby="h-dem" style="flex: 1 1 340px; min-width: 0; background: #15264A; border: 1px solid #243A66; border-radius: 14px; padding: 20px 22px; display: flex; flex-direction: column; gap: 12px">
+        <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: baseline; gap: 8px"><h2 id="h-dem" style="margin: 0; font-size: 17px; font-weight: 700">Demandas com outras áreas</h2><p style="margin: 0; font-size: 13px; color: #A3B4D1">Abertas pelo CS e sem retorno</p></div>
+        <div style="display: grid; grid-template-columns: minmax(0, 1fr) 70px 110px; gap: 8px; padding-bottom: 8px; border-bottom: 1px solid #243A66; font-size: 13px; font-weight: 600; color: #A3B4D1"><span>Área</span><span style="text-align: right">Abertas</span><span style="text-align: right">Mais antiga</span></div>
+        <sc-for list="{{dem}}" as="d" hint-placeholder-count="6">
+          <div style="display: grid; grid-template-columns: minmax(0, 1fr) 70px 110px; gap: 8px; padding: 8px 0; border-bottom: 1px solid #1E3360; font-size: 14px; align-items: center">
+            <b>{{d.area}}</b><span style="text-align: right">{{d.qtd}}</span><span style="justify-self: end; font-size: 13px; font-weight: 700; color: {{d.cor}}; background: {{d.fundo}}; padding: 2px 9px; border-radius: 999px">{{d.dias}} dias</span>
+          </div>
+        </sc-for>
+        <span style="font-size: 13px; color: #A3B4D1">Demanda parada há mais de 15 dias é caso para levar à diretoria.</span>
+      </section></div>
+    <p style="margin: 0; font-size: 13px; color: #A3B4D1">Números de exemplo. O filtro de regional muda todos os blocos; aqui no esboço ele só marca a escolha.</p>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":1500}}'>
+class Component extends DCLogic {
+  constructor(props) { super(props); this.state = { reg: 'Todas', tipo: null }; }
+  renderVals() {
+    const regs = ['Todas', 'SP Minas', 'SP Interior', 'Centro Sul', 'Costa Leste', 'Equatorial'].map((n) => ({ nome: n, ativo: n === this.state.reg, inativo: n !== this.state.reg, pick: () => this.setState({ reg: n }) }));
+    const C = { ri: ['#F6A3A9', 'rgba(217,64,74,0.24)'], at: ['#F7B98A', 'rgba(233,134,47,0.22)'], az: ['#AFC0F7', 'rgba(48,84,204,0.32)'] };
+    const T = [
+      ['Pedido de cancelamento', 2, 'ri'], ['Sem reunião há mais de 45 dias', 31, 'ri'], ['Detratora no mês', 12, 'ri'], ['Boletos em aberto', 11, 'at'], ['Troca de gerente ou sócio', 14, 'at'], ['Demanda parada', 9, 'at'],
+      ['Próxima ação atrasada', 17, 'at'], ['Não compareceu 2 vezes', 6, 'at'], ['Implantação parada', 3, 'at'], ['Coleta de POC vencida', 2, 'az'], ['Queda de uso', '—', 'az'],
+    ];
+    const L = [
+      ['CDT Maringá', 'Rafaela', 'Pedido de cancelamento', 'ri', 'Cancelamento total por preço. Proposta de licença por canal em análise.', '9 dias'],
+      ['CDT Recife', 'Maria Eduarda', 'Pedido de cancelamento', 'ri', 'Quer cancelar a discadora. Oferta de retenção esperando aprovação.', '14 dias'],
+      ['CDT Teresina', 'Maria Eduarda', 'Sem reunião há mais de 45 dias', 'ri', 'Agendar reunião de acompanhamento. Já era prioridade em outubro.', '58 dias'],
+      ['CDT Osasco', 'Giovanna', 'Sem reunião há mais de 45 dias', 'ri', 'Reunião agendada para hoje às 9h: registrar o desfecho.', '47 dias'],
+      ['CDT Maringá', 'Rafaela', 'Detratora no mês', 'ri', 'Nota 4 por cobrança contestada. Alinhar com o Financeiro antes de retornar.', '12 dias'],
+      ['CDT Uberlândia', 'Giovanna', 'Boletos em aberto', 'at', 'Promessa de pagamento vence em 22/11.', '14 dias'],
+      ['CDT Campo Grande', 'Rafaela', 'Troca de gerente ou sócio', 'at', 'Apresentar a Atendas ao novo gerente.', '16 dias'],
+      ['CDT Contagem', 'Giovanna', 'Demanda parada', 'at', 'Segunda via no Financeiro sem retorno.', '12 dias'],
+      ['CDT Itaquera', 'Giovanna', 'Implantação parada', 'at', 'Telefonia agendada para 24/11. Cobrar a Implantação.', '12 dias'],
+      ['CDT Boa Vista', 'Maria Eduarda', 'Coleta de POC vencida', 'az', 'Franquia não enviou dados e imagens do agente.', '7 dias'],
+    ];
+    const sel = this.state.tipo || null;
+    const lista = L.filter((l) => !sel || l[2] === sel).map(([f, cs, tipo, k, acao, tempo]) => ({ f, cs, tipo, acao, tempo, cor: C[k][0], fundo: C[k][1] }));
+    return { regs,
+      tipos: T.map(([nome, qtd, k]) => ({ nome, qtd, cor: C[k][0], sel: sel === nome ? 'true' : 'false', borda: sel === nome ? '2px solid #0077B6' : '1px solid #243A66',
+        pick: () => this.setState({ tipo: sel === nome ? null : nome }) })),
+      tituloLista: sel ? sel : 'Todos os alertas',
+      lista,
+      dem: [['Financeiro', 19, 23], ['Desenvolvimento', 7, 27], ['Implantação', 10, 12], ['Suporte', 5, 4], ['Jurídico', 2, 5], ['API Oficial', 3, 6]]
+        .map(([area, qtd, dias]) => { const k = dias > 15 ? 'ri' : dias > 7 ? 'at' : null; return { area, qtd, dias, cor: k ? C[k][0] : '#6FDCCB', fundo: k ? C[k][1] : 'rgba(14,159,142,0.22)' }; }),
+    };
+  }
+}
+</script>
+</body>
+</html>

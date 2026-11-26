@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<title>King Post, visão da gestão</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700;800&amp;display=swap">
+<style>
+body{margin:0}
+a{color:#9DD8FF}a:hover{color:#FFFFFF}
+</style>
+</helmet>
+<div style="min-height: 1700px; background: #0E1A33; font-family: Figtree, Arial, sans-serif; color: #EEF3FA; padding: 32px 32px 56px; box-sizing: border-box">
+  <div style="max-width: 1380px; margin: 0 auto; display: flex; flex-direction: column; gap: 20px">
+    <header style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-end; gap: 16px">
+      <div style="display: flex; flex-direction: column; gap: 4px">
+        <h1 style="margin: 0; font-size: 30px; font-weight: 800; letter-spacing: -0.5px">King Post</h1>
+        <p style="margin: 0; font-size: 15px; color: #A3B4D1">Controle das matérias do mês. A CS marca aqui quando a matéria está feita; a aprovação continua no painel da King Post.</p>
+      </div>
+    </header>
+    <div role="tablist" aria-label="Visão" style="display: flex; flex-wrap: wrap; gap: 4px; border-bottom: 1px solid #243A66">
+      <sc-for list="{{abas}}" as="a" hint-placeholder-count="2">
+        <sc-if value="{{a.ativo}}" hint-placeholder-val="{{false}}">
+          <button type="button" role="tab" aria-selected="true" onClick="{{a.pick}}" style="min-height: 44px; padding: 0 16px; border: 0; border-bottom: 3px solid #0077B6; background: transparent; color: #EEF3FA; font: inherit; font-size: 15px; font-weight: 700; cursor: pointer">{{a.nome}}</button>
+        </sc-if>
+        <sc-if value="{{a.inativo}}" hint-placeholder-val="{{true}}">
+          <button type="button" role="tab" aria-selected="false" onClick="{{a.pick}}" style="min-height: 44px; padding: 0 16px; border: 0; border-bottom: 3px solid transparent; background: transparent; color: #A3B4D1; font: inherit; font-size: 15px; font-weight: 500; cursor: pointer">{{a.nome}}</button>
+        </sc-if>
+      </sc-for>
+    </div>
+
+    <sc-if value="{{verMinhas}}" hint-placeholder-val="{{true}}">
+      <div style="display: flex; flex-direction: column; gap: 16px">
+        <section aria-label="Placar" style="background: #15264A; border: 1px solid #243A66; border-radius: 14px; padding: 18px 22px; display: flex; flex-wrap: wrap; align-items: center; gap: 24px">
+          <div style="display: flex; flex-direction: column; gap: 2px"><span style="font-size: 14px; font-weight: 600; color: #A3B4D1">Feitas em novembro</span><span style="font-size: 32px; font-weight: 800">12 <span style="font-size: 16px; font-weight: 500; color: #A3B4D1">de 20 definidas</span></span></div>
+          <div style="flex: 1 1 300px; height: 12px; border-radius: 99px; background: #1E3360; position: relative"><div style="position: absolute; inset: 0 40% 0 0; border-radius: 99px; background: #0077B6"></div><div style="position: absolute; top: -5px; bottom: -5px; left: 63%; width: 3px; background: #0A1430; border-radius: 2px"></div></div>
+          <span style="font-size: 14px; color: #F7B98A; font-weight: 600">Abaixo do ritmo: deveria estar em 13</span>
+        </section>
+        <section aria-labelledby="h-min" style="background: #15264A; border: 1px solid #243A66; border-radius: 14px; padding: 22px; display: flex; flex-direction: column; gap: 10px">
+          <div style="display: flex; justify-content: space-between; align-items: baseline; gap: 10px; flex-wrap: wrap"><h2 id="h-min" style="margin: 0; font-size: 18px; font-weight: 700">Minhas matérias</h2><span style="font-size: 13px; color: #A3B4D1">Marque quando a matéria estiver feita e enviada no painel da King Post.</span></div>
+          <sc-for list="{{minhas}}" as="m" hint-placeholder-count="6">
+            <div style="display: grid; grid-template-columns: minmax(0, 1fr) 180px 150px; gap: 14px; align-items: center; border-top: 1px solid #1E3360; padding-top: 10px; font-size: 14px">
+              <div style="display: flex; flex-direction: column; gap: 2px"><b>{{m.tema}}</b><span style="font-size: 13px; color: #A3B4D1">{{m.tipo}}</span><span style="font-size: 13px; color: #A3B4D1">{{m.comentario}}</span></div>
+              <label style="justify-self: start; display: flex; align-items: center; gap: 10px; min-height: 44px; font-size: 14px; font-weight: 600; color: {{m.t.cor}}">
+                <input type="checkbox" checked="{{m.feita}}" onChange="{{m.toggle}}" style="width: 20px; height: 20px; accent-color: #6FDCCB"> {{m.status}}
+              </label>
+              <span style="color: #A3B4D1">{{m.data}}</span>
+            </div>
+          </sc-for>
+        </section>
+      </div>
+    </sc-if>
+
+    <sc-if value="{{verGestao}}" hint-placeholder-val="{{false}}">
+      <div style="display: flex; flex-wrap: wrap; gap: 16px; align-items: flex-start">
+        <section aria-labelledby="h-fila" style="flex: 999 1 560px; min-width: 0; background: #15264A; border: 1px solid #243A66; border-radius: 14px; padding: 22px; display: flex; flex-direction: column; gap: 10px">
+          <div style="display: flex; justify-content: space-between; align-items: baseline; gap: 10px; flex-wrap: wrap"><h2 id="h-fila" style="margin: 0; font-size: 18px; font-weight: 700">Feitas nos últimos dias</h2><span style="font-size: 14px; color: #A3B4D1">Para você aprovar no painel da King Post</span></div>
+          <sc-for list="{{fila}}" as="f" hint-placeholder-count="5">
+            <div style="display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 12px; align-items: center; border-top: 1px solid #1E3360; padding-top: 10px; font-size: 14px">
+              <div style="display: flex; flex-direction: column; gap: 2px"><b>{{f.tema}}</b><span style="font-size: 13px; color: #A3B4D1">{{f.cs}}, marcada como feita {{f.quando}}</span></div>
+              <span style="font-size: 13px; font-weight: 700; color: #6FDCCB; background: rgba(14,159,142,0.22); padding: 3px 10px; border-radius: 999px">Feita</span>
+            </div>
+          </sc-for>
+          <p style="margin: 0; font-size: 13px; color: #A3B4D1; border-top: 1px solid #1E3360; padding-top: 10px">A aprovação e a publicação acontecem só no painel da King Post. Aqui fica o controle do que foi feito, sem repetir o trabalho.</p>
+        </section>
+        <section aria-labelledby="h-plac" style="flex: 1 1 380px; min-width: 0; background: #15264A; border: 1px solid #243A66; border-radius: 14px; padding: 22px; display: flex; flex-direction: column; gap: 10px">
+          <h2 id="h-plac" style="margin: 0; font-size: 18px; font-weight: 700">Feitas por CS</h2>
+          <sc-for list="{{placar}}" as="p" hint-placeholder-count="5">
+            <div style="display: grid; grid-template-columns: 120px minmax(0, 1fr) 70px; gap: 10px; align-items: center; font-size: 14px">
+              <b>{{p.cs}}</b><div style="height: 10px; border-radius: 99px; background: #1E3360"><div style="height: 10px; border-radius: 99px; background: #0077B6; width: {{p.largura}}"></div></div><span style="text-align: right">{{p.txt}}</span>
+            </div>
+          </sc-for>
+          <div style="border-top: 1px solid #1E3360; padding-top: 12px; display: flex; flex-direction: column; gap: 6px; font-size: 14px">
+            <b>Mix do mês</b>
+            <span style="color: #C6D3E6">Produtos 52%, posicionamento de marca 28%, institucional 20%</span>
+          </div>
+        </section>
+        <section aria-labelledby="h-temas" style="flex: 1 1 100%; background: #15264A; border: 1px solid #243A66; border-radius: 14px; padding: 22px; display: flex; flex-direction: column; gap: 10px">
+          <div style="display: flex; justify-content: space-between; align-items: center; gap: 10px; flex-wrap: wrap"><h2 id="h-temas" style="margin: 0; font-size: 18px; font-weight: 700">Banco de temas de dezembro</h2><button type="button" style="min-height: 44px; padding: 0 16px; border: 0; border-radius: 10px; background: #0077B6; color: #FFFFFF; font: inherit; font-weight: 700; cursor: pointer">Novo tema</button></div>
+          <p style="margin: 0; font-size: 14px; color: #A3B4D1">Você define e distribui. Cada tema distribuído entra nas definidas da CS e conta para a meta dela.</p>
+          <sc-for list="{{temas}}" as="t" hint-placeholder-count="4">
+            <div style="display: grid; grid-template-columns: minmax(0, 1fr) 160px 200px; gap: 12px; align-items: center; border-top: 1px solid #1E3360; padding-top: 10px; font-size: 14px">
+              <b>{{t.tema}}</b><span style="color: #A3B4D1">{{t.tipo}}</span>
+              <label style="display: flex; flex-direction: column; gap: 2px"><span style="position: absolute; left: -9999px">Distribuir para</span><select style="min-height: 40px; padding: 0 10px; border: 1px solid #2C4677; border-radius: 8px; font: inherit; color: #EEF3FA; background: #15264A"><option>{{t.cs}}</option><option>Giovanna</option><option>Camila</option><option>Rafaela</option><option>Jéssica</option><option>Maria Eduarda</option></select></label>
+            </div>
+          </sc-for>
+        </section>
+      </div>
+    </sc-if>
+    <p style="margin: 0; font-size: 13px; color: #A3B4D1">Temas e números de exemplo. Meta: 100% das matérias definidas feitas no mês.</p>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":1700}}'>
+class Component extends DCLogic {
+  constructor(props) { super(props); this.state = { aba: 'Gestão', feitas: [0, 1] }; }
+  renderVals() {
+    const ST = { ok: ['#6FDCCB', 'rgba(14,159,142,0.22)'], at: ['#F7B98A', 'rgba(233,134,47,0.22)'], ri: ['#F6A3A9', 'rgba(217,64,74,0.24)'], az: ['#AFC0F7', 'rgba(48,84,204,0.32)'], ci: ['#C6D3E6', '#1B2E58'] };
+    const tag = (k) => ({ cor: ST[k][0], fundo: ST[k][1] });
+    const abasDe = (lista, atual, set) => lista.map((a) => ({ nome: a, ativo: a === atual, inativo: a !== atual, pick: () => set(a) }));
+    const base = [
+      ['Como o KYC protege a venda do cartão', 'Produto', 12],
+      ['O que é a API Oficial do WhatsApp', 'Produto', 14],
+      ['Discadora com licença por canal', 'Produto', 0],
+      ['Atendas no podcast Minuto ATENDAS', 'Institucional', 0],
+      ['RCS: a mensagem com a marca da franquia', 'Posicionamento de marca', 0],
+      ['Minha Atendas: faturas na palma da mão', 'Produto', 0],
+    ];
+    const feitas = this.state.feitas;
+    const minhas = base.map(([tema, tipo, dia], i) => { const f = feitas.includes(i); return {
+      tema, tipo, feita: f, status: f ? 'Feita' : 'A fazer', t: tag(f ? 'ok' : 'ci'),
+      data: f ? (dia ? 'Feita em ' + dia + '/11' : 'Feita hoje') : 'Prevista até 30/11', comentario: '',
+      toggle: () => this.setState({ feitas: f ? feitas.filter((x) => x !== i) : [...feitas, i] }) }; });
+    return {
+      abas: abasDe(['Minhas matérias', 'Gestão'], this.state.aba, (a) => this.setState({ aba: a })),
+      verMinhas: this.state.aba === 'Minhas matérias', verGestao: this.state.aba === 'Gestão',
+      minhas,
+      fila: [['O que é a API Oficial do WhatsApp', 'Giovanna', 'em 14/11'], ['Commit: previsibilidade no custo', 'Camila', 'ontem'], ['URA reversa na cobrança', 'Jéssica', 'hoje'], ['Cases da POC RCS', 'Maria Eduarda', 'em 17/11'], ['A Atendas na Anatel', 'Rafaela', 'ontem']]
+        .map(([tema, cs, quando]) => ({ tema, cs, quando })),
+      placar: [['Giovanna', 12, 20], ['Camila', 15, 20], ['Rafaela', 9, 18], ['Jéssica', 18, 20], ['Maria Eduarda', 7, 18]]
+        .map(([cs, p, d]) => ({ cs, largura: Math.round(p / d * 100) + '%', txt: p + ' de ' + d })),
+      temas: [['Retrospectiva 2026 da Atendas', 'Institucional', 'Giovanna'], ['IA de voz na recuperação de inadimplentes', 'Produto', 'Camila'], ['Por que a Atendas é operadora Anatel', 'Posicionamento de marca', 'Rafaela'], ['Resultados da POC RCS', 'Produto', 'Sem CS']]
+        .map(([tema, tipo, cs]) => ({ tema, tipo, cs })),
+    };
+  }
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,175 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<title>Meta do time</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700;800&amp;display=swap">
+<style>
+body{margin:0}
+a{color:#9DD8FF}a:hover{color:#FFFFFF}
+</style>
+</helmet>
+<div style="min-height: 1950px; background: #0E1A33; font-family: Figtree, Arial, sans-serif; color: #EEF3FA; padding: 32px 32px 56px; box-sizing: border-box">
+  <div style="max-width: 1380px; margin: 0 auto; display: flex; flex-direction: column; gap: 20px">
+
+    <header style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-end; gap: 16px">
+      <div style="display: flex; flex-direction: column; gap: 4px">
+        <h1 style="margin: 0; font-size: 30px; font-weight: 800; letter-spacing: -0.5px">Meta do time</h1>
+        <p style="margin: 0; font-size: 15px; color: #A3B4D1">Novembro de 2026, dia 19 de 30. O traço em cada barra mostra onde o time deveria estar hoje.</p>
+      </div>
+      <label style="display: flex; align-items: center; gap: 8px; font-size: 14px; font-weight: 600">Mês
+        <select style="min-height: 44px; padding: 0 12px; border: 1px solid #2C4677; border-radius: 8px; font: inherit; font-weight: 500; color: #EEF3FA; background: #15264A"><option>Novembro de 2026</option><option>Outubro de 2026</option></select>
+      </label>
+    </header>
+
+    <section aria-labelledby="h-geral" style="background: #0A1430; border: 1px solid #2D6E99; color: #FFFFFF; border-radius: 16px; padding: 24px; display: flex; flex-direction: column; gap: 16px">
+      <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: baseline; gap: 10px">
+        <h2 id="h-geral" style="margin: 0; font-size: 20px; font-weight: 800">Meta geral da área de CS</h2>
+        <span style="font-size: 14px; color: #A9C3E3">Resultado que a diretoria cobra do time inteiro. Não é a soma das metas individuais.</span>
+      </div>
+      <div style="display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px">
+        <sc-for list="{{gerais}}" as="g" hint-placeholder-count="3">
+          <div style="background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.14); border-radius: 12px; padding: 16px 18px; display: flex; flex-direction: column; gap: 8px">
+            <span style="font-size: 14px; font-weight: 600; color: #D6E4F5">{{g.nome}}</span>
+            <span style="font-size: 30px; font-weight: 800">{{g.valor}} <span style="font-size: 15px; font-weight: 500; color: #A9C3E3">{{g.de}}</span></span>
+            <div role="img" aria-label="{{g.aria}}" style="position: relative; height: 10px; border-radius: 99px; background: rgba(255,255,255,0.16)">
+              <div style="position: absolute; left: 0; top: 0; bottom: 0; width: {{g.largura}}; border-radius: 99px; background: #00A8F0"></div>
+            </div>
+            <span style="font-size: 13px; color: #D6E4F5">{{g.detalhe}}</span>
+          </div>
+        </sc-for>
+      </div>
+    </section>
+
+    <h2 style="margin: 4px 0 0; font-size: 18px; font-weight: 700">Esforço do time: soma das metas individuais</h2>
+    <section aria-label="Metas do time" style="display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px">
+      <sc-for list="{{metas}}" as="m" hint-placeholder-count="4">
+        <div style="background: #15264A; border: 1px solid #243A66; border-radius: 14px; padding: 18px 20px; display: flex; flex-direction: column; gap: 8px">
+          <span style="font-size: 14px; font-weight: 600; color: #A3B4D1">{{m.nome}}</span>
+          <span style="font-size: 30px; font-weight: 800">{{m.valor}} <span style="font-size: 15px; font-weight: 500; color: #A3B4D1">{{m.de}}</span></span>
+          <div role="img" aria-label="{{m.aria}}" style="position: relative; height: 10px; border-radius: 99px; background: #1E3360">
+            <div style="position: absolute; left: 0; top: 0; bottom: 0; width: {{m.largura}}; border-radius: 99px; background: {{m.cor}}"></div>
+            <div style="position: absolute; top: -5px; bottom: -5px; left: {{m.ritmo}}; width: 3px; border-radius: 2px; background: #0A1430"></div>
+          </div>
+          <span style="font-size: 13px; font-weight: 600; color: {{m.corTexto}}">{{m.situacao}}</span>
+        </div>
+      </sc-for>
+    </section>
+
+    <section aria-label="Receita do mês" style="display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px">
+      <div style="background: #15264A; border: 1px solid #243A66; border-radius: 14px; padding: 18px 20px; display: flex; flex-direction: column; gap: 4px">
+        <span style="font-size: 14px; font-weight: 600; color: #A3B4D1">MRR novo</span>
+        <span style="font-size: 28px; font-weight: 800">R$ 7.830</span>
+        <span style="font-size: 13px; color: #A3B4D1">Mensalidades de upsells e cross-sells assinados</span>
+      </div>
+      <div style="background: #15264A; border: 1px solid #243A66; border-radius: 14px; padding: 18px 20px; display: flex; flex-direction: column; gap: 4px">
+        <span style="font-size: 14px; font-weight: 600; color: #A3B4D1">Receita não recorrente</span>
+        <span style="font-size: 28px; font-weight: 800">R$ 16.800</span>
+        <span style="font-size: 13px; color: #A3B4D1">Setups cobrados uma vez</span>
+      </div>
+      <div style="background: #15264A; border: 1px solid #243A66; border-radius: 14px; padding: 18px 20px; display: flex; flex-direction: column; gap: 4px">
+        <span style="font-size: 14px; font-weight: 600; color: #A3B4D1">Cross-sells (aditivos)</span>
+        <span style="font-size: 28px; font-weight: 800">4</span>
+        <span style="font-size: 13px; color: #A3B4D1">Acompanhados, fora da meta de upsell</span>
+      </div>
+      <div style="background: #15264A; border: 1px solid #243A66; border-radius: 14px; padding: 18px 20px; display: flex; flex-direction: column; gap: 4px">
+        <span style="font-size: 14px; font-weight: 600; color: #A3B4D1">Descontos aprovados</span>
+        <span style="font-size: 28px; font-weight: 800">3</span>
+        <span style="font-size: 13px; color: #A3B4D1">Média de 9%. 1 esperando sua aprovação</span>
+      </div>
+    </section>
+
+    <section aria-labelledby="h-cs" style="background: #15264A; border: 1px solid #243A66; border-radius: 14px; padding: 22px; display: flex; flex-direction: column; gap: 14px">
+      <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: baseline; gap: 10px">
+        <h2 id="h-cs" style="margin: 0; font-size: 18px; font-weight: 700">Cada CS nas metas do mês</h2>
+        <span style="font-size: 13px; color: #A3B4D1">Verde: no ritmo ou acima. Laranja: abaixo do ritmo. Vermelho: muito abaixo.</span>
+      </div>
+      <div style="overflow-x: auto">
+        <table style="width: 100%; min-width: 1080px; border-collapse: collapse; font-size: 14px">
+          <thead><tr style="text-align: left; color: #A3B4D1; font-size: 13px">
+            <th style="padding: 0 12px 10px 0; font-weight: 600; border-bottom: 1px solid #243A66">CS</th>
+            <th style="padding: 0 12px 10px; font-weight: 600; border-bottom: 1px solid #243A66">Reuniões gravadas (70%)</th>
+            <th style="padding: 0 12px 10px; font-weight: 600; border-bottom: 1px solid #243A66">Upsells (5)</th>
+            <th style="padding: 0 12px 10px; font-weight: 600; border-bottom: 1px solid #243A66">Nota média (8)</th>
+            <th style="padding: 0 12px 10px; font-weight: 600; border-bottom: 1px solid #243A66">King Post (100% das definidas feitas)</th>
+            <th style="padding: 0 12px 10px; font-weight: 600; border-bottom: 1px solid #243A66; text-align: right">MRR novo</th>
+            <th style="padding: 0 0 10px 12px; font-weight: 600; border-bottom: 1px solid #243A66; text-align: right">Setup</th>
+          </tr></thead>
+          <tbody>
+            <sc-for list="{{linhas}}" as="l" hint-placeholder-count="5">
+              <tr>
+                <td style="padding: 14px 12px 14px 0; border-bottom: 1px solid #1E3360; vertical-align: top"><div style="display: flex; flex-direction: column; gap: 2px"><b>{{l.cs}}</b><span style="font-size: 13px; color: #A3B4D1">{{l.regional}}</span></div></td>
+                <sc-for list="{{l.metas}}" as="m" hint-placeholder-count="4">
+                  <td style="padding: 14px 12px; border-bottom: 1px solid #1E3360; vertical-align: top">
+                    <div style="display: flex; flex-direction: column; gap: 4px">
+                      <span style="align-self: flex-start; font-weight: 700; color: {{m.cor}}; background: {{m.fundo}}; padding: 3px 10px; border-radius: 999px">{{m.valor}}</span>
+                      <span style="font-size: 12px; color: #A3B4D1">{{m.detalhe}}</span>
+                    </div>
+                  </td>
+                </sc-for>
+                <td style="padding: 14px 12px; border-bottom: 1px solid #1E3360; vertical-align: top; text-align: right">{{l.mrr}}</td>
+                <td style="padding: 14px 0 14px 12px; border-bottom: 1px solid #1E3360; vertical-align: top; text-align: right">{{l.setup}}</td>
+              </tr>
+            </sc-for>
+          </tbody>
+        </table>
+      </div>
+      <p style="margin: 0; font-size: 13px; color: #A3B4D1">Números de exemplo. Clicar numa CS abre a carteira dela.</p>
+    </section>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":1950}}'>
+class Component extends DCLogic {
+  renderVals() {
+    const ritmo = 19 / 30;
+    const cores = { ok: ['#6FDCCB', 'rgba(14,159,142,0.22)'], at: ['#F7B98A', 'rgba(233,134,47,0.22)'], ri: ['#F6A3A9', 'rgba(217,64,74,0.24)'] };
+    const nivel = (feito, meta) => { const r = feito / (meta * ritmo); return r >= 1 ? 'ok' : r >= 0.75 ? 'at' : 'ri'; };
+    const pctTxt = (v) => Math.round(v * 100) + '%';
+    const cs = [
+      ['Giovanna', 'SP Minas', 31, 65, 2, 8.4, 1, 12, 20, 'R$ 2.080', 'R$ 4.800'],
+      ['Camila', 'SP Interior', 40, 55, 3, 8.1, 2, 15, 20, 'R$ 3.150', 'R$ 7.500'],
+      ['Rafaela', 'Centro Sul', 22, 60, 0, 7.6, 4, 9, 18, 'R$ 0', 'R$ 0'],
+      ['Jéssica', 'Costa Leste', 45, 57, 2, 8.6, 0, 18, 20, 'R$ 1.900', 'R$ 3.000'],
+      ['Maria Eduarda', 'Equatorial', 18, 53, 1, 7.2, 5, 7, 18, 'R$ 700', 'R$ 1.500'],
+    ];
+    const linhas = cs.map(([nome, regional, reu, metaReu, up, nota, detr, king, def, mrr, setup]) => {
+      const m = (n, valor, detalhe) => ({ valor, detalhe, cor: cores[n][0], fundo: cores[n][1] });
+      return { cs: nome, regional, mrr, setup, metas: [
+        m(nivel(reu, metaReu), reu + ' de ' + metaReu, 'faltam ' + (metaReu - reu)),
+        m(nivel(up, 5), up + ' de 5', up >= 5 ? 'meta batida' : 'faltam ' + (5 - up)),
+        m(nota >= 8 ? 'ok' : nota >= 7.5 ? 'at' : 'ri', String(nota).replace('.', ','), detr + (detr === 1 ? ' detratora' : ' detratoras')),
+        m(nivel(king, def), king + ' de ' + def, Math.round(king / def * 100) + '% feitas, faltam ' + (def - king)),
+      ] };
+    });
+    const tot = (i) => cs.reduce((t, c) => t + c[i], 0);
+    const reu = tot(2), metaReu = tot(3), up = tot(4), king = tot(7), def = tot(8);
+    const card = (nome, feito, meta, de, extra) => { const n = nivel(feito, meta); return {
+      nome, valor: feito, de, largura: pctTxt(Math.min(feito / meta, 1)), ritmo: pctTxt(ritmo), aria: nome + ': ' + feito + ' ' + de,
+      cor: n === 'ok' ? '#6FDCCB' : n === 'at' ? '#E9862F' : '#D9404A', corTexto: cores[n][0],
+      situacao: extra } };
+    return {
+      metas: [
+        card('Reuniões gravadas', reu, metaReu, 'de ' + metaReu, 'Abaixo do ritmo: deveria estar em ' + Math.round(metaReu * ritmo)),
+        card('Upsells (novos contratos)', up, 25, 'de 25', 'Abaixo do ritmo: deveria estar em ' + Math.round(25 * ritmo)),
+        { nome: 'Nota média do time', valor: '7,9', de: 'meta 8', largura: '79%', ritmo: '80%', aria: 'Nota média 7,9, meta 8', cor: '#E9862F', corTexto: '#F7B98A', situacao: '12 detratoras no mês' },
+        card('King Post: feitas', king, def, 'de ' + def + ' definidas', 'Meta: 100% das definidas feitas. Deveria estar em ' + Math.round(def * ritmo)),
+      ],
+      linhas,
+      gerais: [
+        { nome: 'MRR novo da área', valor: 'R$ 7.830', de: 'de R$ 12.000', largura: '65%', aria: 'MRR novo 65% da meta', detalhe: 'Upsells e cross-sells somados. No ritmo do mês seria R$ 7.600.' },
+        { nome: 'Base saudável', valor: '61%', de: 'meta 70% das franquias', largura: '87%', aria: 'Base saudável 61%, meta 70%', detalhe: '247 de 406 franquias. Eram 58% em outubro.' },
+        { nome: 'Inadimplência regularizada', valor: '6', de: 'de 11 notificadas', largura: '55%', aria: '6 de 11 regularizadas', detalhe: 'Franquias que voltaram a pagar os boletos da Atendas no mês.' },
+        { nome: 'Retenção', valor: '50%', de: 'meta 70% dos pedidos', largura: '71%', aria: 'Retenção 50%, meta 70%', detalhe: '3 de 6 pedidos de cancelamento ou redução mantidos sem perda.' },
+      ],
+    };
+  }
+}
+</script>
+</body>
+</html>

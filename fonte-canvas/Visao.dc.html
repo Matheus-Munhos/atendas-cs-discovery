@@ -1,0 +1,148 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<title>Visão geral</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700;800&amp;display=swap">
+<style>
+body{margin:0}
+a{color:#9DD8FF}a:hover{color:#FFFFFF}
+</style>
+</helmet>
+<div style="min-height: 2150px; background: #0E1A33; font-family: Figtree, Arial, sans-serif; color: #EEF3FA; padding: 32px 32px 56px; box-sizing: border-box">
+  <div style="max-width: 1380px; margin: 0 auto; display: flex; flex-direction: column; gap: 18px">
+    <header style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-end; gap: 16px">
+      <div style="display: flex; flex-direction: column; gap: 4px">
+        <h1 style="margin: 0; font-size: 30px; font-weight: 800; letter-spacing: -0.5px">Visão geral</h1>
+        <p style="margin: 0; font-size: 15px; color: #A3B4D1">Novembro de 2026, dia 19 de 30. O resumo da área para a gestão e a diretoria.</p>
+      </div>
+      <div role="group" aria-label="Filtrar por regional" style="display: flex; flex-wrap: wrap; gap: 4px; background: #15264A; border: 1px solid #243A66; border-radius: 12px; padding: 4px">
+        <sc-for list="{{regs}}" as="r" hint-placeholder-count="6">
+          <sc-if value="{{r.ativo}}" hint-placeholder-val="{{false}}"><button type="button" onClick="{{r.pick}}" aria-pressed="true" style="min-height: 40px; padding: 0 12px; border: 0; border-radius: 8px; background: #00A8F0; color: #04213F; font: inherit; font-size: 14px; font-weight: 600; cursor: pointer">{{r.nome}}</button></sc-if>
+          <sc-if value="{{r.inativo}}" hint-placeholder-val="{{true}}"><button type="button" onClick="{{r.pick}}" aria-pressed="false" style="min-height: 40px; padding: 0 12px; border: 0; border-radius: 8px; background: transparent; color: #A3B4D1; font: inherit; font-size: 14px; font-weight: 500; cursor: pointer">{{r.nome}}</button></sc-if>
+        </sc-for>
+      </div>
+    </header>
+    <section aria-labelledby="h-g" style="background: #0A1430; border: 1px solid #2D6E99; color: #FFFFFF; border-radius: 16px; padding: 22px; display: flex; flex-direction: column; gap: 14px">
+      <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: baseline; gap: 10px"><h2 id="h-g" style="margin: 0; font-size: 19px; font-weight: 800">Meta geral da área</h2><a href="Metas.dc.html" style="color: #9DD8FF; font-size: 14px; font-weight: 600">Ver metas do time</a> <a href="Diretoria.dc.html" style="color: #9DD8FF; font-size: 14px; font-weight: 600">Ver visão da diretoria</a></div>
+      <div style="display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px">
+        <sc-for list="{{gerais}}" as="g" hint-placeholder-count="3">
+          <div style="background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.14); border-radius: 12px; padding: 14px 16px; display: flex; flex-direction: column; gap: 6px">
+            <span style="font-size: 14px; color: #D6E4F5; font-weight: 600">{{g.nome}}</span>
+            <span style="font-size: 28px; font-weight: 800">{{g.valor}} <span style="font-size: 14px; font-weight: 500; color: #A9C3E3">{{g.de}}</span></span>
+            <div style="height: 8px; border-radius: 99px; background: rgba(255,255,255,0.16)"><div style="height: 8px; border-radius: 99px; background: #00A8F0; width: {{g.largura}}"></div></div>
+          </div>
+        </sc-for>
+      </div>
+    </section>
+    <section aria-label="Metas do time" style="display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px">
+      <sc-for list="{{metas}}" as="m" hint-placeholder-count="4">
+        <div style="background: #15264A; border: 1px solid #243A66; border-radius: 14px; padding: 16px 18px; display: flex; flex-direction: column; gap: 6px">
+          <span style="font-size: 14px; font-weight: 600; color: #A3B4D1">{{m.nome}}</span>
+          <span style="font-size: 26px; font-weight: 800">{{m.valor}} <span style="font-size: 14px; font-weight: 500; color: #A3B4D1">{{m.de}}</span></span>
+          <span style="font-size: 13px; font-weight: 600; color: {{m.cor}}">{{m.sit}}</span>
+        </div>
+      </sc-for>
+    </section>
+    <div style="display: flex; flex-wrap: wrap; gap: 16px; align-items: stretch"><section aria-labelledby="h-reg" style="flex: 999 1 600px; min-width: 0; background: #15264A; border: 1px solid #243A66; border-radius: 14px; padding: 20px 22px; display: flex; flex-direction: column; gap: 12px">
+        <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: baseline; gap: 8px"><h2 id="h-reg" style="margin: 0; font-size: 17px; font-weight: 700">Reuniões gravadas por regional</h2><p style="margin: 0; font-size: 13px; color: #A3B4D1">O traço escuro é a meta de 70%; o pontilhado, onde cada regional deveria estar hoje.</p></div>
+        <sc-for list="{{regua}}" as="r" hint-placeholder-count="5">
+          <div style="display: grid; grid-template-columns: 150px minmax(0, 1fr) 90px; gap: 14px; align-items: center; font-size: 14px">
+            <div style="display: flex; flex-direction: column"><b>{{r.nome}}</b><span style="font-size: 13px; color: #A3B4D1">{{r.cs}}</span></div>
+            <div style="position: relative; height: 16px; border-radius: 99px; background: #1E3360">
+              <div style="position: absolute; left: 0; top: 0; bottom: 0; border-radius: 99px; background: {{r.cor}}; width: {{r.largura}}"></div>
+              <div style="position: absolute; top: -5px; bottom: -5px; left: 44%; width: 0; border-left: 3px dotted #A3B4D1"></div>
+              <div style="position: absolute; top: -5px; bottom: -5px; left: 70%; width: 3px; border-radius: 2px; background: #0A1430"></div>
+            </div>
+            <div style="text-align: right"><b>{{r.pct}}</b><br><span style="font-size: 12px; color: #A3B4D1">{{r.falta}}</span></div>
+          </div>
+        </sc-for>
+      </section><section aria-labelledby="h-dec" style="flex: 1 1 340px; min-width: 0; background: #15264A; border: 1px solid #243A66; border-radius: 14px; padding: 20px 22px; display: flex; flex-direction: column; gap: 12px">
+        <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: baseline; gap: 8px"><h2 id="h-dec" style="margin: 0; font-size: 17px; font-weight: 700">Esperando sua decisão</h2><p style="margin: 0; font-size: 13px; color: #A3B4D1"></p></div>
+        <sc-for list="{{decisoes}}" as="d" hint-placeholder-count="4">
+          <a href="{{d.link}}" style="display: grid; grid-template-columns: 40px minmax(0, 1fr); gap: 12px; align-items: center; border-top: 1px solid #1E3360; padding-top: 10px; text-decoration: none; color: #EEF3FA">
+            <b style="font-size: 22px; text-align: center; color: #0077B6">{{d.qtd}}</b><span style="font-size: 14px">{{d.txt}}</span>
+          </a>
+        </sc-for>
+      </section></div>
+<section aria-labelledby="h-ac" style="flex: 1 1 100%; min-width: 0; background: #15264A; border: 1px solid #243A66; border-radius: 14px; padding: 20px 22px; display: flex; flex-direction: column; gap: 12px">
+        <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: baseline; gap: 8px"><h2 id="h-ac" style="margin: 0; font-size: 17px; font-weight: 700">Acompanhamentos do mês</h2><p style="margin: 0; font-size: 13px; color: #A3B4D1">Clique para abrir</p></div>
+        <div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px">
+          <sc-for list="{{acomp}}" as="a" hint-placeholder-count="6">
+            <a href="{{a.link}}" style="border: 1px solid #1E3360; border-radius: 10px; padding: 12px 14px; display: flex; flex-direction: column; gap: 4px; text-decoration: none; color: #EEF3FA">
+              <span style="font-size: 13px; font-weight: 600; color: #A3B4D1">{{a.nome}}</span>
+              <b style="font-size: 20px">{{a.valor}}</b>
+              <span style="font-size: 13px; font-weight: 600; color: {{a.cor}}">{{a.sit}}</span>
+            </a>
+          </sc-for>
+        </div>
+      </section>
+    <div style="display: flex; flex-wrap: wrap; gap: 16px; align-items: stretch"><section aria-labelledby="h-sd" style="flex: 1 1 420px; min-width: 0; background: #15264A; border: 1px solid #243A66; border-radius: 14px; padding: 20px 22px; display: flex; flex-direction: column; gap: 12px">
+        <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: baseline; gap: 8px"><h2 id="h-sd" style="margin: 0; font-size: 17px; font-weight: 700">Saúde da base</h2><p style="margin: 0; font-size: 13px; color: #A3B4D1"></p></div>
+        <div style="display: flex; height: 26px; border-radius: 8px; overflow: hidden; gap: 2px" role="img" aria-label="61% saudáveis, 24% em atenção, 15% em risco">
+          <div style="flex: 61; background: #0E9F8E; color: #FFFFFF; font-size: 12px; font-weight: 700; display: grid; place-items: center">61%</div>
+          <div style="flex: 24; background: #E9862F; color: #FFFFFF; font-size: 12px; font-weight: 700; display: grid; place-items: center">24%</div>
+          <div style="flex: 15; background: #D9404A; color: #FFFFFF; font-size: 12px; font-weight: 700; display: grid; place-items: center">15%</div>
+        </div>
+        <span style="font-size: 14px; color: #C6D3E6">Saudáveis, em atenção e em risco. Eram 58% saudáveis em outubro. 12 detratoras no mês.</span>
+        <a href="Saude.dc.html" style="font-size: 14px; font-weight: 600">Ver saúde da base</a>
+      </section><section aria-labelledby="h-rec" style="flex: 1 1 340px; min-width: 0; background: #15264A; border: 1px solid #243A66; border-radius: 14px; padding: 20px 22px; display: flex; flex-direction: column; gap: 12px">
+        <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: baseline; gap: 8px"><h2 id="h-rec" style="margin: 0; font-size: 17px; font-weight: 700">Receita trazida pelo CS</h2><p style="margin: 0; font-size: 13px; color: #A3B4D1">Novembro até hoje</p></div>
+        <div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px">
+          <div style="border: 1px solid #1E3360; border-radius: 10px; padding: 12px 14px"><span style="font-size: 13px; color: #A3B4D1">MRR novo</span><br><b style="font-size: 22px">R$ 7.830</b><br><span style="font-size: 13px; color: #A3B4D1">8 upsells e 4 cross-sells</span></div>
+          <div style="border: 1px solid #1E3360; border-radius: 10px; padding: 12px 14px"><span style="font-size: 13px; color: #A3B4D1">Receita não recorrente</span><br><b style="font-size: 22px">R$ 16.800</b><br><span style="font-size: 13px; color: #A3B4D1">Setups</span></div>
+        </div>
+        <a href="Upsell.dc.html" style="font-size: 14px; font-weight: 600">Ver pipeline e motivos de recusa</a>
+      </section></div>
+    <p style="margin: 0; font-size: 13px; color: #A3B4D1">Números de exemplo. O filtro de regional muda todos os blocos; aqui no esboço ele só marca a escolha.</p>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":2150}}'>
+class Component extends DCLogic {
+  constructor(props) { super(props); this.state = { reg: 'Todas' }; }
+  renderVals() {
+    const regs = ['Todas', 'SP Minas', 'SP Interior', 'Centro Sul', 'Costa Leste', 'Equatorial'].map((n) => ({ nome: n, ativo: n === this.state.reg, inativo: n !== this.state.reg, pick: () => this.setState({ reg: n }) }));
+    const ritmo = 19 / 30;
+    const corR = (p) => p >= 0.7 * ritmo ? '#0E9F8E' : p >= 0.7 * ritmo * 0.75 ? '#E9862F' : '#D9404A';
+    return { regs,
+      gerais: [
+        { nome: 'MRR novo da área', valor: 'R$ 7.830', de: 'de R$ 12.000', largura: '65%' },
+        { nome: 'Base saudável', valor: '61%', de: 'meta 70%', largura: '87%' },
+        { nome: 'Inadimplência regularizada', valor: '6', de: 'de 11 notificadas', largura: '55%' },
+        { nome: 'Retenção', valor: '50%', de: 'meta 70% dos pedidos', largura: '71%' },
+      ],
+      metas: [
+        { nome: 'Reuniões gravadas', valor: 156, de: 'de 290', sit: 'Abaixo do ritmo: deveria estar em 184', cor: '#F7B98A' },
+        { nome: 'Upsells (novos contratos)', valor: 8, de: 'de 25', sit: 'Muito abaixo do ritmo: deveria estar em 16', cor: '#F6A3A9' },
+        { nome: 'Nota média', valor: '7,9', de: 'meta 8', sit: '12 detratoras no mês', cor: '#F7B98A' },
+        { nome: 'King Post', valor: 61, de: 'de 96 definidas', sit: 'Feitas. Deveria estar em 61', cor: '#6FDCCB' },
+      ],
+      regua: [['SP Minas', 'Giovanna', 31, 92], ['SP Interior', 'Camila', 40, 78], ['Centro Sul', 'Rafaela', 22, 85], ['Costa Leste', 'Jéssica', 45, 81], ['Maria Eduarda', 'Equatorial', 18, 75]]
+        .map(([nome, cs, f, t]) => { const p = f / t; const meta = Math.ceil(t * 0.7); return { nome: nome === 'Maria Eduarda' ? 'Equatorial' : nome, cs: nome === 'Maria Eduarda' ? 'Maria Eduarda' : cs, pct: Math.round(p * 100) + '%', largura: Math.round(p * 100) + '%', cor: corR(p), falta: 'faltam ' + (meta - f) }; }),
+      decisoes: [
+        { qtd: 1, txt: 'Desconto em oportunidade (CDT Santo Amaro, discadora)', link: 'Upsell.dc.html' },
+        { qtd: 1, txt: 'Indicação para a POC RCS (CDT Franca)', link: 'Config.dc.html' },
+        { qtd: 4, txt: 'Pedidos de vídeo para a Atendas Vision', link: 'Vision.dc.html' },
+        { qtd: 2, txt: 'Resumos da semana ainda não enviados', link: 'Resumo.dc.html' },
+      ],
+      acomp: [
+        { nome: 'Cancelamentos e retenção', valor: '2 em retenção', sit: 'R$ 2.100 de MRR em jogo', cor: '#F6A3A9', link: 'Retencao.dc.html' },
+        { nome: 'Inadimplência com a Atendas', valor: '6 de 11', sit: 'regularizadas, 1 sem tratativa', cor: '#F7B98A', link: 'Inadimplencia.dc.html' },
+        { nome: 'Comunicação', valor: '11 de 17', sit: 'enviadas, 1 dia acima do limite', cor: '#F7B98A', link: 'Comunicacao.dc.html' },
+        { nome: 'POC RCS', valor: '4 franquias', sit: 'em criação do agente, 2 com coleta vencida', cor: '#F7B98A', link: 'Projetos.dc.html' },
+        { nome: 'Minha Atendas', valor: '42%', sit: 'fizeram o primeiro acesso', cor: '#C6D3E6', link: 'Projetos.dc.html' },
+        { nome: 'King Post', valor: '61 de 96', sit: 'matérias feitas, no ritmo', cor: '#6FDCCB', link: 'KingPostGestao.dc.html' },
+        { nome: 'Atendas Vision', valor: '14 de 30', sit: 'vídeos entregues, 1 atrasado', cor: '#F7B98A', link: 'Vision.dc.html' },
+      ],
+    };
+  }
+}
+</script>
+</body>
+</html>

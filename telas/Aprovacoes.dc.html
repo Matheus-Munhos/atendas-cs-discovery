@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<title>Central de aprovações</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700;800&amp;display=swap">
+<style>
+body{margin:0}
+a{color:#9DD8FF}a:hover{color:#FFFFFF}
+</style>
+</helmet>
+<div style="min-height: 1500px; background: #0E1A33; font-family: Figtree, Arial, sans-serif; color: #EEF3FA; padding: 32px 32px 56px; box-sizing: border-box">
+  <div style="max-width: 1380px; margin: 0 auto; display: flex; flex-direction: column; gap: 18px">
+    <a href="Visao.dc.html" style="align-self: flex-start; display: inline-flex; align-items: center; gap: 6px; min-height: 44px; font-size: 15px; font-weight: 600; text-decoration: none">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 18l-6-6 6-6"></path></svg>
+      Visão geral
+    </a>
+    <header style="display: flex; flex-direction: column; gap: 4px">
+      <h1 style="margin: 0; font-size: 30px; font-weight: 800; letter-spacing: -0.5px">Central de aprovações</h1>
+      <p style="margin: 0; font-size: 15px; color: #A3B4D1">Tudo o que depende da sua decisão, num lugar só. Os itens mais antigos e os que têm receita em jogo vêm primeiro.</p>
+    </header>
+    <section aria-label="Filtros" style="display: flex; flex-wrap: wrap; gap: 8px">
+      <sc-for list="{{filtros}}" as="f" hint-placeholder-count="6">
+        <button type="button" onClick="{{f.pick}}" aria-pressed="{{f.sel}}" style="min-height: 44px; padding: 0 14px; border-radius: 999px; border: {{f.borda}}; background: {{f.fundo}}; color: #EEF3FA; font: inherit; font-size: 14px; font-weight: 600; cursor: pointer">{{f.nome}} <b style="color: #00A8F0">{{f.qtd}}</b></button>
+      </sc-for>
+    </section>
+    <div style="display: flex; flex-wrap: wrap; gap: 16px; align-items: flex-start">
+      <section style="flex: 999 1 640px; min-width: 0; display: flex; flex-direction: column; gap: 10px">
+        <sc-for list="{{itens}}" as="i" hint-placeholder-count="6">
+          <article style="background: #15264A; border: {{i.borda}}; border-radius: 14px; padding: 16px 18px; display: flex; flex-direction: column; gap: 8px">
+            <div style="display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px; align-items: center">
+              <span style="font-size: 12px; font-weight: 700; color: {{i.cor}}; background: {{i.fundo}}; padding: 3px 10px; border-radius: 999px">{{i.tipo}}</span>
+              <span style="font-size: 13px; color: {{i.corTempo}}; font-weight: 600">{{i.tempo}}</span>
+            </div>
+            <b style="font-size: 16px">{{i.titulo}}</b>
+            <span style="font-size: 14px; color: #C6D3E6">{{i.detalhe}}</span>
+            <span style="font-size: 13px; color: #A3B4D1">Pedido por {{i.quem}}. {{i.impacto}}</span>
+            <div style="display: flex; flex-wrap: wrap; gap: 8px; margin-top: 4px">
+              <button type="button" onClick="{{i.aprovar}}" style="display: inline-flex; align-items: center; justify-content: center; min-height: 44px; padding: 0 18px; border: 0; border-radius: 10px; background: #0077B6; color: #FFFFFF; font: inherit; font-weight: 700; cursor: pointer; text-decoration: none; min-height: 40px; background: #0E9F8E">Aprovar</button>
+              <button type="button" onClick="{{i.recusar}}" style="display: inline-flex; align-items: center; justify-content: center; min-height: 44px; padding: 0 16px; border: 1px solid #2C4677; border-radius: 10px; background: #1B2E58; color: #EEF3FA; font: inherit; font-weight: 600; cursor: pointer; text-decoration: none; min-height: 40px">Recusar com motivo</button>
+              <a href="{{i.link}}" style="display: inline-flex; align-items: center; justify-content: center; min-height: 44px; padding: 0 16px; border: 1px solid #2C4677; border-radius: 10px; background: #1B2E58; color: #EEF3FA; font: inherit; font-weight: 600; cursor: pointer; text-decoration: none; min-height: 40px">Abrir</a>
+            </div>
+          </article>
+        </sc-for>
+        <sc-if value="{{vazio}}" hint-placeholder-val="{{false}}"><p style="margin: 0; padding: 30px; text-align: center; background: #15264A; border-radius: 14px; color: #C6D3E6">Nada esperando você aqui.</p></sc-if>
+      </section>
+      <aside style="flex: 1 1 340px; min-width: 0; background: #15264A; border: 1px solid #243A66; border-radius: 14px; padding: 22px; display: flex; flex-direction: column; gap: 14px">
+        <h2 style="margin: 0; font-size: 17px; font-weight: 700">Decididas nos últimos dias</h2>
+        <sc-for list="{{feitas}}" as="f" hint-placeholder-count="5">
+          <div style="display: flex; flex-direction: column; gap: 2px; border-top: 1px solid #243A66; padding-top: 8px; font-size: 14px"><span><b style="color: {{f.cor}}">{{f.dec}}</b> {{f.t}}</span><span style="font-size: 13px; color: #A3B4D1">{{f.q}}</span></div>
+        </sc-for>
+        <span style="font-size: 13px; color: #A3B4D1">Quem pediu recebe a decisão na hora, com o motivo quando é recusa.</span>
+      </aside>
+    </div>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":1500}}'>
+class Component extends DCLogic {
+  constructor(props) { super(props); this.state = { filtro: 'Tudo', feitos: [] }; }
+  renderVals() {
+    const TAG = { ok: ['#6FDCCB', 'rgba(14,159,142,0.22)'], at: ['#F7B98A', 'rgba(233,134,47,0.22)'], ri: ['#F6A3A9', 'rgba(217,64,74,0.24)'], az: ['#AFC0F7', 'rgba(48,84,204,0.32)'], ci: ['#C6D3E6', '#1B2E58'] };
+    const I = [
+      ['d1', 'Desconto', 'ri', 'CDT Santo Amaro: discadora com 20% de desconto no setup', '4 canais. Tabela R$ 6.000, proposta R$ 4.800. Motivo: concorrente com setup menor.', 'Giovanna', 'Impacto: R$ 1.200 a menos de setup; mensalidade sem desconto.', 'há 2 dias', true, 'Upsell.dc.html'],
+      ['d2', 'Oferta de retenção', 'ri', 'CDT Recife: um mês com 50% de desconto na discadora', 'Para manter a discadora depois do problema na operadora.', 'Maria Eduarda', 'R$ 760 por mês em jogo.', 'há 7 dias', true, 'Retencao.dc.html'],
+      ['p1', 'Entrada em projeto', 'az', 'CDT Franca na POC RCS', 'Quer testar o caso de uso de vendas.', 'Camila', 'Ocupa a 5ª vaga da POC.', 'há 1 dia', false, 'Projetos.dc.html'],
+      ['v1', 'Pedido de vídeo', 'at', 'Como contestar uma fatura', 'Todas as franquias, Yungas. Precisa até 01/12.', 'Rafaela', 'Cabem mais 4 vídeos em novembro.', 'hoje', false, 'Vision.dc.html'],
+      ['v2', 'Pedido de vídeo', 'at', 'Discadora: como ler os relatórios', 'Franquias com discadora, WhatsApp. Precisa até 05/12.', 'Giovanna', 'Cabem mais 4 vídeos em novembro.', 'hoje', false, 'Vision.dc.html'],
+      ['c1', 'Comunicação', 'ok', 'Vídeo: discadora no dia a dia', '154 franquias, franqueados e gestores, WhatsApp em 25/11.', 'Giovanna', 'Dia com 0 envios: dentro da regra.', 'há 3 horas', false, 'NovaComunicacao.dc.html'],
+    ];
+    const tipos = ['Tudo', 'Desconto', 'Oferta de retenção', 'Entrada em projeto', 'Pedido de vídeo', 'Comunicação'];
+    const ab = I.filter((i) => !this.state.feitos.includes(i[0]));
+    const vis = ab.filter((i) => this.state.filtro === 'Tudo' || i[1] === this.state.filtro);
+    const decide = (id) => () => this.setState({ feitos: [...this.state.feitos, id] });
+    return {
+      filtros: tipos.map((t) => ({ nome: t, qtd: t === 'Tudo' ? ab.length : ab.filter((i) => i[1] === t).length, sel: t === this.state.filtro ? 'true' : 'false',
+        borda: t === this.state.filtro ? '2px solid #00A8F0' : '1px solid #2C4677', fundo: t === this.state.filtro ? '#163D66' : '#1B2E58', pick: () => this.setState({ filtro: t }) })),
+      itens: vis.map(([id, tipo, k, titulo, detalhe, quem, impacto, tempo, urg, link]) => ({ tipo, titulo, detalhe, quem, impacto, tempo, link,
+        cor: TAG[k][0], fundo: TAG[k][1], corTempo: urg ? '#F6A3A9' : '#A3B4D1', borda: urg ? '1px solid #7A3A4A' : '1px solid #243A66', aprovar: decide(id), recusar: decide(id) })),
+      vazio: vis.length === 0,
+      feitas: [['Aprovado', 'Desconto de 10% para CDT Guarulhos', 'Giovanna, 17/11'], ['Recusado', 'Vídeo duplicado sobre KYC', 'Jéssica, 16/11: já existe na biblioteca'], ['Aprovado', 'Comunicação OUVIMOS VOCÊ, semana 3', 'Amanda, 16/11'], ['Aprovado', 'CDT Limoeiro na POC RCS', 'Maria Eduarda, 10/11']]
+        .map(([dec, t, q]) => ({ dec, t, q, cor: dec === 'Aprovado' ? '#6FDCCB' : '#F6A3A9' })),
+    };
+  }
+}
+</script>
+</body>
+</html>

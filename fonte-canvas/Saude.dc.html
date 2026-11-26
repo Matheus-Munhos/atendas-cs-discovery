@@ -1,0 +1,140 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<title>Saúde da base</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700;800&amp;display=swap">
+<style>
+body{margin:0}
+a{color:#9DD8FF}a:hover{color:#FFFFFF}
+</style>
+</helmet>
+<div style="min-height: 2700px; background: #0E1A33; font-family: Figtree, Arial, sans-serif; color: #EEF3FA; padding: 32px 32px 56px; box-sizing: border-box">
+  <div style="max-width: 1380px; margin: 0 auto; display: flex; flex-direction: column; gap: 18px">
+    <header style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-end; gap: 16px">
+      <div style="display: flex; flex-direction: column; gap: 4px">
+        <h1 style="margin: 0; font-size: 30px; font-weight: 800; letter-spacing: -0.5px">Saúde da base</h1>
+        <p style="margin: 0; font-size: 15px; color: #A3B4D1">Como estão as franquias, por que algumas estão em risco e o que elas mais reclamam.</p>
+      </div>
+      <div role="group" aria-label="Filtrar por regional" style="display: flex; flex-wrap: wrap; gap: 4px; background: #15264A; border: 1px solid #243A66; border-radius: 12px; padding: 4px">
+        <sc-for list="{{regs}}" as="r" hint-placeholder-count="6">
+          <sc-if value="{{r.ativo}}" hint-placeholder-val="{{false}}"><button type="button" onClick="{{r.pick}}" aria-pressed="true" style="min-height: 40px; padding: 0 12px; border: 0; border-radius: 8px; background: #00A8F0; color: #04213F; font: inherit; font-size: 14px; font-weight: 600; cursor: pointer">{{r.nome}}</button></sc-if>
+          <sc-if value="{{r.inativo}}" hint-placeholder-val="{{true}}"><button type="button" onClick="{{r.pick}}" aria-pressed="false" style="min-height: 40px; padding: 0 12px; border: 0; border-radius: 8px; background: transparent; color: #A3B4D1; font: inherit; font-size: 14px; font-weight: 500; cursor: pointer">{{r.nome}}</button></sc-if>
+        </sc-for>
+      </div>
+    </header>
+    <div style="display: flex; flex-wrap: wrap; gap: 16px; align-items: stretch"><section aria-labelledby="h-dist" style="flex: 999 1 620px; min-width: 0; background: #15264A; border: 1px solid #243A66; border-radius: 14px; padding: 20px 22px; display: flex; flex-direction: column; gap: 12px">
+        <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: baseline; gap: 8px"><h2 id="h-dist" style="margin: 0; font-size: 17px; font-weight: 700">Saúde por regional</h2><p style="margin: 0; font-size: 13px; color: #A3B4D1">Regra do pior sinal. Entre parênteses, outubro.</p></div>
+        <sc-for list="{{dist}}" as="d" hint-placeholder-count="5">
+          <div style="display: grid; grid-template-columns: 130px minmax(0, 1fr) 120px; gap: 14px; align-items: center; font-size: 14px">
+            <b>{{d.nome}}</b>
+            <div style="display: flex; height: 24px; border-radius: 6px; overflow: hidden; gap: 2px" role="img" aria-label="{{d.aria}}">
+              <div style="flex: {{d.s}}; background: #0E9F8E; color: #FFFFFF; font-size: 12px; font-weight: 700; display: grid; place-items: center">{{d.s}}</div>
+              <div style="flex: {{d.a}}; background: #E9862F; color: #FFFFFF; font-size: 12px; font-weight: 700; display: grid; place-items: center">{{d.a}}</div>
+              <div style="flex: {{d.r}}; background: #D9404A; color: #FFFFFF; font-size: 12px; font-weight: 700; display: grid; place-items: center">{{d.r}}</div>
+            </div>
+            <span style="text-align: right; color: {{d.cor}}; font-weight: 600">{{d.tend}}</span>
+          </div>
+        </sc-for>
+        <div style="display: flex; gap: 16px; font-size: 13px; color: #C6D3E6"><span style="display: inline-flex; align-items: center; gap: 6px"><span style="width: 12px; height: 12px; border-radius: 3px; background: #0E9F8E"></span>Saudável</span><span style="display: inline-flex; align-items: center; gap: 6px"><span style="width: 12px; height: 12px; border-radius: 3px; background: #E9862F"></span>Atenção</span><span style="display: inline-flex; align-items: center; gap: 6px"><span style="width: 12px; height: 12px; border-radius: 3px; background: #D9404A"></span>Risco</span></div>
+      </section><section aria-labelledby="h-cr" style="flex: 1 1 380px; min-width: 0; background: #15264A; border: 1px solid #243A66; border-radius: 14px; padding: 20px 22px; display: flex; flex-direction: column; gap: 12px">
+        <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: baseline; gap: 8px"><h2 id="h-cr" style="margin: 0; font-size: 17px; font-weight: 700">O que está deixando franquias em risco</h2><p style="margin: 0; font-size: 13px; color: #A3B4D1">Franquias com cada critério em risco</p></div>
+        <sc-for list="{{crit}}" as="c" hint-placeholder-count="5">
+          <div style="display: grid; grid-template-columns: minmax(0, 1fr) 120px 36px; gap: 10px; align-items: center; font-size: 14px">
+            <span>{{c.nome}}</span><div style="height: 12px; border-radius: 99px; background: #1E3360"><div style="height: 12px; border-radius: 99px; background: #D9404A; width: {{c.largura}}"></div></div><b style="text-align: right">{{c.qtd}}</b>
+          </div>
+        </sc-for>
+      </section></div>
+    <div style="display: flex; flex-wrap: wrap; gap: 16px; align-items: stretch"><section aria-labelledby="h-nt" style="flex: 1 1 100%; min-width: 0; background: #15264A; border: 1px solid #243A66; border-radius: 14px; padding: 20px 22px; display: flex; flex-direction: column; gap: 12px">
+        <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: baseline; gap: 8px"><h2 id="h-nt" style="margin: 0; font-size: 17px; font-weight: 700">Notas por foco e regional</h2><p style="margin: 0; font-size: 13px; color: #A3B4D1">Média do mês. Verde a partir de 8, laranja de 7 a 7,9, vermelho abaixo de 7.</p></div>
+        <div style="overflow-x: auto"><div style="min-width: 760px; display: flex; flex-direction: column">
+          <div style="display: grid; grid-template-columns: 180px repeat(6, minmax(0, 1fr)); gap: 8px; padding-bottom: 8px; border-bottom: 1px solid #243A66; font-size: 13px; font-weight: 600; color: #A3B4D1"><span>Foco</span><span style="text-align: center">Time</span><span style="text-align: center">SP Minas</span><span style="text-align: center">SP Interior</span><span style="text-align: center">Centro Sul</span><span style="text-align: center">Costa Leste</span><span style="text-align: center">Equatorial</span></div>
+          <sc-for list="{{notas}}" as="n" hint-placeholder-count="6">
+            <div style="display: grid; grid-template-columns: 180px repeat(6, minmax(0, 1fr)); gap: 8px; padding: 8px 0; border-bottom: 1px solid #1E3360; font-size: 14px; align-items: center">
+              <span style="font-weight: 600">{{n.foco}}</span>
+              <sc-for list="{{n.vals}}" as="v" hint-placeholder-count="6"><span style="text-align: center; font-weight: 700; color: {{v.cor}}; background: {{v.fundo}}; border-radius: 6px; padding: 4px 0">{{v.v}}</span></sc-for>
+            </div>
+          </sc-for>
+        </div></div>
+        <span style="font-size: 13px; color: #C6D3E6">O Suporte da Atendas é o foco com a nota mais baixa em quatro das cinco regionais.</span>
+      </section></div>
+    <div style="display: flex; flex-wrap: wrap; gap: 16px; align-items: stretch"><section aria-labelledby="h-det" style="flex: 1 1 380px; min-width: 0; background: #15264A; border: 1px solid #243A66; border-radius: 14px; padding: 20px 22px; display: flex; flex-direction: column; gap: 12px">
+        <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: baseline; gap: 8px"><h2 id="h-det" style="margin: 0; font-size: 17px; font-weight: 700">Detratoras do mês</h2><p style="margin: 0; font-size: 13px; color: #A3B4D1">Nota geral de 0 a 6</p></div>
+        <sc-for list="{{detr}}" as="d" hint-placeholder-count="5">
+          <a href="Ficha.dc.html" style="display: grid; grid-template-columns: minmax(0, 1fr) 40px; gap: 10px; border-top: 1px solid #1E3360; padding-top: 8px; font-size: 14px; text-decoration: none; color: #EEF3FA">
+            <span><b>{{d.f}}</b> <span style="color: #A3B4D1">{{d.cs}}</span><br><span style="font-size: 13px; color: #A3B4D1">{{d.motivo}}</span></span><b style="font-size: 20px; color: #F6A3A9; text-align: right">{{d.n}}</b>
+          </a>
+        </sc-for>
+      </section><section aria-labelledby="h-pro" style="flex: 1 1 380px; min-width: 0; background: #15264A; border: 1px solid #243A66; border-radius: 14px; padding: 20px 22px; display: flex; flex-direction: column; gap: 12px">
+        <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: baseline; gap: 8px"><h2 id="h-pro" style="margin: 0; font-size: 17px; font-weight: 700">Promotoras</h2><p style="margin: 0; font-size: 13px; color: #A3B4D1">Notas 9 ou 10 nas últimas três reuniões</p></div>
+        <sc-for list="{{prom}}" as="d" hint-placeholder-count="5">
+          <div style="display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 10px; border-top: 1px solid #1E3360; padding-top: 8px; font-size: 14px">
+            <span><b>{{d.f}}</b> <span style="color: #A3B4D1">{{d.cs}}</span></span><span style="font-size: 13px; color: #6FDCCB; font-weight: 600">{{d.uso}}</span>
+          </div>
+        </sc-for>
+        <span style="font-size: 13px; color: #A3B4D1">Boas candidatas a case, depoimento e pauta da King Post.</span>
+      </section><section aria-labelledby="h-fa" style="flex: 1 1 380px; min-width: 0; background: #15264A; border: 1px solid #243A66; border-radius: 14px; padding: 20px 22px; display: flex; flex-direction: column; gap: 12px">
+        <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: baseline; gap: 8px"><h2 id="h-fa" style="margin: 0; font-size: 17px; font-weight: 700">Fase da jornada</h2><p style="margin: 0; font-size: 13px; color: #A3B4D1"></p></div>
+        <sc-for list="{{fase}}" as="f" hint-placeholder-count="4">
+          <div style="display: grid; grid-template-columns: 150px minmax(0, 1fr) 50px; gap: 10px; align-items: center; font-size: 14px">
+            <span>{{f.nome}}</span><div style="height: 12px; border-radius: 99px; background: #1E3360"><div style="height: 12px; border-radius: 99px; background: #0077B6; width: {{f.largura}}"></div></div><b style="text-align: right">{{f.qtd}}</b>
+          </div>
+        </sc-for>
+      </section></div>
+    <div style="display: flex; flex-wrap: wrap; gap: 16px; align-items: stretch"><section aria-labelledby="h-mb" style="flex: 999 1 560px; min-width: 0; background: #15264A; border: 1px solid #243A66; border-radius: 14px; padding: 22px; display: flex; flex-direction: column; gap: 14px">
+        <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: baseline; gap: 8px"><h2 id="h-mb" style="margin: 0; font-size: 17px; font-weight: 700">Por que as notas abaixo de 5</h2><p style="margin: 0; font-size: 13px; color: #A3B4D1">Motivos padronizados no registro, somados no mês</p></div>
+        <div style="display: grid; grid-template-columns: 120px minmax(0, 1.4fr) minmax(0, 1fr) 34px; gap: 10px; align-items: center; font-size: 14px"><span style="font-size: 12px; font-weight: 700; color: #AFC0F7">Suporte</span><span>Demora para responder</span><span style="height: 10px; border-radius: 99px; background: #243A66"><span style="display: block; height: 10px; border-radius: 99px; background: #D9404A; width: 100%"></span></span><b style="text-align: right">14</b></div><div style="display: grid; grid-template-columns: 120px minmax(0, 1.4fr) minmax(0, 1fr) 34px; gap: 10px; align-items: center; font-size: 14px"><span style="font-size: 12px; font-weight: 700; color: #AFC0F7">Suporte</span><span>Problema não resolvido</span><span style="height: 10px; border-radius: 99px; background: #243A66"><span style="display: block; height: 10px; border-radius: 99px; background: #D9404A; width: 57%"></span></span><b style="text-align: right">8</b></div><div style="display: grid; grid-template-columns: 120px minmax(0, 1.4fr) minmax(0, 1fr) 34px; gap: 10px; align-items: center; font-size: 14px"><span style="font-size: 12px; font-weight: 700; color: #AFC0F7">KYC</span><span>Muitas reprovações sem motivo claro</span><span style="height: 10px; border-radius: 99px; background: #243A66"><span style="display: block; height: 10px; border-radius: 99px; background: #D9404A; width: 43%"></span></span><b style="text-align: right">6</b></div><div style="display: grid; grid-template-columns: 120px minmax(0, 1.4fr) minmax(0, 1fr) 34px; gap: 10px; align-items: center; font-size: 14px"><span style="font-size: 12px; font-weight: 700; color: #AFC0F7">Geral</span><span>Plataforma instável ou lenta</span><span style="height: 10px; border-radius: 99px; background: #243A66"><span style="display: block; height: 10px; border-radius: 99px; background: #D9404A; width: 36%"></span></span><b style="text-align: right">5</b></div><div style="display: grid; grid-template-columns: 120px minmax(0, 1.4fr) minmax(0, 1fr) 34px; gap: 10px; align-items: center; font-size: 14px"><span style="font-size: 12px; font-weight: 700; color: #AFC0F7">Mensageria</span><span>Modelos demoram para aprovar</span><span style="height: 10px; border-radius: 99px; background: #243A66"><span style="display: block; height: 10px; border-radius: 99px; background: #D9404A; width: 29%"></span></span><b style="text-align: right">4</b></div><div style="display: grid; grid-template-columns: 120px minmax(0, 1.4fr) minmax(0, 1fr) 34px; gap: 10px; align-items: center; font-size: 14px"><span style="font-size: 12px; font-weight: 700; color: #AFC0F7">Adimplência</span><span>Transbordo não funciona bem</span><span style="height: 10px; border-radius: 99px; background: #243A66"><span style="display: block; height: 10px; border-radius: 99px; background: #D9404A; width: 21%"></span></span><b style="text-align: right">3</b></div>
+        <span style="font-size: 13px; color: #C6D3E6">"Demora para responder" no Suporte apareceu em 4 das 5 regionais. Antes, cada CS escrevia de um jeito e isso não aparecia junto.</span>
+      </section><section aria-labelledby="h-pf" style="flex: 1 1 420px; min-width: 0; background: #15264A; border: 1px solid #243A66; border-radius: 14px; padding: 22px; display: flex; flex-direction: column; gap: 14px">
+        <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: baseline; gap: 8px"><h2 id="h-pf" style="margin: 0; font-size: 17px; font-weight: 700">O que falta na plataforma</h2><p style="margin: 0; font-size: 13px; color: #A3B4D1">Pedidos das franquias por tema</p></div>
+        <div style="display: grid; grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr) 34px; gap: 10px; align-items: center; font-size: 14px"><span>Relatórios e números</span><span style="height: 10px; border-radius: 99px; background: #243A66"><span style="display: block; height: 10px; border-radius: 99px; background: #5B7BE0; width: 100%"></span></span><b style="text-align: right">19</b></div><div style="display: grid; grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr) 34px; gap: 10px; align-items: center; font-size: 14px"><span>Velocidade da plataforma</span><span style="height: 10px; border-radius: 99px; background: #243A66"><span style="display: block; height: 10px; border-radius: 99px; background: #5B7BE0; width: 63%"></span></span><b style="text-align: right">12</b></div><div style="display: grid; grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr) 34px; gap: 10px; align-items: center; font-size: 14px"><span>Integração com outros sistemas</span><span style="height: 10px; border-radius: 99px; background: #243A66"><span style="display: block; height: 10px; border-radius: 99px; background: #5B7BE0; width: 47%"></span></span><b style="text-align: right">9</b></div><div style="display: grid; grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr) 34px; gap: 10px; align-items: center; font-size: 14px"><span>Facilidade de uso</span><span style="height: 10px; border-radius: 99px; background: #243A66"><span style="display: block; height: 10px; border-radius: 99px; background: #5B7BE0; width: 37%"></span></span><b style="text-align: right">7</b></div><div style="display: grid; grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr) 34px; gap: 10px; align-items: center; font-size: 14px"><span>Novo recurso ou produto</span><span style="height: 10px; border-radius: 99px; background: #243A66"><span style="display: block; height: 10px; border-radius: 99px; background: #5B7BE0; width: 32%"></span></span><b style="text-align: right">6</b></div>
+        <a href="#" style="font-size: 14px; font-weight: 600">Ver os pedidos nas palavras das franquias</a>
+      </section></div>
+    <div style="display: flex; flex-wrap: wrap; gap: 16px; align-items: stretch"><section aria-labelledby="h-do" style="flex: 1 1 100%; min-width: 0; background: #15264A; border: 1px solid #243A66; border-radius: 14px; padding: 20px 22px; display: flex; flex-direction: column; gap: 12px">
+        <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: baseline; gap: 8px"><h2 id="h-do" style="margin: 0; font-size: 17px; font-weight: 700">Dores recorrentes</h2><p style="margin: 0; font-size: 13px; color: #A3B4D1">Vezes citadas nos atendimentos do mês, por regional</p></div>
+        <div style="overflow-x: auto"><div style="min-width: 760px; display: flex; flex-direction: column">
+          <div style="display: grid; grid-template-columns: 220px repeat(5, minmax(0, 1fr)) 70px; gap: 8px; padding-bottom: 8px; border-bottom: 1px solid #243A66; font-size: 13px; font-weight: 600; color: #A3B4D1"><span>Dor</span><span style="text-align: center">SP Minas</span><span style="text-align: center">SP Interior</span><span style="text-align: center">Centro Sul</span><span style="text-align: center">Costa Leste</span><span style="text-align: center">Equatorial</span><span style="text-align: right">Total</span></div>
+          <sc-for list="{{dores}}" as="d" hint-placeholder-count="6">
+            <div style="display: grid; grid-template-columns: 220px repeat(5, minmax(0, 1fr)) 70px; gap: 8px; padding: 8px 0; border-bottom: 1px solid #1E3360; font-size: 14px; align-items: center">
+              <span style="font-weight: 600">{{d.nome}}</span>
+              <sc-for list="{{d.vals}}" as="v" hint-placeholder-count="5"><span style="text-align: center; font-weight: 700; background: {{v.fundo}}; border-radius: 6px; padding: 4px 0">{{v.v}}</span></sc-for>
+              <b style="text-align: right">{{d.tot}}</b>
+            </div>
+          </sc-for>
+        </div></div>
+      </section></div>
+    <p style="margin: 0; font-size: 13px; color: #A3B4D1">Números de exemplo. O filtro de regional muda todos os blocos; aqui no esboço ele só marca a escolha.</p>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":2700}}'>
+class Component extends DCLogic {
+  constructor(props) { super(props); this.state = { reg: 'Todas' }; }
+  renderVals() {
+    const regs = ['Todas', 'SP Minas', 'SP Interior', 'Centro Sul', 'Costa Leste', 'Equatorial'].map((n) => ({ nome: n, ativo: n === this.state.reg, inativo: n !== this.state.reg, pick: () => this.setState({ reg: n }) }));
+    const corN = (v) => v >= 8 ? ['#6FDCCB', 'rgba(14,159,142,0.22)'] : v >= 7 ? ['#F7B98A', 'rgba(233,134,47,0.22)'] : ['#F6A3A9', 'rgba(217,64,74,0.24)'];
+    return { regs,
+      dist: [['SP Minas', 58, 24, 10, '↑ 3 saudáveis'], ['SP Interior', 49, 20, 9, '↑ 1'], ['Centro Sul', 44, 27, 14, '↓ 2', true], ['Costa Leste', 55, 19, 7, '↑ 4'], ['Equatorial', 33, 23, 19, '↓ 3', true]]
+        .map(([nome, s, a, r, tend, ruim]) => ({ nome, s, a, r, tend, cor: ruim ? '#F6A3A9' : '#6FDCCB', aria: nome + ': ' + s + ' saudáveis, ' + a + ' em atenção, ' + r + ' em risco' })),
+      crit: [['Sem reunião há mais de 45 dias', 31], ['Nota de 0 a 6', 12], ['Boletos em aberto (2 ou mais)', 6], ['Demanda parada há mais de 15 dias', 9], ['Troca de gerente ou sócio', 14]]
+        .map(([nome, qtd]) => ({ nome, qtd, largura: Math.round(qtd / 31 * 100) + '%' })),
+      notas: [['Geral', [7.9, 8.4, 8.1, 7.6, 8.6, 7.2]], ['Suporte da Atendas', [6.8, 7.1, 7.0, 6.4, 7.6, 5.9]], ['Projeto de Adimplência', [7.7, 8.0, 7.8, 7.5, 8.2, 7.1]], ['KYC', [7.2, 7.5, 7.4, 6.9, 7.8, 6.5]], ['Mensageria', [8.2, 8.5, 8.3, 7.9, 8.7, 7.6]], ['Minha Atendas', [8.1, 8.3, 8.2, 7.8, 8.4, 7.7]]]
+        .map(([foco, vs]) => ({ foco, vals: vs.map((v) => ({ v: String(v).replace('.', ','), cor: corN(v)[0], fundo: corN(v)[1] })) })),
+      detr: [['CDT Recife', 'Maria Eduarda', 'Nota 5: lentidão da plataforma', 5], ['CDT Osasco', 'Giovanna', 'Nota 6: retorno do suporte', 6], ['CDT Maringá', 'Rafaela', 'Nota 4: cobrança contestada', 4], ['CDT Belém', 'Maria Eduarda', 'Nota 6: dúvida de faturamento', 6], ['CDT Florianópolis', 'Rafaela', 'Nota 5: queda nos disparos', 5]]
+        .map(([f, cs, motivo, n]) => ({ f, cs, motivo, n })),
+      prom: [['CDT Guarulhos', 'Giovanna', 'Case de commit'], ['CDT Belo Horizonte', 'Giovanna', 'Depoimento'], ['CDT Niterói', 'Jéssica', 'Case de discadora'], ['CDT Ribeirão Preto', 'Camila', 'Case de commit'], ['CDT Vitória', 'Jéssica', 'Pauta King Post']]
+        .map(([f, cs, uso]) => ({ f, cs, uso })),
+      fase: [['Onboarding', 18], ['Em acompanhamento', 241], ['Em expansão', 88], ['Em risco', 59]].map(([nome, qtd]) => ({ nome, qtd, largura: Math.round(qtd / 241 * 100) + '%' })),
+      dores: [['Sincronização do KYC', [9, 6, 8, 5, 7]], ['Lentidão da plataforma', [4, 5, 6, 3, 8]], ['Mensagens e disparos', [6, 3, 7, 2, 5]], ['Dúvidas de faturamento', [3, 4, 5, 2, 6]], ['Retorno do suporte', [5, 2, 6, 1, 7]], ['Custo / valor', [4, 3, 5, 2, 3]]]
+        .map(([nome, vs]) => ({ nome, tot: vs.reduce((a, b) => a + b, 0), vals: vs.map((v) => ({ v, fundo: 'rgba(233,134,47,' + (v / 9 * 0.45).toFixed(2) + ')' })) })),
+    };
+  }
+}
+</script>
+</body>
+</html>

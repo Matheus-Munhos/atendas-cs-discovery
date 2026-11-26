@@ -1,0 +1,431 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<title>Ficha da franquia</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700;800&amp;display=swap">
+<style>
+body{margin:0}
+a{color:#9DD8FF}a:hover{color:#FFFFFF}
+</style>
+</helmet>
+<div style="min-height: 3000px; background: #0E1A33; font-family: Figtree, Arial, sans-serif; color: #EEF3FA; padding: 32px 32px 56px; box-sizing: border-box">
+  <div style="max-width: 1280px; margin: 0 auto; display: flex; flex-direction: column; gap: 20px">
+
+    <a href="Main.dc.html" style="align-self: flex-start; display: inline-flex; align-items: center; gap: 6px; min-height: 44px; font-size: 15px; font-weight: 600; text-decoration: none">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 18l-6-6 6-6"></path></svg>
+      Minha carteira
+    </a>
+
+    <header style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-start; gap: 16px">
+      <div style="display: flex; flex-direction: column; gap: 6px">
+        <div style="display: flex; flex-wrap: wrap; align-items: center; gap: 12px">
+          <h1 style="margin: 0; font-size: 32px; font-weight: 800; letter-spacing: -0.5px">CDT Osasco</h1>
+          <span style="font-size: 14px; font-weight: 700; color: #F6A3A9; background: rgba(217,64,74,0.24); padding: 4px 12px; border-radius: 999px">Risco</span>
+        </div>
+        <p style="margin: 0; font-size: 15px; color: #A3B4D1">SP Minas, CS Giovanna. Cliente desde março de 2025.</p>
+        <label style="display: flex; align-items: center; gap: 8px; font-size: 14px; font-weight: 600">Fase da jornada
+          <select style="min-height: 40px; padding: 0 10px; border: 1px solid #2C4677; border-radius: 8px; font: inherit; font-weight: 500; color: #EEF3FA; background: #15264A"><option>Em risco</option><option>Onboarding</option><option>Em acompanhamento</option><option>Em expansão</option></select>
+        </label>
+      </div>
+      <div style="display: flex; flex-wrap: wrap; gap: 10px">
+        <a href="Upsell.dc.html" style="display: inline-flex; align-items: center; min-height: 44px; padding: 0 18px; border: 1px solid #2C4677; border-radius: 10px; background: #15264A; font-weight: 600; text-decoration: none">Nova oportunidade</a>
+        <a href="Registrar.dc.html" style="display: inline-flex; align-items: center; gap: 8px; min-height: 44px; padding: 0 20px; border-radius: 10px; background: #0077B6; color: #FFFFFF; font-weight: 700; text-decoration: none">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"></path></svg>
+          Registrar atendimento
+        </a>
+      </div>
+    </header>
+
+    <div style="display: flex; flex-wrap: wrap; gap: 20px; align-items: flex-start">
+
+      <div style="flex: 999 1 560px; min-width: 0; display: flex; flex-direction: column; gap: 20px">
+
+        <section aria-labelledby="h-saude" style="background: #15264A; border: 1px solid #243A66; border-radius: 14px; padding: 22px; display: flex; flex-direction: column; gap: 14px">
+          <div style="display: flex; flex-direction: column; gap: 4px">
+            <h2 id="h-saude" style="margin: 0; font-size: 18px; font-weight: 700">Por que está em risco</h2>
+            <p style="margin: 0; font-size: 14px; color: #A3B4D1">Um critério em risco já coloca a franquia em risco. Dois em atenção, em atenção.</p>
+          </div>
+          <div style="display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 10px">
+            <div style="border: 2px solid #7A3A4A; background: #2E1F3A; border-radius: 12px; padding: 12px 14px; display: flex; flex-direction: column; gap: 4px">
+              <span style="font-size: 13px; color: #A3B4D1">Último contato</span>
+              <span style="font-size: 16px; font-weight: 700; color: #F6A3A9">47 dias</span>
+              <span style="font-size: 13px; color: #F6A3A9; font-weight: 600">Risco</span>
+            </div>
+            <div style="border: 1px solid #243A66; border-radius: 12px; padding: 12px 14px; display: flex; flex-direction: column; gap: 4px">
+              <span style="font-size: 13px; color: #A3B4D1">Última nota geral</span>
+              <span style="font-size: 16px; font-weight: 700">8</span>
+              <span style="font-size: 13px; color: #F7B98A; font-weight: 600">Atenção</span>
+            </div>
+            <div style="border: 1px solid #243A66; border-radius: 12px; padding: 12px 14px; display: flex; flex-direction: column; gap: 4px">
+              <span style="font-size: 13px; color: #A3B4D1">Pagamentos à Atendas</span>
+              <span style="font-size: 16px; font-weight: 700">Em dia</span>
+              <span style="font-size: 13px; color: #6FDCCB; font-weight: 600">Saudável</span>
+            </div>
+            <div style="border: 1px solid #243A66; border-radius: 12px; padding: 12px 14px; display: flex; flex-direction: column; gap: 4px">
+              <span style="font-size: 13px; color: #A3B4D1">Demandas paradas</span>
+              <span style="font-size: 16px; font-weight: 700">Nenhuma</span>
+              <span style="font-size: 13px; color: #6FDCCB; font-weight: 600">Saudável</span>
+            </div>
+            <div style="border: 1px solid #243A66; border-radius: 12px; padding: 12px 14px; display: flex; flex-direction: column; gap: 4px">
+              <span style="font-size: 13px; color: #A3B4D1">Mudança de contato</span>
+              <span style="font-size: 16px; font-weight: 700">Não houve</span>
+              <span style="font-size: 13px; color: #6FDCCB; font-weight: 600">Saudável</span>
+            </div>
+          </div>
+        </section>
+
+        <section aria-labelledby="h-notas" style="background: #15264A; border: 1px solid #243A66; border-radius: 14px; padding: 22px; display: flex; flex-direction: column; gap: 14px">
+          <div style="display: flex; flex-direction: column; gap: 4px">
+            <h2 id="h-notas" style="margin: 0; font-size: 18px; font-weight: 700">Evolução das notas</h2>
+            <p style="margin: 0; font-size: 14px; color: #A3B4D1">As três últimas avaliações de cada foco, da mais antiga para a mais recente. A evolução compara a última com a anterior.</p>
+          </div>
+          <div style="overflow-x: auto">
+            <div role="table" data-tag="table" style="display: table; width: 100%; min-width: 760px; border-collapse: collapse; font-size: 14px">
+              <div role="rowgroup" data-tag="thead" style="display: table-header-group; ">
+                <div role="row" data-tag="tr" style="display: table-row; text-align: left; color: #A3B4D1; font-size: 13px">
+                  <div role="columnheader" data-tag="th" style="display: table-cell; font-weight: 600; padding: 0 12px 10px 0; font-weight: 600; border-bottom: 1px solid #243A66">Foco</div>
+                  <div role="columnheader" data-tag="th" style="display: table-cell; font-weight: 600; padding: 0 12px 10px; font-weight: 600; border-bottom: 1px solid #243A66">Avaliações</div><div role="columnheader" data-tag="th" style="display: table-cell; font-weight: 600; padding: 0 12px 10px; font-weight: 600; border-bottom: 1px solid #243A66"></div><div role="columnheader" data-tag="th" style="display: table-cell; font-weight: 600; padding: 0 12px 10px; font-weight: 600; border-bottom: 1px solid #243A66"></div>
+                  <div role="columnheader" data-tag="th" style="display: table-cell; font-weight: 600; padding: 0 0 10px 12px; font-weight: 600; border-bottom: 1px solid #243A66">Evolução</div>
+                </div>
+              </div>
+              <div role="rowgroup" data-tag="tbody" style="display: table-row-group; ">
+                <sc-for list="{{focos}}" as="f" hint-placeholder-count="5">
+                  <div role="row" data-tag="tr" style="display: table-row; ">
+                    <div role="cell" data-tag="td" style="display: table-cell; padding: 14px 12px 14px 0; border-bottom: 1px solid #1E3360; font-weight: 700; vertical-align: top; width: 190px">{{f.nome}}</div>
+                    <sc-for list="{{f.slots}}" as="a" hint-placeholder-count="3">
+                      <div role="cell" data-tag="td" style="display: table-cell; padding: 14px 12px; border-bottom: 1px solid #1E3360; vertical-align: top; width: 150px">
+                        <sc-if value="{{a.tem}}" hint-placeholder-val="{{true}}">
+                          <div style="display: flex; flex-direction: column; gap: 2px">
+                            <span style="font-size: 22px; font-weight: 800; line-height: 1.1">{{a.nota}}</span>
+                            <span style="font-size: 13px; color: #C6D3E6">{{a.data}}</span>
+                            <span style="font-size: 13px; color: #A3B4D1">{{a.quem}}</span>
+                          </div>
+                        </sc-if>
+                        <sc-if value="{{a.vazio}}" hint-placeholder-val="{{false}}">
+                          <span style="font-size: 13px; color: #8FA3C4">Sem avaliação</span>
+                        </sc-if>
+                      </div>
+                    </sc-for>
+                    <div role="cell" data-tag="td" style="display: table-cell; padding: 14px 0 14px 12px; border-bottom: 1px solid #1E3360; vertical-align: top">
+                      <div style="display: flex; flex-direction: column; gap: 4px">
+                        <sc-if value="{{f.caiu}}" hint-placeholder-val="{{false}}">
+                          <span style="display: inline-flex; align-items: center; gap: 6px; font-weight: 700; color: #F6A3A9">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14M6 13l6 6 6-6"></path></svg>{{f.texto}}</span>
+                        </sc-if>
+                        <sc-if value="{{f.subiu}}" hint-placeholder-val="{{false}}">
+                          <span style="display: inline-flex; align-items: center; gap: 6px; font-weight: 700; color: #6FDCCB">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 19V5M6 11l6-6 6 6"></path></svg>{{f.texto}}</span>
+                        </sc-if>
+                        <sc-if value="{{f.estavel}}" hint-placeholder-val="{{true}}">
+                          <span style="display: inline-flex; align-items: center; gap: 6px; font-weight: 700; color: #C6D3E6">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" aria-hidden="true"><path d="M5 12h14"></path></svg>{{f.texto}}</span>
+                        </sc-if>
+                        <span style="font-size: 13px; color: #A3B4D1">{{f.detalhe}}</span>
+                      </div>
+                    </div>
+                  </div>
+                </sc-for>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section aria-labelledby="h-hist" style="background: #15264A; border: 1px solid #243A66; border-radius: 14px; padding: 22px; display: flex; flex-direction: column; gap: 6px">
+          <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: baseline; gap: 10px; margin-bottom: 8px">
+            <h2 id="h-hist" style="margin: 0; font-size: 18px; font-weight: 700">Histórico de atendimentos</h2>
+            <span style="font-size: 14px; color: #A3B4D1">4 reuniões gravadas nos últimos 6 meses</span>
+          </div>
+          <sc-for list="{{historico}}" as="h" hint-placeholder-count="5">
+            <article style="display: grid; grid-template-columns: 88px minmax(0, 1fr); gap: 16px; padding: 16px 0; border-top: 1px solid #1E3360">
+              <div style="display: flex; flex-direction: column; gap: 2px">
+                <span style="font-size: 15px; font-weight: 700">{{h.data}}</span>
+                <span style="font-size: 13px; color: #A3B4D1">{{h.quem}}</span>
+              </div>
+              <div style="display: flex; flex-direction: column; gap: 6px">
+                <div style="display: flex; flex-wrap: wrap; align-items: center; gap: 8px">
+                  <sc-if value="{{h.reuniao}}" hint-placeholder-val="{{true}}">
+                    <span style="font-size: 12px; font-weight: 700; color: #6FDCCB; background: rgba(14,159,142,0.22); padding: 2px 9px; border-radius: 999px">Reunião gravada</span>
+                  </sc-if>
+                  <sc-if value="{{h.outro}}" hint-placeholder-val="{{false}}">
+                    <span style="font-size: 12px; font-weight: 700; color: #C6D3E6; background: #1B2E58; padding: 2px 9px; border-radius: 999px">{{h.tipo}}</span>
+                  </sc-if>
+                  <span style="font-size: 15px; font-weight: 700">{{h.assunto}}</span>
+                </div>
+                <p style="margin: 0; font-size: 14px; color: #C6D3E6; line-height: 1.5">{{h.resumo}}</p>
+                <div style="display: flex; flex-wrap: wrap; gap: 6px 16px; font-size: 13px; color: #A3B4D1">
+                  <span>{{h.notas}}</span>
+                  <sc-if value="{{h.reuniao}}" hint-placeholder-val="{{true}}">
+                    <a href="#" style="font-weight: 600">Abrir gravação no Read AI</a>
+                  </sc-if>
+                </div>
+              </div>
+            </article>
+          </sc-for>
+          <a href="#" style="align-self: flex-start; margin-top: 6px; display: inline-flex; align-items: center; min-height: 44px; font-size: 14px; font-weight: 600">Ver histórico completo</a>
+        </section>
+
+        <section aria-labelledby="h-op" style="background: #15264A; border: 1px solid #243A66; border-radius: 14px; padding: 22px; display: flex; flex-direction: column; gap: 12px">
+          <div style="display: flex; flex-direction: column; gap: 4px">
+            <h2 id="h-op" style="margin: 0; font-size: 18px; font-weight: 700">Produtos e oportunidades</h2>
+            <p style="margin: 0; font-size: 14px; color: #A3B4D1">Cada produto da Atendas e onde esta franquia está com ele. Quando a franquia não contrata, o motivo fica registrado.</p>
+          </div>
+          <div style="overflow-x: auto">
+            <div role="table" data-tag="table" style="display: table; width: 100%; min-width: 760px; border-collapse: collapse; font-size: 14px">
+              <div role="rowgroup" data-tag="thead" style="display: table-header-group; ">
+                <div role="row" data-tag="tr" style="display: table-row; text-align: left; color: #A3B4D1; font-size: 13px">
+                  <div role="columnheader" data-tag="th" style="display: table-cell; font-weight: 600; padding: 0 12px 10px 0; font-weight: 600; border-bottom: 1px solid #243A66">Produto</div>
+                  <div role="columnheader" data-tag="th" style="display: table-cell; font-weight: 600; padding: 0 12px 10px; font-weight: 600; border-bottom: 1px solid #243A66">Situação</div>
+                  <div role="columnheader" data-tag="th" style="display: table-cell; font-weight: 600; padding: 0 12px 10px; font-weight: 600; border-bottom: 1px solid #243A66">Motivo ou detalhe</div>
+                  <div role="columnheader" data-tag="th" style="display: table-cell; font-weight: 600; padding: 0 0 10px 12px; font-weight: 600; border-bottom: 1px solid #243A66">Retomar em</div>
+                </div>
+              </div>
+              <div role="rowgroup" data-tag="tbody" style="display: table-row-group; ">
+                <sc-for list="{{produtos}}" as="p" hint-placeholder-count="7">
+                  <div role="row" data-tag="tr" style="display: table-row; ">
+                    <div role="cell" data-tag="td" style="display: table-cell; padding: 12px 12px 12px 0; border-bottom: 1px solid #1E3360; font-weight: 700; vertical-align: top">{{p.nome}}</div>
+                    <div role="cell" data-tag="td" style="display: table-cell; padding: 12px; border-bottom: 1px solid #1E3360; vertical-align: top; white-space: nowrap">
+                      <sc-if value="{{p.contratado}}" hint-placeholder-val="{{true}}"><span style="font-size: 13px; font-weight: 700; color: #6FDCCB; background: rgba(14,159,142,0.22); padding: 3px 10px; border-radius: 999px">{{p.situacao}}</span></sc-if>
+                      <sc-if value="{{p.recusou}}" hint-placeholder-val="{{false}}"><span style="font-size: 13px; font-weight: 700; color: #F7B98A; background: rgba(233,134,47,0.22); padding: 3px 10px; border-radius: 999px">{{p.situacao}}</span></sc-if>
+                      <sc-if value="{{p.andamento}}" hint-placeholder-val="{{false}}"><span style="font-size: 13px; font-weight: 700; color: #AFC0F7; background: rgba(48,84,204,0.32); padding: 3px 10px; border-radius: 999px">{{p.situacao}}</span></sc-if>
+                      <sc-if value="{{p.nunca}}" hint-placeholder-val="{{false}}"><span style="font-size: 13px; font-weight: 600; color: #C6D3E6; border: 1px dashed #4A628F; padding: 2px 10px; border-radius: 999px">{{p.situacao}}</span></sc-if>
+                    </div>
+                    <div role="cell" data-tag="td" style="display: table-cell; padding: 12px; border-bottom: 1px solid #1E3360; vertical-align: top">
+                      <div style="display: flex; flex-direction: column; gap: 2px">
+                        <span style="font-weight: 600">{{p.motivo}}</span>
+                        <span style="font-size: 13px; color: #A3B4D1">{{p.detalhe}}</span>
+                      </div>
+                    </div>
+                    <div role="cell" data-tag="td" style="display: table-cell; padding: 12px 0 12px 12px; border-bottom: 1px solid #1E3360; vertical-align: top; white-space: nowrap">{{p.retomar}}</div>
+                  </div>
+                </sc-for>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section aria-labelledby="h-dem" style="background: #15264A; border: 1px solid #243A66; border-radius: 14px; padding: 22px; display: flex; flex-direction: column; gap: 12px">
+          <h2 id="h-dem" style="margin: 0; font-size: 18px; font-weight: 700">Demandas com outras áreas</h2>
+          <div style="overflow-x: auto">
+            <div role="table" data-tag="table" style="display: table; width: 100%; min-width: 620px; border-collapse: collapse; font-size: 14px">
+              <div role="rowgroup" data-tag="thead" style="display: table-header-group; ">
+                <div role="row" data-tag="tr" style="display: table-row; text-align: left; color: #A3B4D1; font-size: 13px">
+                  <div role="columnheader" data-tag="th" style="display: table-cell; font-weight: 600; padding: 0 12px 8px 0; font-weight: 600; border-bottom: 1px solid #243A66">Área</div>
+                  <div role="columnheader" data-tag="th" style="display: table-cell; font-weight: 600; padding: 0 12px 8px; font-weight: 600; border-bottom: 1px solid #243A66">Pedido</div>
+                  <div role="columnheader" data-tag="th" style="display: table-cell; font-weight: 600; padding: 0 12px 8px; font-weight: 600; border-bottom: 1px solid #243A66">Aberta em</div>
+                  <div role="columnheader" data-tag="th" style="display: table-cell; font-weight: 600; padding: 0 0 8px 12px; font-weight: 600; border-bottom: 1px solid #243A66">Situação</div>
+                </div>
+              </div>
+              <div role="rowgroup" data-tag="tbody" style="display: table-row-group; ">
+                <div role="row" data-tag="tr" style="display: table-row; ">
+                  <div role="cell" data-tag="td" style="display: table-cell; padding: 12px 12px 12px 0; border-bottom: 1px solid #1E3360; font-weight: 600">Suporte</div>
+                  <div role="cell" data-tag="td" style="display: table-cell; padding: 12px; border-bottom: 1px solid #1E3360">Disparos de adimplência sem relatório de entrega</div>
+                  <div role="cell" data-tag="td" style="display: table-cell; padding: 12px; border-bottom: 1px solid #1E3360">03/10</div>
+                  <div role="cell" data-tag="td" style="display: table-cell; padding: 12px 0 12px 12px; border-bottom: 1px solid #1E3360"><span style="font-size: 13px; font-weight: 700; color: #6FDCCB">Resolvida em 09/10</span></div>
+                </div>
+                <div role="row" data-tag="tr" style="display: table-row; ">
+                  <div role="cell" data-tag="td" style="display: table-cell; padding: 12px 12px 12px 0; font-weight: 600">Financeiro</div>
+                  <div role="cell" data-tag="td" style="display: table-cell; padding: 12px">Segunda via da fatura de agosto</div>
+                  <div role="cell" data-tag="td" style="display: table-cell; padding: 12px">12/08</div>
+                  <div role="cell" data-tag="td" style="display: table-cell; padding: 12px 0 12px 12px"><span style="font-size: 13px; font-weight: 700; color: #6FDCCB">Resolvida em 14/08</span></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+
+      <aside style="flex: 1 1 340px; min-width: 0; display: flex; flex-direction: column; gap: 20px">
+
+        <section aria-labelledby="h-cont" style="background: #15264A; border: 1px solid #243A66; border-radius: 14px; padding: 22px; display: flex; flex-direction: column; gap: 12px">
+          <div style="display: flex; justify-content: space-between; align-items: center; gap: 10px">
+            <h2 id="h-cont" style="margin: 0; font-size: 18px; font-weight: 700">Equipe da franquia</h2>
+            <button type="button" onClick="{{abrirNovo}}" style="min-height: 40px; padding: 0 12px; border: 1px solid #2C4677; border-radius: 8px; background: #15264A; color: #EEF3FA; font: inherit; font-size: 14px; font-weight: 600; cursor: pointer">Adicionar pessoa</button>
+          </div>
+          <sc-if value="{{formAberto}}" hint-placeholder-val="{{false}}">
+            <div style="display: flex; flex-direction: column; gap: 10px; padding: 14px; border-radius: 10px; background: #1B2E58; border: 1px solid #243A66">
+              <label style="display: flex; flex-direction: column; gap: 4px; font-size: 13px; font-weight: 600">Nome
+                <input type="text" value="{{novoNome}}" onInput="{{digitarNome}}" style="min-height: 44px; padding: 0 12px; border: 1px solid #2C4677; border-radius: 8px; font: inherit; font-weight: 400; color: #EEF3FA; background: #15264A">
+              </label>
+              <label style="display: flex; flex-direction: column; gap: 4px; font-size: 13px; font-weight: 600">Função
+                <select onChange="{{escolherCargo}}" style="min-height: 44px; padding: 0 12px; border: 1px solid #2C4677; border-radius: 8px; font: inherit; font-weight: 400; color: #EEF3FA; background: #15264A">
+                  <option>Gerente</option><option>Sócio</option><option>Coordenador</option><option>Financeiro</option><option>Assessor</option><option>Operação final</option><option>Outra função</option>
+                </select>
+              </label>
+              <label style="display: flex; flex-direction: column; gap: 4px; font-size: 13px; font-weight: 600">WhatsApp
+                <input type="tel" style="min-height: 44px; padding: 0 12px; border: 1px solid #2C4677; border-radius: 8px; font: inherit; font-weight: 400; color: #EEF3FA; background: #15264A">
+              </label>
+              <label style="display: flex; flex-direction: column; gap: 4px; font-size: 13px; font-weight: 600">E-mail
+                <input type="email" style="min-height: 44px; padding: 0 12px; border: 1px solid #2C4677; border-radius: 8px; font: inherit; font-weight: 400; color: #EEF3FA; background: #15264A">
+              </label>
+              <label style="display: flex; align-items: center; gap: 8px; min-height: 40px; font-size: 14px"><input type="checkbox" style="width: 18px; height: 18px; accent-color: #00A8F0"> Decide compras</label>
+              <div style="display: flex; gap: 8px; justify-content: flex-end">
+                <button type="button" onClick="{{fecharNovo}}" style="min-height: 40px; padding: 0 14px; border: 1px solid #2C4677; border-radius: 8px; background: #15264A; color: #EEF3FA; font: inherit; font-size: 14px; font-weight: 600; cursor: pointer">Cancelar</button>
+                <button type="button" onClick="{{salvarNovo}}" style="min-height: 40px; padding: 0 14px; border: 0; border-radius: 8px; background: #0077B6; color: #FFFFFF; font: inherit; font-size: 14px; font-weight: 700; cursor: pointer">Salvar pessoa</button>
+              </div>
+            </div>
+          </sc-if>
+          <sc-for list="{{ativos}}" as="c" hint-placeholder-count="4">
+            <div style="display: flex; flex-direction: column; gap: 4px; border-top: 1px solid #1E3360; padding-top: 12px">
+              <div style="display: flex; flex-wrap: wrap; align-items: center; gap: 8px">
+                <span style="font-weight: 700">{{c.nome}}</span>
+                <span style="font-size: 12px; font-weight: 700; color: #EEF3FA; background: #1B2E58; padding: 2px 8px; border-radius: 999px">{{c.cargo}}</span>
+                <sc-if value="{{c.decisor}}" hint-placeholder-val="{{false}}">
+                  <span style="font-size: 12px; font-weight: 700; color: #AFC0F7; background: rgba(48,84,204,0.32); padding: 2px 8px; border-radius: 999px">Decide compras</span>
+                </sc-if>
+              </div>
+              <span style="font-size: 13px; color: #A3B4D1">{{c.desde}}</span>
+              <span style="font-size: 14px; color: #C6D3E6">[WhatsApp] e [e-mail]</span>
+              <div style="display: flex; gap: 4px">
+                <button type="button" style="min-height: 36px; padding: 0 10px; border: 0; background: transparent; color: #0077B6; font: inherit; font-size: 13px; font-weight: 600; cursor: pointer">Editar</button>
+                <button type="button" onClick="{{c.saiu}}" style="min-height: 36px; padding: 0 10px; border: 0; background: transparent; color: #F6A3A9; font: inherit; font-size: 13px; font-weight: 600; cursor: pointer">Saiu da franquia</button>
+              </div>
+            </div>
+          </sc-for>
+          <sc-if value="{{temInativos}}" hint-placeholder-val="{{true}}">
+            <div style="border-top: 1px solid #1E3360; padding-top: 12px; display: flex; flex-direction: column; gap: 4px">
+              <span style="font-size: 13px; font-weight: 600; color: #A3B4D1">Já passaram pela franquia</span>
+              <sc-for list="{{inativos}}" as="c" hint-placeholder-count="1">
+                <span style="font-size: 13px; color: #A3B4D1">{{c.nome}}, {{c.cargo}}. {{c.saida}}</span>
+              </sc-for>
+            </div>
+          </sc-if>
+          <p style="margin: 0; font-size: 12px; color: #A3B4D1">Quem sai continua no histórico. A troca de gerente ou sócio marca atenção na saúde por 60 dias.</p>
+        </section>
+
+                        <section aria-labelledby="h-acomp" style="background: #15264A; border: 1px solid #243A66; border-radius: 14px; padding: 22px; display: flex; flex-direction: column; gap: 14px">
+          <div style="display: flex; justify-content: space-between; align-items: center; gap: 10px">
+            <h2 id="h-acomp" style="margin: 0; font-size: 18px; font-weight: 700">Acompanhamentos</h2>
+            <button type="button" onClick="{{abrirProjeto}}" style="min-height: 40px; padding: 0 12px; border: 1px solid #2C4677; border-radius: 8px; background: #15264A; color: #EEF3FA; font: inherit; font-size: 14px; font-weight: 600; cursor: pointer">Incluir em projeto</button>
+          </div>
+          <sc-if value="{{projAberto}}" hint-placeholder-val="{{false}}">
+            <div style="display: flex; flex-direction: column; gap: 10px; padding: 14px; border-radius: 10px; background: #1B2E58; border: 1px solid #243A66">
+              <label style="display: flex; flex-direction: column; gap: 4px; font-size: 13px; font-weight: 600">Projeto
+                <select style="min-height: 44px; padding: 0 12px; border: 1px solid #2C4677; border-radius: 8px; font: inherit; font-weight: 400; color: #EEF3FA; background: #15264A"><option>Minha Atendas</option><option>Próximos projetos aparecem aqui</option></select>
+              </label>
+              <label style="display: flex; flex-direction: column; gap: 4px; font-size: 13px; font-weight: 600">Por que esta franquia
+                <input type="text" placeholder="Ex.: pediu para testar" style="min-height: 44px; padding: 0 12px; border: 1px solid #2C4677; border-radius: 8px; font: inherit; font-weight: 400; color: #EEF3FA; background: #15264A">
+              </label>
+              <p style="margin: 0; font-size: 13px; color: #A3B4D1">Neste projeto, a indicação vai para aprovação da gestão. Só aparecem projetos abertos a novas franquias.</p>
+              <div style="display: flex; gap: 8px; justify-content: flex-end">
+                <button type="button" onClick="{{fecharProjeto}}" style="min-height: 40px; padding: 0 14px; border: 1px solid #2C4677; border-radius: 8px; background: #15264A; color: #EEF3FA; font: inherit; font-size: 14px; font-weight: 600; cursor: pointer">Cancelar</button>
+                <button type="button" onClick="{{fecharProjeto}}" style="min-height: 40px; padding: 0 14px; border: 0; border-radius: 8px; background: #0077B6; color: #FFFFFF; font: inherit; font-size: 14px; font-weight: 700; cursor: pointer">Enviar indicação</button>
+              </div>
+            </div>
+          </sc-if>
+
+          <div style="display: flex; flex-direction: column; gap: 10px; padding: 14px; border: 1px solid #243A66; border-radius: 12px">
+            <div style="display: flex; justify-content: space-between; align-items: baseline; gap: 8px; flex-wrap: wrap">
+              <span style="font-weight: 700">POC RCS</span>
+              <span style="font-size: 13px; font-weight: 700; color: #AFC0F7; background: rgba(48,84,204,0.32); padding: 2px 9px; border-radius: 999px">Criação do agente</span>
+            </div>
+            <div style="display: flex; flex-direction: column; gap: 2px; font-size: 14px">
+              <span>Caso de uso: <b>Adimplência</b></span>
+              <span style="color: #A3B4D1">Dia 19 de 30 da criação. Depois, 60 dias de uso até 30/01/2027.</span>
+              <span style="color: #A3B4D1">Sem commit hoje: precisa contratar para continuar depois da POC.</span>
+            </div>
+            <div role="img" aria-label="Dia 19 de 90 da POC" style="position: relative; height: 8px; border-radius: 99px; background: #1E3360">
+              <div style="position: absolute; left: 0; top: 0; bottom: 0; width: 21%; border-radius: 99px; background: #5B7BE0"></div>
+            </div>
+            <ul style="list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 6px; font-size: 14px">
+              <li style="display: flex; gap: 8px"><span style="color: #6FDCCB; font-weight: 700" aria-hidden="true">✓</span><span>Dados e imagens enviados pela franquia</span></li>
+              <li style="display: flex; gap: 8px"><span style="color: #6FDCCB; font-weight: 700" aria-hidden="true">✓</span><span>Formulário do time de API Oficial</span></li>
+              <li style="display: flex; gap: 8px"><span style="color: #F7B98A; font-weight: 700" aria-hidden="true">…</span><span>Validação do agente (em andamento)</span></li>
+              <li style="display: flex; gap: 8px"><span style="color: #8FA3C4; font-weight: 700" aria-hidden="true">○</span><span style="color: #A3B4D1">Aprovação de marca e operadoras</span></li>
+              <li style="display: flex; gap: 8px"><span style="color: #8FA3C4; font-weight: 700" aria-hidden="true">○</span><span style="color: #A3B4D1">Agente no ar</span></li>
+            </ul>
+            <p style="margin: 0; font-size: 13px; color: #A3B4D1; border-top: 1px solid #1E3360; padding-top: 10px">Na fase de uso aparecem: mensagens enviadas, taxa de leitura, resultado do caso de uso (pagamentos gerados), nota da franquia para o RCS e, no fim, a decisão de continuar ou o motivo de não continuar.</p>
+            <a href="RegistrarProjeto.dc.html" style="align-self: flex-start; display: inline-flex; align-items: center; min-height: 40px; padding: 0 12px; border-radius: 8px; background: #0077B6; color: #FFFFFF; font-size: 14px; font-weight: 700; text-decoration: none">Registrar dados da POC</a>
+          </div>
+
+          <div style="display: flex; justify-content: space-between; gap: 12px; font-size: 14px"><span>Minha Atendas</span><span style="font-weight: 700; color: #F7B98A; text-align: right">Acesso liberado, sem primeiro acesso</span></div>
+          <div style="display: flex; justify-content: space-between; gap: 12px; font-size: 14px; border-top: 1px solid #1E3360; padding-top: 12px"><span>Inadimplência com a Atendas</span><span style="font-weight: 600; color: #6FDCCB">Boletos em dia</span></div>
+        </section>
+
+        <section aria-labelledby="h-com" style="background: #15264A; border: 1px solid #243A66; border-radius: 14px; padding: 22px; display: flex; flex-direction: column; gap: 12px">
+          <h2 id="h-com" style="margin: 0; font-size: 18px; font-weight: 700">Comunicações recebidas</h2>
+          <div style="display: flex; flex-direction: column; gap: 2px; font-size: 14px"><span style="font-weight: 600">OUVIMOS VOCÊ: dores de KYC</span><span style="color: #A3B4D1">Yungas, 11/11</span></div>
+          <div style="display: flex; flex-direction: column; gap: 2px; font-size: 14px; border-top: 1px solid #1E3360; padding-top: 12px"><span style="font-weight: 600">Vídeo: como ler sua fatura no Minha Atendas</span><span style="color: #A3B4D1">WhatsApp, 04/11</span></div>
+        </section>
+      </aside>
+    </div>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":3000}}'>
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = { proj: false, form: false, nome: '', cargo: 'Gerente', equipe: [
+      { id: 1, nome: 'Renata', cargo: 'Gerente', desde: 'Na função desde jan/2026', decisor: false, ativo: true },
+      { id: 2, nome: 'Sérgio', cargo: 'Sócio', desde: 'Sócio fundador', decisor: true, ativo: true },
+      { id: 3, nome: 'Cláudia', cargo: 'Sócia', desde: 'Entrou na sociedade em 2025', decisor: true, ativo: true },
+      { id: 4, nome: 'Aline', cargo: 'Coordenadora', desde: 'Na função desde ago/2026', decisor: false, ativo: true },
+      { id: 5, nome: 'Bruno', cargo: 'Financeiro', desde: 'Recebe os boletos da Atendas', decisor: false, ativo: true },
+      { id: 6, nome: 'Daniela', cargo: 'Gerente', saida: 'Saiu em dez/2025', ativo: false },
+    ] };
+  }
+  renderVals() {
+    const equipe = this.state.equipe;
+    const ativos = equipe.filter((c) => c.ativo).map((c) => ({ ...c, saiu: () => this.setState({ equipe: equipe.map((x) => x.id === c.id ? { ...x, ativo: false, saida: 'Saiu em nov/2026' } : x) }) }));
+    const inativos = equipe.filter((c) => !c.ativo);
+    const contatoVals = {
+      ativos, inativos, temInativos: inativos.length > 0,
+      projAberto: this.state.proj, abrirProjeto: () => this.setState({ proj: true }), fecharProjeto: () => this.setState({ proj: false }),
+      formAberto: this.state.form, novoNome: this.state.nome,
+      abrirNovo: () => this.setState({ form: true }),
+      fecharNovo: () => this.setState({ form: false, nome: '' }),
+      digitarNome: (e) => this.setState({ nome: e.target.value }),
+      escolherCargo: (e) => this.setState({ cargo: e.target.value }),
+      salvarNovo: () => this.setState({ form: false, nome: '', equipe: [{ id: Date.now(), nome: this.state.nome || 'Nova pessoa', cargo: this.state.cargo, desde: 'Adicionada agora', decisor: false, ativo: true }, ...equipe] }),
+    };
+    const historico = [
+      { data: '17/11', quem: 'Giovanna', tipo: 'WhatsApp', assunto: 'Sem retorno', resumo: 'Mensagem para agendar a reunião de novembro. Sem resposta até agora.', notas: 'Não conta para a meta de reuniões' },
+      { data: '03/10', quem: 'Giovanna', tipo: 'Reunião gravada', assunto: 'Acompanhamento', resumo: 'Gerente relatou que os disparos do Projeto de Adimplência estavam sem relatório de entrega. Demanda aberta com o Suporte, resolvida em 09/10.', notas: 'Notas de Renata (Gerente): Geral 8, Suporte 5, Adimplência 7, Mensageria 8' },
+      { data: '28/08', quem: 'Giovanna', tipo: 'Reunião gravada', assunto: 'Apresentação', resumo: 'Apresentação da discadora e da IA de voz para o sócio. Recusou a discadora agora: recebeu proposta de outro fornecedor com valor por canal abaixo do nosso. IA de voz sem orçamento este ano. Pediu para retomar em 2027.', notas: 'Notas de Sérgio (Sócio): Geral 9, KYC 7, Adimplência 7, Mensageria 8' },
+      { data: '12/08', quem: 'Giovanna', tipo: 'Reunião gravada', assunto: 'Dúvida / suporte', resumo: 'Dúvida sobre a fatura de agosto. Segunda via pedida ao Financeiro.', notas: 'Notas de Renata (Gerente): Geral 8, Suporte 6' },
+    ].map((h) => ({ ...h, reuniao: h.tipo === 'Reunião gravada', outro: h.tipo !== 'Reunião gravada' }));
+    const R = 'Renata (Gerente)', S = 'Sérgio (Sócio)';
+    const bruto = [
+      { nome: 'Geral', avals: [['12/08', 8, R], ['28/08', 9, S], ['03/10', 8, R]] },
+      { nome: 'Suporte da Atendas', avals: [['15/06', 7, R], ['12/08', 6, R], ['03/10', 5, R]] },
+      { nome: 'Projeto de Adimplência (CDT)', avals: [['15/06', 8, R], ['28/08', 7, S], ['03/10', 7, R]] },
+      { nome: 'KYC', avals: [['15/06', 6, R], ['28/08', 7, S]] },
+      { nome: 'Mensageria', avals: [['15/06', 9, R], ['28/08', 8, S], ['03/10', 8, R]] },
+    ];
+    const focos = bruto.map((f) => {
+      const a = f.avals;
+      const slots = [0, 1, 2].map((i) => a[i] ? { tem: true, vazio: false, data: a[i][0], nota: a[i][1], quem: a[i][2] } : { tem: false, vazio: true });
+      const ult = a[a.length - 1][1], ant = a.length > 1 ? a[a.length - 2][1] : ult;
+      const dif = ult - ant;
+      const pts = (n) => Math.abs(n) === 1 ? '1 ponto' : Math.abs(n) + ' pontos';
+      const quedas = a.length === 3 && a[1][1] < a[0][1] && a[2][1] < a[1][1];
+      const subidas = a.length === 3 && a[1][1] > a[0][1] && a[2][1] > a[1][1];
+      let detalhe = 'Última avaliação em ' + a[a.length - 1][0];
+      if (quedas) detalhe = 'Caindo nas três últimas avaliações';
+      if (subidas) detalhe = 'Subindo nas três últimas avaliações';
+      if (a.length < 3) detalhe = 'Não foi avaliado na reunião de 03/10';
+      return { nome: f.nome, slots, caiu: dif < 0, subiu: dif > 0, estavel: dif === 0,
+        texto: dif < 0 ? 'Caiu ' + pts(dif) : dif > 0 ? 'Subiu ' + pts(dif) : 'Estável', detalhe };
+    });
+    const produtos = [
+      ['Mensageria (Commit Silver)', 'contratado', 'Contratado', 'Desde mar/2025', '', ''],
+      ['KYC', 'contratado', 'Contratado', 'Desde mar/2025', '', ''],
+      ['Projeto de Adimplência (CDT)', 'contratado', 'Participa', 'Projeto da franqueadora', '', ''],
+      ['RCS', 'andamento', 'Em POC', 'Decisão até 30/01/2027', 'Caso de uso: adimplência', ''],
+      ['Discadora', 'recusou', 'Recusou em 28/08', 'Preço acima da concorrência', 'Concorrente: [nome], R$ [valor] por canal. Nossa proposta: R$ [valor] por canal.', 'fev/2027'],
+      ['IA de voz', 'recusou', 'Recusou em 28/08', 'Sem orçamento agora', 'Sócio pediu para retomar no orçamento de 2027', 'jan/2027'],
+      ['URA reversa', 'nunca', 'Nunca apresentado', '', '', ''],
+    ].map(([nome, tipo, situacao, motivo, detalhe, retomar]) => ({ nome, situacao, motivo, detalhe, retomar: retomar || '—',
+      contratado: tipo === 'contratado', recusou: tipo === 'recusou', andamento: tipo === 'andamento', nunca: tipo === 'nunca' }));
+    return { historico, focos, produtos, ...contatoVals };
+  }
+}
+</script>
+</body>
+</html>

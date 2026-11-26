@@ -1,0 +1,411 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<title>CS, visão executiva</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700;800&amp;display=swap">
+<style>
+body{margin:0}
+a{color:#38BDF8}a:hover{color:#7DD3FC}
+</style>
+</helmet>
+<div style="display: flex; min-height: 4000px; background: #0E1A33; font-family: Figtree, Arial, sans-serif; color: #F2F4F7">
+  <nav aria-label="Menu" style="flex: 0 0 76px; background: #0A1430; border-right: 1px solid #243A66; display: flex; flex-direction: column; align-items: center; gap: 14px; padding: 18px 0">
+    <img src="data:image/png;base64,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" alt="Atendas" width="44" height="44" style="border-radius: 10px">
+    <span style="width: 44px; height: 1px; background: #243A66; margin: 6px 0"></span>
+    <a href="Diretoria.dc.html" aria-label="Visão executiva" style="width: 52px; height: 52px; border-radius: 10px; background: #0EA5E9; color: #04121F; display: grid; place-items: center"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20V10M10 20V4M16 20v-7M22 20H2"></path></svg></a>
+    <a href="Metas.dc.html" aria-label="Meta do time" style="width: 52px; height: 52px; border-radius: 10px; color: #D5DAE1; display: grid; place-items: center"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"></circle><circle cx="12" cy="12" r="5"></circle><circle cx="12" cy="12" r="1"></circle></svg></a>
+    <a href="Saude.dc.html" aria-label="Saúde da base" style="width: 52px; height: 52px; border-radius: 10px; color: #D5DAE1; display: grid; place-items: center"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10z"></path></svg></a>
+    <a href="Upsell.dc.html" aria-label="Upsell" style="width: 52px; height: 52px; border-radius: 10px; color: #D5DAE1; display: grid; place-items: center"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v18M17 7.5c0-1.9-2.2-3-5-3s-5 1.1-5 3 2.2 2.6 5 3.1 5 1.3 5 3.3-2.2 3.1-5 3.1-5-1.2-5-3.1"></path></svg></a>
+  </nav>
+  <div style="flex: 1 1 auto; min-width: 0; display: flex; flex-direction: column">
+    <header style="display: flex; flex-wrap: wrap; align-items: center; gap: 16px; padding: 14px 28px; border-bottom: 1px solid #243A66">
+      <span style="display: inline-flex; align-items: center; gap: 8px; font-size: 14px; font-weight: 700; letter-spacing: 0.05em; color: #D5DAE1"><span aria-hidden="true" style="width: 10px; height: 10px; border-radius: 50%; background: #22C55E"></span>CS › VISÃO EXECUTIVA</span>
+      <span style="display: inline-flex; align-items: center; gap: 8px; padding: 8px 14px; border: 1px solid #0EA5E9; border-radius: 999px; background: rgba(14,165,233,0.08); color: #38BDF8; font-size: 13px; font-weight: 700; letter-spacing: 0.04em">CENTRO SUL + COSTA LESTE + EQUATORIAL + INTERIOR + SÃO PAULO MINAS</span>
+      <div style="margin-left: auto; display: flex; align-items: center; gap: 12px">
+        <button type="button" style="min-height: 44px; padding: 0 16px; border: 1px solid #243A66; border-radius: 10px; background: #1B2E58; color: #F2F4F7; font: inherit; font-size: 15px; font-weight: 600; cursor: pointer">Atualizar dados</button>
+        <a href="Diretoria.dc.html" aria-label="Alternar entre modo dia e modo noite" style="width: 48px; height: 48px; border-radius: 12px; border: 1px solid #243A66; background: #1B2E58; color: #38BDF8; display: grid; place-items: center"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"></path></svg></a>
+        <span style="font-size: 17px; font-weight: 700">Diretoria</span>
+      </div>
+    </header>
+
+    <main style="padding: 22px 28px 56px; display: flex; flex-direction: column; gap: 26px; max-width: 1760px; box-sizing: border-box; width: 100%">
+      <div style="background: #15264A; border: 1px solid #243A66; border-radius: 16px; padding: 16px 20px; display: flex; flex-wrap: wrap; align-items: center; gap: 12px">
+        <span style="font-size: 13px; font-weight: 700; letter-spacing: 0.06em; color: #A3B4D1">PERÍODO</span>
+        <span style="display: inline-flex; align-items: center; gap: 10px; min-height: 44px; padding: 0 16px; border: 1px solid #243A66; border-radius: 10px; background: #1B2E58; font-size: 17px; font-weight: 700">01/11/2026 até 19/11/2026</span>
+        <button type="button" aria-pressed="false" style="min-height: 40px; padding: 0 16px; border-radius: 999px; border: 1px solid #243A66; background: #1B2E58; color: #D5DAE1; font: inherit; font-size: 15px; font-weight: 500; cursor: pointer">Último dia</button><button type="button" aria-pressed="false" style="min-height: 40px; padding: 0 16px; border-radius: 999px; border: 1px solid #243A66; background: #1B2E58; color: #D5DAE1; font: inherit; font-size: 15px; font-weight: 500; cursor: pointer">Últimos 7 dias</button><button type="button" aria-pressed="false" style="min-height: 40px; padding: 0 16px; border-radius: 999px; border: 1px solid #243A66; background: #1B2E58; color: #D5DAE1; font: inherit; font-size: 15px; font-weight: 500; cursor: pointer">Últimos 30 dias</button><button type="button" aria-pressed="false" style="min-height: 40px; padding: 0 16px; border-radius: 999px; border: 1px solid #243A66; background: #1B2E58; color: #D5DAE1; font: inherit; font-size: 15px; font-weight: 500; cursor: pointer">Último trimestre</button><button type="button" aria-pressed="false" style="min-height: 40px; padding: 0 16px; border-radius: 999px; border: 1px solid #243A66; background: #1B2E58; color: #D5DAE1; font: inherit; font-size: 15px; font-weight: 500; cursor: pointer">Último semestre</button><button type="button" aria-pressed="true" style="min-height: 40px; padding: 0 16px; border-radius: 999px; border: 1px solid #0EA5E9; background: #0EA5E9; color: #04121F; font: inherit; font-size: 15px; font-weight: 700; cursor: pointer">Este mês</button><button type="button" aria-pressed="false" style="min-height: 40px; padding: 0 16px; border-radius: 999px; border: 1px solid #243A66; background: #1B2E58; color: #D5DAE1; font: inherit; font-size: 15px; font-weight: 500; cursor: pointer">Mês anterior</button><button type="button" aria-pressed="false" style="min-height: 40px; padding: 0 16px; border-radius: 999px; border: 1px solid #243A66; background: #1B2E58; color: #D5DAE1; font: inherit; font-size: 15px; font-weight: 500; cursor: pointer">Este ano</button><button type="button" aria-pressed="false" style="min-height: 40px; padding: 0 16px; border-radius: 999px; border: 1px solid #243A66; background: #1B2E58; color: #D5DAE1; font: inherit; font-size: 15px; font-weight: 500; cursor: pointer">Tudo</button>
+      </div>
+      <div style="display: flex; flex-wrap: wrap; align-items: center; gap: 12px">
+        <span style="font-size: 13px; font-weight: 700; letter-spacing: 0.06em; color: #A3B4D1">REGIONAL</span>
+        <span style="display: inline-flex; align-items: center; min-height: 44px; padding: 0 16px; border: 1px solid #243A66; border-radius: 10px; background: #1B2E58; font-size: 17px; font-weight: 600">Todas as regionais</span>
+      </div>
+      <p style="margin: -8px 0 0; font-size: 15px; color: #A3B4D1">Situação em 19/11 10:30. Comparações com o mesmo período do mês anterior. Números de exemplo.</p>
+    <section style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px">
+      <div style="background: #15264A; border: 1px solid #243A66; border-radius: 16px; padding: 24px; display: flex; flex-direction: column; gap: 10px">
+        <span style="font-size: 13px; font-weight: 700; letter-spacing: 0.06em; color: #A3B4D1">LEITURA DA GESTÃO</span>
+        <p style="margin: 0; font-size: 18px; line-height: 1.5; color: #F2F4F7">A base está mais saudável que em outubro e a inadimplência caiu, mas a venda de contratos novos está abaixo do ritmo: o principal motivo de recusa é preço acima da concorrência.</p>
+      </div>
+      <div style="background: #15264A; border: 1px solid #243A66; border-radius: 16px; padding: 24px; display: flex; flex-direction: column; gap: 10px">
+        <span style="font-size: 13px; font-weight: 700; letter-spacing: 0.06em; color: #A3B4D1">O QUE ESTAMOS FAZENDO</span>
+        <p style="margin: 0; font-size: 16px; line-height: 1.5; color: #D5DAE1">Proposta de licença por canal da discadora pronta para a diretoria. Reunião semanal com a regional Equatorial até o fim do ano. Levantamento das causas da nota do Suporte com o time de Suporte.</p>
+      </div>
+    </section>
+    <section style="display: flex; flex-direction: column; gap: 16px">
+      <div style="display: flex; align-items: center; gap: 10px"><span style="color: #0EA5E9; display: grid"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v18M17 7.5c0-1.9-2.2-3-5-3s-5 1.1-5 3 2.2 2.6 5 3.1 5 1.3 5 3.3-2.2 3.1-5 3.1-5-1.2-5-3.1"></path></svg></span><h2 style="margin: 0; font-size: 24px; font-weight: 800; color: #F2F4F7">Receita</h2><a href="Upsell.dc.html" style="margin-left: auto; font-size: 14px; font-weight: 600; color: #38BDF8">Ver detalhes</a></div>
+      <div style="display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 16px">
+        <div style="grid-column: span 1; background: #15264A; border: 1px solid #243A66; border-radius: 16px; padding: 24px; display: flex; flex-direction: column; gap: 10px; min-height: 210px; box-sizing: border-box">
+          <div style="display: flex; justify-content: space-between; align-items: flex-start; gap: 10px">
+            <span style="font-size: 13px; font-weight: 700; letter-spacing: 0.06em; color: #A3B4D1; padding-top: 8px">MRR NOVO</span>
+            <span style="flex: none; width: 46px; height: 46px; border-radius: 10px; background: rgba(34,197,94,0.14); border: 1px solid #22C55E33; display: grid; place-items: center; color: #22C55E"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v18M17 7.5c0-1.9-2.2-3-5-3s-5 1.1-5 3 2.2 2.6 5 3.1 5 1.3 5 3.3-2.2 3.1-5 3.1-5-1.2-5-3.1"></path></svg></span>
+          </div>
+          <div style="margin-top: auto; display: flex; flex-direction: column; gap: 8px">
+            <span style="font-size: 38px; font-weight: 800; letter-spacing: -1px; line-height: 1; color: #F2F4F7">R$ 7.830</span><div><span style="display: inline-flex; align-items: center; gap: 4px; padding: 3px 9px; border-radius: 7px; background: rgba(239,68,68,0.16); color: #F87171; font-size: 14px; font-weight: 700">▼ 24,7%</span></div>
+            <span style="font-size: 15px; color: #A3B4D1; line-height: 1.4">65% da meta de R$ 12.000</span>
+          </div>
+        </div><div style="grid-column: span 1; background: #15264A; border: 1px solid #243A66; border-radius: 16px; padding: 24px; display: flex; flex-direction: column; gap: 10px; min-height: 210px; box-sizing: border-box">
+          <div style="display: flex; justify-content: space-between; align-items: flex-start; gap: 10px">
+            <span style="font-size: 13px; font-weight: 700; letter-spacing: 0.06em; color: #A3B4D1; padding-top: 8px">NOVOS CONTRATOS</span>
+            <span style="flex: none; width: 46px; height: 46px; border-radius: 10px; background: rgba(14,165,233,0.14); border: 1px solid #0EA5E933; display: grid; place-items: center; color: #0EA5E9"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 3h7l5 5v13H7z"></path><path d="M14 3v5h5M10 13h6M10 17h6"></path></svg></span>
+          </div>
+          <div style="margin-top: auto; display: flex; flex-direction: column; gap: 8px">
+            <span style="font-size: 38px; font-weight: 800; letter-spacing: -1px; line-height: 1; color: #F2F4F7">8</span><div><span style="display: inline-flex; align-items: center; gap: 4px; padding: 3px 9px; border-radius: 7px; background: rgba(239,68,68,0.16); color: #F87171; font-size: 14px; font-weight: 700">▼ 20,0%</span></div>
+            <span style="font-size: 15px; color: #A3B4D1; line-height: 1.4">upsells, de 25 previstos no mês</span>
+          </div>
+        </div><div style="grid-column: span 1; background: #15264A; border: 1px solid #243A66; border-radius: 16px; padding: 24px; display: flex; flex-direction: column; gap: 10px; min-height: 210px; box-sizing: border-box">
+          <div style="display: flex; justify-content: space-between; align-items: flex-start; gap: 10px">
+            <span style="font-size: 13px; font-weight: 700; letter-spacing: 0.06em; color: #A3B4D1; padding-top: 8px">ADITIVOS</span>
+            <span style="flex: none; width: 46px; height: 46px; border-radius: 10px; background: rgba(14,165,233,0.14); border: 1px solid #0EA5E933; display: grid; place-items: center; color: #0EA5E9"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14M5 12h14"></path></svg></span>
+          </div>
+          <div style="margin-top: auto; display: flex; flex-direction: column; gap: 8px">
+            <span style="font-size: 38px; font-weight: 800; letter-spacing: -1px; line-height: 1; color: #F2F4F7">4</span><div><span style="display: inline-flex; align-items: center; gap: 4px; padding: 3px 9px; border-radius: 7px; background: rgba(34,197,94,0.14); color: #4ADE80; font-size: 14px; font-weight: 700">▲ 33,3%</span></div>
+            <span style="font-size: 15px; color: #A3B4D1; line-height: 1.4">cross-sells em contratos existentes</span>
+          </div>
+        </div><div style="grid-column: span 1; background: #15264A; border: 1px solid #243A66; border-radius: 16px; padding: 24px; display: flex; flex-direction: column; gap: 10px; min-height: 210px; box-sizing: border-box">
+          <div style="display: flex; justify-content: space-between; align-items: flex-start; gap: 10px">
+            <span style="font-size: 13px; font-weight: 700; letter-spacing: 0.06em; color: #A3B4D1; padding-top: 8px">RECEITA NÃO RECORRENTE</span>
+            <span style="flex: none; width: 46px; height: 46px; border-radius: 10px; background: rgba(245,158,11,0.14); border: 1px solid #F59E0B33; display: grid; place-items: center; color: #F59E0B"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="6" width="18" height="13" rx="2"></rect><path d="M3 10h18"></path></svg></span>
+          </div>
+          <div style="margin-top: auto; display: flex; flex-direction: column; gap: 8px">
+            <span style="font-size: 38px; font-weight: 800; letter-spacing: -1px; line-height: 1; color: #F2F4F7">R$ 16.800</span><div><span style="display: inline-flex; align-items: center; gap: 4px; padding: 3px 9px; border-radius: 7px; background: rgba(34,197,94,0.14); color: #4ADE80; font-size: 14px; font-weight: 700">▲ 5,0%</span></div>
+            <span style="font-size: 15px; color: #A3B4D1; line-height: 1.4">setups cobrados uma vez</span>
+          </div>
+        </div><div style="grid-column: span 1; background: #15264A; border: 1px solid #243A66; border-radius: 16px; padding: 24px; display: flex; flex-direction: column; gap: 10px; min-height: 210px; box-sizing: border-box">
+          <div style="display: flex; justify-content: space-between; align-items: flex-start; gap: 10px">
+            <span style="font-size: 13px; font-weight: 700; letter-spacing: 0.06em; color: #A3B4D1; padding-top: 8px">DESCONTO MÉDIO</span>
+            <span style="flex: none; width: 46px; height: 46px; border-radius: 10px; background: rgba(245,158,11,0.14); border: 1px solid #F59E0B33; display: grid; place-items: center; color: #F59E0B"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 5L5 19"></path><circle cx="7" cy="7" r="2.5"></circle><circle cx="17" cy="17" r="2.5"></circle></svg></span>
+          </div>
+          <div style="margin-top: auto; display: flex; flex-direction: column; gap: 8px">
+            <span style="font-size: 38px; font-weight: 800; letter-spacing: -1px; line-height: 1; color: #F2F4F7">9%</span><div><span style="display: inline-flex; align-items: center; gap: 4px; padding: 3px 9px; border-radius: 7px; background: rgba(239,68,68,0.16); color: #F87171; font-size: 14px; font-weight: 700">▲ 2,0 p.p.</span></div>
+            <span style="font-size: 15px; color: #A3B4D1; line-height: 1.4">sobre a tabela, todos aprovados</span>
+          </div>
+        </div><div style="grid-column: span 1; background: #15264A; border: 1px solid #243A66; border-radius: 16px; padding: 24px; display: flex; flex-direction: column; gap: 10px; min-height: 210px; box-sizing: border-box">
+          <div style="display: flex; justify-content: space-between; align-items: flex-start; gap: 10px">
+            <span style="font-size: 13px; font-weight: 700; letter-spacing: 0.06em; color: #A3B4D1; padding-top: 8px">RECUSAS POR PREÇO</span>
+            <span style="flex: none; width: 46px; height: 46px; border-radius: 10px; background: rgba(239,68,68,0.14); border: 1px solid #EF444433; display: grid; place-items: center; color: #EF4444"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"></circle><path d="M9 9l6 6M15 9l-6 6"></path></svg></span>
+          </div>
+          <div style="margin-top: auto; display: flex; flex-direction: column; gap: 8px">
+            <span style="font-size: 38px; font-weight: 800; letter-spacing: -1px; line-height: 1; color: #F2F4F7">14</span><div><span style="display: inline-flex; align-items: center; gap: 4px; padding: 3px 9px; border-radius: 7px; background: rgba(239,68,68,0.16); color: #F87171; font-size: 14px; font-weight: 700">▲ 40,0%</span></div>
+            <span style="font-size: 15px; color: #A3B4D1; line-height: 1.4">de 43 recusas; concorrente 22% mais barato</span>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section style="display: flex; flex-direction: column; gap: 16px">
+      <div style="display: flex; align-items: center; gap: 10px"><span style="color: #0EA5E9; display: grid"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 12a9 9 0 1 0 3-6.7L3 8"></path><path d="M3 3v5h5"></path></svg></span><h2 style="margin: 0; font-size: 24px; font-weight: 800; color: #F2F4F7">Retenção</h2><a href="Retencao.dc.html" style="margin-left: auto; font-size: 14px; font-weight: 600; color: #38BDF8">Ver detalhes</a></div>
+      <div style="display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 16px">
+        <div style="grid-column: span 1; background: #15264A; border: 1px solid #243A66; border-radius: 16px; padding: 24px; display: flex; flex-direction: column; gap: 10px; min-height: 210px; box-sizing: border-box">
+          <div style="display: flex; justify-content: space-between; align-items: flex-start; gap: 10px">
+            <span style="font-size: 13px; font-weight: 700; letter-spacing: 0.06em; color: #A3B4D1; padding-top: 8px">MRR PERDIDO</span>
+            <span style="flex: none; width: 46px; height: 46px; border-radius: 10px; background: rgba(239,68,68,0.14); border: 1px solid #EF444433; display: grid; place-items: center; color: #EF4444"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 7l6 6 4-4 8 8"></path><path d="M21 11v6h-6"></path></svg></span>
+          </div>
+          <div style="margin-top: auto; display: flex; flex-direction: column; gap: 8px">
+            <span style="font-size: 38px; font-weight: 800; letter-spacing: -1px; line-height: 1; color: #F2F4F7">R$ 2.140</span><div><span style="display: inline-flex; align-items: center; gap: 4px; padding: 3px 9px; border-radius: 7px; background: rgba(34,197,94,0.14); color: #4ADE80; font-size: 14px; font-weight: 700">▼ 18,0%</span></div>
+            <span style="font-size: 15px; color: #A3B4D1; line-height: 1.4">1 cancelamento total e 2 reduções</span>
+          </div>
+        </div><div style="grid-column: span 1; background: #15264A; border: 1px solid #243A66; border-radius: 16px; padding: 24px; display: flex; flex-direction: column; gap: 10px; min-height: 210px; box-sizing: border-box">
+          <div style="display: flex; justify-content: space-between; align-items: flex-start; gap: 10px">
+            <span style="font-size: 13px; font-weight: 700; letter-spacing: 0.06em; color: #A3B4D1; padding-top: 8px">CHURN DE RECEITA</span>
+            <span style="flex: none; width: 46px; height: 46px; border-radius: 10px; background: rgba(239,68,68,0.14); border: 1px solid #EF444433; display: grid; place-items: center; color: #EF4444"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 7l6 6 4-4 8 8"></path><path d="M21 11v6h-6"></path></svg></span>
+          </div>
+          <div style="margin-top: auto; display: flex; flex-direction: column; gap: 8px">
+            <span style="font-size: 38px; font-weight: 800; letter-spacing: -1px; line-height: 1; color: #F2F4F7">[x]%</span><div></div>
+            <span style="font-size: 15px; color: #A3B4D1; line-height: 1.4">MRR perdido sobre o MRR da base</span>
+          </div>
+        </div><div style="grid-column: span 1; background: #15264A; border: 1px solid #243A66; border-radius: 16px; padding: 24px; display: flex; flex-direction: column; gap: 10px; min-height: 210px; box-sizing: border-box">
+          <div style="display: flex; justify-content: space-between; align-items: flex-start; gap: 10px">
+            <span style="font-size: 13px; font-weight: 700; letter-spacing: 0.06em; color: #A3B4D1; padding-top: 8px">FRANQUIAS QUE SAÍRAM</span>
+            <span style="flex: none; width: 46px; height: 46px; border-radius: 10px; background: rgba(245,158,11,0.14); border: 1px solid #F59E0B33; display: grid; place-items: center; color: #F59E0B"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 4h4v16h-4M10 8l-4 4 4 4M6 12h10"></path></svg></span>
+          </div>
+          <div style="margin-top: auto; display: flex; flex-direction: column; gap: 8px">
+            <span style="font-size: 38px; font-weight: 800; letter-spacing: -1px; line-height: 1; color: #F2F4F7">1</span><div><span style="display: inline-flex; align-items: center; gap: 4px; padding: 3px 9px; border-radius: 7px; background: rgba(255,255,255,0.07); color: #C3C8D0; font-size: 14px; font-weight: 700">= 0,0%</span></div>
+            <span style="font-size: 15px; color: #A3B4D1; line-height: 1.4">unidade encerrada, motivo inevitável</span>
+          </div>
+        </div><div style="grid-column: span 1; background: #15264A; border: 1px solid #243A66; border-radius: 16px; padding: 24px; display: flex; flex-direction: column; gap: 10px; min-height: 210px; box-sizing: border-box">
+          <div style="display: flex; justify-content: space-between; align-items: flex-start; gap: 10px">
+            <span style="font-size: 13px; font-weight: 700; letter-spacing: 0.06em; color: #A3B4D1; padding-top: 8px">PEDIDOS EM RETENÇÃO</span>
+            <span style="flex: none; width: 46px; height: 46px; border-radius: 10px; background: rgba(245,158,11,0.14); border: 1px solid #F59E0B33; display: grid; place-items: center; color: #F59E0B"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 3h10M7 21h10M8 3c0 5 8 5 8 9s-8 4-8 9M16 3c0 5-8 5-8 9"></path></svg></span>
+          </div>
+          <div style="margin-top: auto; display: flex; flex-direction: column; gap: 8px">
+            <span style="font-size: 38px; font-weight: 800; letter-spacing: -1px; line-height: 1; color: #F2F4F7">2</span><div><span style="display: inline-flex; align-items: center; gap: 4px; padding: 3px 9px; border-radius: 7px; background: rgba(239,68,68,0.16); color: #F87171; font-size: 14px; font-weight: 700">▲ 1</span></div>
+            <span style="font-size: 15px; color: #A3B4D1; line-height: 1.4">R$ 2.100 de MRR em jogo</span>
+          </div>
+        </div><div style="grid-column: span 1; background: #15264A; border: 1px solid #243A66; border-radius: 16px; padding: 24px; display: flex; flex-direction: column; gap: 10px; min-height: 210px; box-sizing: border-box">
+          <div style="display: flex; justify-content: space-between; align-items: flex-start; gap: 10px">
+            <span style="font-size: 13px; font-weight: 700; letter-spacing: 0.06em; color: #A3B4D1; padding-top: 8px">TAXA DE RETENÇÃO</span>
+            <span style="flex: none; width: 46px; height: 46px; border-radius: 10px; background: rgba(34,197,94,0.14); border: 1px solid #22C55E33; display: grid; place-items: center; color: #22C55E"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z"></path><path d="M9 12l2 2 4-4"></path></svg></span>
+          </div>
+          <div style="margin-top: auto; display: flex; flex-direction: column; gap: 8px">
+            <span style="font-size: 38px; font-weight: 800; letter-spacing: -1px; line-height: 1; color: #F2F4F7">50%</span><div><span style="display: inline-flex; align-items: center; gap: 4px; padding: 3px 9px; border-radius: 7px; background: rgba(34,197,94,0.14); color: #4ADE80; font-size: 14px; font-weight: 700">▲ 10,0 p.p.</span></div>
+            <span style="font-size: 15px; color: #A3B4D1; line-height: 1.4">3 de 6 pedidos decididos mantidos sem perda</span>
+          </div>
+        </div><div style="grid-column: span 1; background: #15264A; border: 1px solid #243A66; border-radius: 16px; padding: 24px; display: flex; flex-direction: column; gap: 10px; min-height: 210px; box-sizing: border-box">
+          <div style="display: flex; justify-content: space-between; align-items: flex-start; gap: 10px">
+            <span style="font-size: 13px; font-weight: 700; letter-spacing: 0.06em; color: #A3B4D1; padding-top: 8px">MRR LÍQUIDO</span>
+            <span style="flex: none; width: 46px; height: 46px; border-radius: 10px; background: rgba(14,165,233,0.14); border: 1px solid #0EA5E933; display: grid; place-items: center; color: #0EA5E9"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 5H7l6 7-6 7h11"></path></svg></span>
+          </div>
+          <div style="margin-top: auto; display: flex; flex-direction: column; gap: 8px">
+            <span style="font-size: 38px; font-weight: 800; letter-spacing: -1px; line-height: 1; color: #F2F4F7">R$ 5.690</span><div><span style="display: inline-flex; align-items: center; gap: 4px; padding: 3px 9px; border-radius: 7px; background: rgba(239,68,68,0.16); color: #F87171; font-size: 14px; font-weight: 700">▼ 31,2%</span></div>
+            <span style="font-size: 15px; color: #A3B4D1; line-height: 1.4">MRR novo menos o perdido no mês</span>
+          </div>
+        </div><div style="grid-column: span 3; background: #15264A; border: 1px solid #243A66; border-radius: 16px; padding: 24px; display: flex; flex-direction: column; gap: 14px; box-sizing: border-box">
+          <span style="font-size: 13px; font-weight: 700; letter-spacing: 0.06em; color: #A3B4D1">PEDIDOS POR TIPO</span>
+          <div style="display: flex; justify-content: space-between; gap: 12px; align-items: baseline; border-top: 1px solid #243A66; padding-top: 12px"><span style="font-size: 16px; color: #F2F4F7; font-weight: 600">Cancelamento total<br><span style="font-size: 14px; color: #A3B4D1; font-weight: 400">encerra todos os contratos diretos</span></span><span style="text-align: right"><b style="font-size: 24px; color: #F2F4F7">2</b><br><span style="font-size: 14px; color: #A3B4D1">R$ 2.540 de MRR</span></span></div><div style="display: flex; justify-content: space-between; gap: 12px; align-items: baseline; border-top: 1px solid #243A66; padding-top: 12px"><span style="font-size: 16px; color: #F2F4F7; font-weight: 600">Cancelamento de produto<br><span style="font-size: 14px; color: #A3B4D1; font-weight: 400">cancela um e mantém outro</span></span><span style="text-align: right"><b style="font-size: 24px; color: #F2F4F7">3</b><br><span style="font-size: 14px; color: #A3B4D1">R$ 2.260 de MRR</span></span></div><div style="display: flex; justify-content: space-between; gap: 12px; align-items: baseline; border-top: 1px solid #243A66; padding-top: 12px"><span style="font-size: 16px; color: #F2F4F7; font-weight: 600">Redução<br><span style="font-size: 14px; color: #A3B4D1; font-weight: 400">continua pagando menos</span></span><span style="text-align: right"><b style="font-size: 24px; color: #F2F4F7">3</b><br><span style="font-size: 14px; color: #A3B4D1">R$ 1.240 de MRR</span></span></div>
+        </div><div style="grid-column: span 3; background: #15264A; border: 1px solid #243A66; border-radius: 16px; padding: 24px; display: flex; flex-direction: column; gap: 12px; box-sizing: border-box">
+          <span style="font-size: 13px; font-weight: 700; letter-spacing: 0.06em; color: #A3B4D1">MOTIVOS DOS PEDIDOS</span>
+          <div style="display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.2fr) 30px; gap: 12px; align-items: center; font-size: 15px">
+              <span style="color: #D5DAE1">Não vê valor <span style="font-size: 12px; font-weight: 700; color: #FBBF24">Evitável</span></span>
+              <div style="height: 12px; border-radius: 99px; background: rgba(255,255,255,0.08)"><div style="height: 12px; border-radius: 99px; background: #F59E0B; width: 100%"></div></div>
+              <b style="text-align: right; color: #F2F4F7">2</b>
+            </div><div style="display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.2fr) 30px; gap: 12px; align-items: center; font-size: 15px">
+              <span style="color: #D5DAE1">Sem orçamento agora <span style="font-size: 12px; font-weight: 700; color: #FBBF24">Evitável</span></span>
+              <div style="height: 12px; border-radius: 99px; background: rgba(255,255,255,0.08)"><div style="height: 12px; border-radius: 99px; background: #F59E0B; width: 100%"></div></div>
+              <b style="text-align: right; color: #F2F4F7">2</b>
+            </div><div style="display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.2fr) 30px; gap: 12px; align-items: center; font-size: 15px">
+              <span style="color: #D5DAE1">Preço acima da concorrência <span style="font-size: 12px; font-weight: 700; color: #FBBF24">Evitável</span></span>
+              <div style="height: 12px; border-radius: 99px; background: rgba(255,255,255,0.08)"><div style="height: 12px; border-radius: 99px; background: #F59E0B; width: 50%"></div></div>
+              <b style="text-align: right; color: #F2F4F7">1</b>
+            </div><div style="display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.2fr) 30px; gap: 12px; align-items: center; font-size: 15px">
+              <span style="color: #D5DAE1">Qualidade das ligações <span style="font-size: 12px; font-weight: 700; color: #FBBF24">Evitável</span></span>
+              <div style="height: 12px; border-radius: 99px; background: rgba(255,255,255,0.08)"><div style="height: 12px; border-radius: 99px; background: #F59E0B; width: 50%"></div></div>
+              <b style="text-align: right; color: #F2F4F7">1</b>
+            </div><div style="display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.2fr) 30px; gap: 12px; align-items: center; font-size: 15px">
+              <span style="color: #D5DAE1">Uso abaixo do contratado <span style="font-size: 12px; font-weight: 700; color: #FBBF24">Evitável</span></span>
+              <div style="height: 12px; border-radius: 99px; background: rgba(255,255,255,0.08)"><div style="height: 12px; border-radius: 99px; background: #F59E0B; width: 50%"></div></div>
+              <b style="text-align: right; color: #F2F4F7">1</b>
+            </div><div style="display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.2fr) 30px; gap: 12px; align-items: center; font-size: 15px">
+              <span style="color: #D5DAE1">Unidade encerrada <span style="font-size: 12px; font-weight: 700; color: #A3B4D1">Inevitável</span></span>
+              <div style="height: 12px; border-radius: 99px; background: rgba(255,255,255,0.08)"><div style="height: 12px; border-radius: 99px; background: #6B7280; width: 50%"></div></div>
+              <b style="text-align: right; color: #F2F4F7">1</b>
+            </div>
+          <span style="font-size: 14px; color: #A3B4D1">7 de 8 pedidos tinham motivo evitável.</span>
+        </div>
+      </div>
+    </section>
+    <section style="display: flex; flex-direction: column; gap: 16px">
+      <div style="display: flex; align-items: center; gap: 10px"><span style="color: #0EA5E9; display: grid"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 21h18M5 21V9l7-5 7 5v12"></path><path d="M9 21v-6h6v6"></path></svg></span><h2 style="margin: 0; font-size: 24px; font-weight: 800; color: #F2F4F7">Base</h2></div>
+      <div style="display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 16px">
+        <div style="grid-column: span 2; background: #15264A; border: 1px solid #243A66; border-radius: 16px; padding: 24px; display: flex; flex-direction: column; gap: 10px; min-height: 210px; box-sizing: border-box">
+          <div style="display: flex; justify-content: space-between; align-items: flex-start; gap: 10px">
+            <span style="font-size: 13px; font-weight: 700; letter-spacing: 0.06em; color: #A3B4D1; padding-top: 8px">MRR DA BASE</span>
+            <span style="flex: none; width: 46px; height: 46px; border-radius: 10px; background: rgba(14,165,233,0.14); border: 1px solid #0EA5E933; display: grid; place-items: center; color: #0EA5E9"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 21h18M5 21V9l7-5 7 5v12"></path><path d="M9 21v-6h6v6"></path></svg></span>
+          </div>
+          <div style="margin-top: auto; display: flex; flex-direction: column; gap: 8px">
+            <div style="display: flex; align-items: center; gap: 12px; flex-wrap: wrap"><span style="font-size: 38px; font-weight: 800; letter-spacing: -1px; line-height: 1; color: #F2F4F7">R$ [valor]</span></div>
+            <span style="font-size: 15px; color: #A3B4D1; line-height: 1.4">receita recorrente total dos contratos diretos</span>
+          </div>
+        </div><div style="grid-column: span 2; background: #15264A; border: 1px solid #243A66; border-radius: 16px; padding: 24px; display: flex; flex-direction: column; gap: 10px; min-height: 210px; box-sizing: border-box">
+          <div style="display: flex; justify-content: space-between; align-items: flex-start; gap: 10px">
+            <span style="font-size: 13px; font-weight: 700; letter-spacing: 0.06em; color: #A3B4D1; padding-top: 8px">PRODUTOS POR FRANQUIA</span>
+            <span style="flex: none; width: 46px; height: 46px; border-radius: 10px; background: rgba(167,139,250,0.14); border: 1px solid #A78BFA33; display: grid; place-items: center; color: #A78BFA"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="8" height="8" rx="1"></rect><rect x="13" y="3" width="8" height="8" rx="1"></rect><rect x="3" y="13" width="8" height="8" rx="1"></rect><rect x="13" y="13" width="8" height="8" rx="1"></rect></svg></span>
+          </div>
+          <div style="margin-top: auto; display: flex; flex-direction: column; gap: 8px">
+            <div style="display: flex; align-items: center; gap: 12px; flex-wrap: wrap"><span style="font-size: 38px; font-weight: 800; letter-spacing: -1px; line-height: 1; color: #F2F4F7">2,1</span><span style="display: inline-flex; align-items: center; gap: 4px; padding: 3px 9px; border-radius: 7px; background: rgba(34,197,94,0.14); color: #4ADE80; font-size: 14px; font-weight: 700">▲ 0,1</span></div>
+            <span style="font-size: 15px; color: #A3B4D1; line-height: 1.4">média de produtos contratados diretamente</span>
+          </div>
+        </div><div style="grid-column: span 2; background: #15264A; border: 1px solid #243A66; border-radius: 16px; padding: 24px; display: flex; flex-direction: column; gap: 10px; min-height: 210px; box-sizing: border-box">
+          <div style="display: flex; justify-content: space-between; align-items: flex-start; gap: 10px">
+            <span style="font-size: 13px; font-weight: 700; letter-spacing: 0.06em; color: #A3B4D1; padding-top: 8px">TEMPO DE IMPLANTAÇÃO</span>
+            <span style="flex: none; width: 46px; height: 46px; border-radius: 10px; background: rgba(245,158,11,0.14); border: 1px solid #F59E0B33; display: grid; place-items: center; color: #F59E0B"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"></circle><path d="M12 7v5l3 2"></path></svg></span>
+          </div>
+          <div style="margin-top: auto; display: flex; flex-direction: column; gap: 8px">
+            <div style="display: flex; align-items: center; gap: 12px; flex-wrap: wrap"><span style="font-size: 38px; font-weight: 800; letter-spacing: -1px; line-height: 1; color: #F2F4F7">19 dias</span><span style="display: inline-flex; align-items: center; gap: 4px; padding: 3px 9px; border-radius: 7px; background: rgba(239,68,68,0.16); color: #F87171; font-size: 14px; font-weight: 700">▲ 4 dias</span></div>
+            <span style="font-size: 15px; color: #A3B4D1; line-height: 1.4">do contrato assinado ao produto rodando</span>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section style="display: flex; flex-direction: column; gap: 16px">
+      <div style="display: flex; align-items: center; gap: 10px"><span style="color: #0EA5E9; display: grid"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10z"></path></svg></span><h2 style="margin: 0; font-size: 24px; font-weight: 800; color: #F2F4F7">Clientes</h2><a href="Saude.dc.html" style="margin-left: auto; font-size: 14px; font-weight: 600; color: #38BDF8">Ver detalhes</a></div>
+      <div style="display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 16px">
+        <div style="grid-column: span 1; background: #15264A; border: 1px solid #243A66; border-radius: 16px; padding: 24px; display: flex; flex-direction: column; gap: 10px; min-height: 210px; box-sizing: border-box">
+          <div style="display: flex; justify-content: space-between; align-items: flex-start; gap: 10px">
+            <span style="font-size: 13px; font-weight: 700; letter-spacing: 0.06em; color: #A3B4D1; padding-top: 8px">BASE SAUDÁVEL</span>
+            <span style="flex: none; width: 46px; height: 46px; border-radius: 10px; background: rgba(34,197,94,0.14); border: 1px solid #22C55E33; display: grid; place-items: center; color: #22C55E"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10z"></path></svg></span>
+          </div>
+          <div style="margin-top: auto; display: flex; flex-direction: column; gap: 8px">
+            <span style="font-size: 38px; font-weight: 800; letter-spacing: -1px; line-height: 1; color: #F2F4F7">61%</span><div><span style="display: inline-flex; align-items: center; gap: 4px; padding: 3px 9px; border-radius: 7px; background: rgba(34,197,94,0.14); color: #4ADE80; font-size: 14px; font-weight: 700">▲ 3,0 p.p.</span></div>
+            <span style="font-size: 15px; color: #A3B4D1; line-height: 1.4">247 de 406 franquias</span>
+          </div>
+        </div><div style="grid-column: span 1; background: #15264A; border: 1px solid #243A66; border-radius: 16px; padding: 24px; display: flex; flex-direction: column; gap: 10px; min-height: 210px; box-sizing: border-box">
+          <div style="display: flex; justify-content: space-between; align-items: flex-start; gap: 10px">
+            <span style="font-size: 13px; font-weight: 700; letter-spacing: 0.06em; color: #A3B4D1; padding-top: 8px">EM RISCO</span>
+            <span style="flex: none; width: 46px; height: 46px; border-radius: 10px; background: rgba(239,68,68,0.14); border: 1px solid #EF444433; display: grid; place-items: center; color: #EF4444"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l9.5 17h-19z"></path><path d="M12 10v4M12 17v.5"></path></svg></span>
+          </div>
+          <div style="margin-top: auto; display: flex; flex-direction: column; gap: 8px">
+            <span style="font-size: 38px; font-weight: 800; letter-spacing: -1px; line-height: 1; color: #F2F4F7">59</span><div><span style="display: inline-flex; align-items: center; gap: 4px; padding: 3px 9px; border-radius: 7px; background: rgba(239,68,68,0.16); color: #F87171; font-size: 14px; font-weight: 700">▲ 5,4%</span></div>
+            <span style="font-size: 15px; color: #A3B4D1; line-height: 1.4">14,5% das franquias</span>
+          </div>
+        </div><div style="grid-column: span 1; background: #15264A; border: 1px solid #243A66; border-radius: 16px; padding: 24px; display: flex; flex-direction: column; gap: 10px; min-height: 210px; box-sizing: border-box">
+          <div style="display: flex; justify-content: space-between; align-items: flex-start; gap: 10px">
+            <span style="font-size: 13px; font-weight: 700; letter-spacing: 0.06em; color: #A3B4D1; padding-top: 8px">NOTA MÉDIA</span>
+            <span style="flex: none; width: 46px; height: 46px; border-radius: 10px; background: rgba(245,158,11,0.14); border: 1px solid #F59E0B33; display: grid; place-items: center; color: #F59E0B"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l2.7 5.6 6.1.9-4.4 4.3 1 6.1L12 17l-5.4 2.9 1-6.1-4.4-4.3 6.1-.9z"></path></svg></span>
+          </div>
+          <div style="margin-top: auto; display: flex; flex-direction: column; gap: 8px">
+            <span style="font-size: 38px; font-weight: 800; letter-spacing: -1px; line-height: 1; color: #F2F4F7">7,9</span><div><span style="display: inline-flex; align-items: center; gap: 4px; padding: 3px 9px; border-radius: 7px; background: rgba(34,197,94,0.14); color: #4ADE80; font-size: 14px; font-weight: 700">▲ 0,2</span></div>
+            <span style="font-size: 15px; color: #A3B4D1; line-height: 1.4">meta 8, de 163 reuniões avaliadas</span>
+          </div>
+        </div><div style="grid-column: span 1; background: #15264A; border: 1px solid #243A66; border-radius: 16px; padding: 24px; display: flex; flex-direction: column; gap: 10px; min-height: 210px; box-sizing: border-box">
+          <div style="display: flex; justify-content: space-between; align-items: flex-start; gap: 10px">
+            <span style="font-size: 13px; font-weight: 700; letter-spacing: 0.06em; color: #A3B4D1; padding-top: 8px">DETRATORAS</span>
+            <span style="flex: none; width: 46px; height: 46px; border-radius: 10px; background: rgba(239,68,68,0.14); border: 1px solid #EF444433; display: grid; place-items: center; color: #EF4444"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 10l5 5 5-5"></path><circle cx="12" cy="12" r="9"></circle></svg></span>
+          </div>
+          <div style="margin-top: auto; display: flex; flex-direction: column; gap: 8px">
+            <span style="font-size: 38px; font-weight: 800; letter-spacing: -1px; line-height: 1; color: #F2F4F7">12</span><div><span style="display: inline-flex; align-items: center; gap: 4px; padding: 3px 9px; border-radius: 7px; background: rgba(34,197,94,0.14); color: #4ADE80; font-size: 14px; font-weight: 700">▼ 14,3%</span></div>
+            <span style="font-size: 15px; color: #A3B4D1; line-height: 1.4">franquias com nota de 0 a 6</span>
+          </div>
+        </div><div style="grid-column: span 1; background: #15264A; border: 1px solid #243A66; border-radius: 16px; padding: 24px; display: flex; flex-direction: column; gap: 10px; min-height: 210px; box-sizing: border-box">
+          <div style="display: flex; justify-content: space-between; align-items: flex-start; gap: 10px">
+            <span style="font-size: 13px; font-weight: 700; letter-spacing: 0.06em; color: #A3B4D1; padding-top: 8px">PROMOTORAS</span>
+            <span style="flex: none; width: 46px; height: 46px; border-radius: 10px; background: rgba(34,197,94,0.14); border: 1px solid #22C55E33; display: grid; place-items: center; color: #22C55E"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 10h.01M17 10h.01M7.5 15.5c1.2 1.3 2.8 2 4.5 2s3.3-.7 4.5-2"></path><circle cx="12" cy="12" r="9"></circle></svg></span>
+          </div>
+          <div style="margin-top: auto; display: flex; flex-direction: column; gap: 8px">
+            <span style="font-size: 38px; font-weight: 800; letter-spacing: -1px; line-height: 1; color: #F2F4F7">38</span><div><span style="display: inline-flex; align-items: center; gap: 4px; padding: 3px 9px; border-radius: 7px; background: rgba(34,197,94,0.14); color: #4ADE80; font-size: 14px; font-weight: 700">▲ 8,6%</span></div>
+            <span style="font-size: 15px; color: #A3B4D1; line-height: 1.4">nota 9 ou 10 nas últimas três reuniões</span>
+          </div>
+        </div><div style="grid-column: span 1; background: #15264A; border: 1px solid #243A66; border-radius: 16px; padding: 24px; display: flex; flex-direction: column; gap: 10px; min-height: 210px; box-sizing: border-box">
+          <div style="display: flex; justify-content: space-between; align-items: flex-start; gap: 10px">
+            <span style="font-size: 13px; font-weight: 700; letter-spacing: 0.06em; color: #A3B4D1; padding-top: 8px">SEM REUNIÃO HÁ MAIS DE 45 DIAS</span>
+            <span style="flex: none; width: 46px; height: 46px; border-radius: 10px; background: rgba(245,158,11,0.14); border: 1px solid #F59E0B33; display: grid; place-items: center; color: #F59E0B"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"></circle><path d="M12 7v5l3 2"></path></svg></span>
+          </div>
+          <div style="margin-top: auto; display: flex; flex-direction: column; gap: 8px">
+            <span style="font-size: 38px; font-weight: 800; letter-spacing: -1px; line-height: 1; color: #F2F4F7">31</span><div><span style="display: inline-flex; align-items: center; gap: 4px; padding: 3px 9px; border-radius: 7px; background: rgba(34,197,94,0.14); color: #4ADE80; font-size: 14px; font-weight: 700">▼ 11,4%</span></div>
+            <span style="font-size: 15px; color: #A3B4D1; line-height: 1.4">7,6% das franquias</span>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section style="display: flex; flex-direction: column; gap: 16px">
+      <div style="display: flex; align-items: center; gap: 10px"><span style="color: #0EA5E9; display: grid"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="2"></rect><path d="M3 10h18M8 3v4M16 3v4"></path></svg></span><h2 style="margin: 0; font-size: 24px; font-weight: 800; color: #F2F4F7">Relacionamento</h2><a href="Metas.dc.html" style="margin-left: auto; font-size: 14px; font-weight: 600; color: #38BDF8">Ver detalhes</a></div>
+      <div style="display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 16px">
+        <div style="grid-column: span 2; background: #15264A; border: 1px solid #243A66; border-radius: 16px; padding: 24px; display: flex; flex-direction: column; gap: 10px; min-height: 210px; box-sizing: border-box">
+          <div style="display: flex; justify-content: space-between; align-items: flex-start; gap: 10px">
+            <span style="font-size: 13px; font-weight: 700; letter-spacing: 0.06em; color: #A3B4D1; padding-top: 8px">REUNIÕES GRAVADAS</span>
+            <span style="flex: none; width: 46px; height: 46px; border-radius: 10px; background: rgba(14,165,233,0.14); border: 1px solid #0EA5E933; display: grid; place-items: center; color: #0EA5E9"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="2"></rect><path d="M3 10h18M8 3v4M16 3v4"></path></svg></span>
+          </div>
+          <div style="margin-top: auto; display: flex; flex-direction: column; gap: 8px">
+            <div style="display: flex; align-items: center; gap: 12px; flex-wrap: wrap"><span style="font-size: 38px; font-weight: 800; letter-spacing: -1px; line-height: 1; color: #F2F4F7">156</span><span style="display: inline-flex; align-items: center; gap: 4px; padding: 3px 9px; border-radius: 7px; background: rgba(34,197,94,0.14); color: #4ADE80; font-size: 14px; font-weight: 700">▲ 12,2%</span></div>
+            <span style="font-size: 15px; color: #A3B4D1; line-height: 1.4">franquias com reunião no mês</span>
+          </div>
+        </div><div style="grid-column: span 2; background: #15264A; border: 1px solid #243A66; border-radius: 16px; padding: 24px; display: flex; flex-direction: column; gap: 10px; min-height: 210px; box-sizing: border-box">
+          <div style="display: flex; justify-content: space-between; align-items: flex-start; gap: 10px">
+            <span style="font-size: 13px; font-weight: 700; letter-spacing: 0.06em; color: #A3B4D1; padding-top: 8px">CARTEIRA CONTATADA</span>
+            <span style="flex: none; width: 46px; height: 46px; border-radius: 10px; background: rgba(245,158,11,0.14); border: 1px solid #F59E0B33; display: grid; place-items: center; color: #F59E0B"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="12" rx="2"></rect><path d="M8 20h8M12 16v4"></path></svg></span>
+          </div>
+          <div style="margin-top: auto; display: flex; flex-direction: column; gap: 8px">
+            <div style="display: flex; align-items: center; gap: 12px; flex-wrap: wrap"><span style="font-size: 38px; font-weight: 800; letter-spacing: -1px; line-height: 1; color: #F2F4F7">38%</span><span style="display: inline-flex; align-items: center; gap: 4px; padding: 3px 9px; border-radius: 7px; background: rgba(255,255,255,0.07); color: #C3C8D0; font-size: 14px; font-weight: 700">= 0,0%</span></div>
+            <span style="font-size: 15px; color: #A3B4D1; line-height: 1.4">meta de 70% até 30/11; no ritmo, 44%</span>
+          </div>
+        </div><div style="grid-column: span 2; background: #15264A; border: 1px solid #243A66; border-radius: 16px; padding: 24px; display: flex; flex-direction: column; gap: 10px; min-height: 210px; box-sizing: border-box">
+          <div style="display: flex; justify-content: space-between; align-items: flex-start; gap: 10px">
+            <span style="font-size: 13px; font-weight: 700; letter-spacing: 0.06em; color: #A3B4D1; padding-top: 8px">NÃO COMPARECIMENTOS</span>
+            <span style="flex: none; width: 46px; height: 46px; border-radius: 10px; background: rgba(239,68,68,0.14); border: 1px solid #EF444433; display: grid; place-items: center; color: #EF4444"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"></circle><path d="M9 9l6 6M15 9l-6 6"></path></svg></span>
+          </div>
+          <div style="margin-top: auto; display: flex; flex-direction: column; gap: 8px">
+            <div style="display: flex; align-items: center; gap: 12px; flex-wrap: wrap"><span style="font-size: 38px; font-weight: 800; letter-spacing: -1px; line-height: 1; color: #F2F4F7">21</span><span style="display: inline-flex; align-items: center; gap: 4px; padding: 3px 9px; border-radius: 7px; background: rgba(34,197,94,0.14); color: #4ADE80; font-size: 14px; font-weight: 700">▼ 8,7%</span></div>
+            <span style="font-size: 15px; color: #A3B4D1; line-height: 1.4">12% das reuniões agendadas</span>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section style="display: flex; flex-direction: column; gap: 16px">
+      <div style="display: flex; align-items: center; gap: 10px"><span style="color: #0EA5E9; display: grid"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 4h16v16H4z"></path><path d="M8 8v8M11 8v8M14 8v8M17 8v8"></path></svg></span><h2 style="margin: 0; font-size: 24px; font-weight: 800; color: #F2F4F7">Recebimentos</h2><a href="Inadimplencia.dc.html" style="margin-left: auto; font-size: 14px; font-weight: 600; color: #38BDF8">Ver detalhes</a></div>
+      <div style="display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 16px">
+        <div style="grid-column: span 2; background: #15264A; border: 1px solid #243A66; border-radius: 16px; padding: 24px; display: flex; flex-direction: column; gap: 10px; min-height: 210px; box-sizing: border-box">
+          <div style="display: flex; justify-content: space-between; align-items: flex-start; gap: 10px">
+            <span style="font-size: 13px; font-weight: 700; letter-spacing: 0.06em; color: #A3B4D1; padding-top: 8px">NOTIFICADAS PELO FINANCEIRO</span>
+            <span style="flex: none; width: 46px; height: 46px; border-radius: 10px; background: rgba(245,158,11,0.14); border: 1px solid #F59E0B33; display: grid; place-items: center; color: #F59E0B"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 4h16v16H4z"></path><path d="M8 8v8M11 8v8M14 8v8M17 8v8"></path></svg></span>
+          </div>
+          <div style="margin-top: auto; display: flex; flex-direction: column; gap: 8px">
+            <div style="display: flex; align-items: center; gap: 12px; flex-wrap: wrap"><span style="font-size: 38px; font-weight: 800; letter-spacing: -1px; line-height: 1; color: #F2F4F7">11</span><span style="display: inline-flex; align-items: center; gap: 4px; padding: 3px 9px; border-radius: 7px; background: rgba(34,197,94,0.14); color: #4ADE80; font-size: 14px; font-weight: 700">▼ 21,4%</span></div>
+            <span style="font-size: 15px; color: #A3B4D1; line-height: 1.4">franquias com boleto da Atendas em aberto</span>
+          </div>
+        </div><div style="grid-column: span 2; background: #15264A; border: 1px solid #243A66; border-radius: 16px; padding: 24px; display: flex; flex-direction: column; gap: 10px; min-height: 210px; box-sizing: border-box">
+          <div style="display: flex; justify-content: space-between; align-items: flex-start; gap: 10px">
+            <span style="font-size: 13px; font-weight: 700; letter-spacing: 0.06em; color: #A3B4D1; padding-top: 8px">REGULARIZADAS</span>
+            <span style="flex: none; width: 46px; height: 46px; border-radius: 10px; background: rgba(34,197,94,0.14); border: 1px solid #22C55E33; display: grid; place-items: center; color: #22C55E"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"></circle><path d="M8 12l3 3 5-6"></path></svg></span>
+          </div>
+          <div style="margin-top: auto; display: flex; flex-direction: column; gap: 8px">
+            <div style="display: flex; align-items: center; gap: 12px; flex-wrap: wrap"><span style="font-size: 38px; font-weight: 800; letter-spacing: -1px; line-height: 1; color: #F2F4F7">6</span><span style="display: inline-flex; align-items: center; gap: 4px; padding: 3px 9px; border-radius: 7px; background: rgba(34,197,94,0.14); color: #4ADE80; font-size: 14px; font-weight: 700">▲ 20,0%</span></div>
+            <span style="font-size: 15px; color: #A3B4D1; line-height: 1.4">55% das notificadas, meta de 70%</span>
+          </div>
+        </div><div style="grid-column: span 2; background: #15264A; border: 1px solid #243A66; border-radius: 16px; padding: 24px; display: flex; flex-direction: column; gap: 10px; min-height: 210px; box-sizing: border-box">
+          <div style="display: flex; justify-content: space-between; align-items: flex-start; gap: 10px">
+            <span style="font-size: 13px; font-weight: 700; letter-spacing: 0.06em; color: #A3B4D1; padding-top: 8px">EM ACORDO</span>
+            <span style="flex: none; width: 46px; height: 46px; border-radius: 10px; background: rgba(14,165,233,0.14); border: 1px solid #0EA5E933; display: grid; place-items: center; color: #0EA5E9"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 12l4-4 5 2 5-2 4 4-6 6-3-2-3 2z"></path></svg></span>
+          </div>
+          <div style="margin-top: auto; display: flex; flex-direction: column; gap: 8px">
+            <div style="display: flex; align-items: center; gap: 12px; flex-wrap: wrap"><span style="font-size: 38px; font-weight: 800; letter-spacing: -1px; line-height: 1; color: #F2F4F7">2</span><span style="display: inline-flex; align-items: center; gap: 4px; padding: 3px 9px; border-radius: 7px; background: rgba(255,255,255,0.07); color: #C3C8D0; font-size: 14px; font-weight: 700">= 0,0%</span></div>
+            <span style="font-size: 15px; color: #A3B4D1; line-height: 1.4">com data de pagamento combinada</span>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section style="display: flex; flex-direction: column; gap: 16px">
+      <div style="display: flex; align-items: center; gap: 10px"><span style="color: #0EA5E9; display: grid"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 5h16v11H8l-4 4z"></path></svg></span><h2 style="margin: 0; font-size: 24px; font-weight: 800; color: #F2F4F7">Projetos</h2><a href="Projetos.dc.html" style="margin-left: auto; font-size: 14px; font-weight: 600; color: #38BDF8">Ver detalhes</a></div>
+      <div style="display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 16px">
+        <div style="grid-column: span 2; background: #15264A; border: 1px solid #243A66; border-radius: 16px; padding: 24px; display: flex; flex-direction: column; gap: 10px; min-height: 210px; box-sizing: border-box">
+          <div style="display: flex; justify-content: space-between; align-items: flex-start; gap: 10px">
+            <span style="font-size: 13px; font-weight: 700; letter-spacing: 0.06em; color: #A3B4D1; padding-top: 8px">POC RCS</span>
+            <span style="flex: none; width: 46px; height: 46px; border-radius: 10px; background: rgba(167,139,250,0.14); border: 1px solid #A78BFA33; display: grid; place-items: center; color: #A78BFA"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 5h16v11H8l-4 4z"></path></svg></span>
+          </div>
+          <div style="margin-top: auto; display: flex; flex-direction: column; gap: 8px">
+            <div style="display: flex; align-items: center; gap: 12px; flex-wrap: wrap"><span style="font-size: 38px; font-weight: 800; letter-spacing: -1px; line-height: 1; color: #F2F4F7">4</span><span style="display: inline-flex; align-items: center; gap: 4px; padding: 3px 9px; border-radius: 7px; background: rgba(34,197,94,0.14); color: #4ADE80; font-size: 14px; font-weight: 700">▲ 4</span></div>
+            <span style="font-size: 15px; color: #A3B4D1; line-height: 1.4">franquias em criação do agente; resultados a partir de dezembro</span>
+          </div>
+        </div><div style="grid-column: span 2; background: #15264A; border: 1px solid #243A66; border-radius: 16px; padding: 24px; display: flex; flex-direction: column; gap: 10px; min-height: 210px; box-sizing: border-box">
+          <div style="display: flex; justify-content: space-between; align-items: flex-start; gap: 10px">
+            <span style="font-size: 13px; font-weight: 700; letter-spacing: 0.06em; color: #A3B4D1; padding-top: 8px">MINHA ATENDAS</span>
+            <span style="flex: none; width: 46px; height: 46px; border-radius: 10px; background: rgba(14,165,233,0.14); border: 1px solid #0EA5E933; display: grid; place-items: center; color: #0EA5E9"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="12" rx="2"></rect><path d="M8 20h8M12 16v4"></path></svg></span>
+          </div>
+          <div style="margin-top: auto; display: flex; flex-direction: column; gap: 8px">
+            <div style="display: flex; align-items: center; gap: 12px; flex-wrap: wrap"><span style="font-size: 38px; font-weight: 800; letter-spacing: -1px; line-height: 1; color: #F2F4F7">42%</span><span style="display: inline-flex; align-items: center; gap: 4px; padding: 3px 9px; border-radius: 7px; background: rgba(34,197,94,0.14); color: #4ADE80; font-size: 14px; font-weight: 700">▲ 9,0 p.p.</span></div>
+            <span style="font-size: 15px; color: #A3B4D1; line-height: 1.4">das franquias já acessaram a área de faturas</span>
+          </div>
+        </div><div style="grid-column: span 2; background: #15264A; border: 1px solid #243A66; border-radius: 16px; padding: 24px; display: flex; flex-direction: column; gap: 10px; min-height: 210px; box-sizing: border-box">
+          <div style="display: flex; justify-content: space-between; align-items: flex-start; gap: 10px">
+            <span style="font-size: 13px; font-weight: 700; letter-spacing: 0.06em; color: #A3B4D1; padding-top: 8px">KYC</span>
+            <span style="flex: none; width: 46px; height: 46px; border-radius: 10px; background: rgba(14,165,233,0.14); border: 1px solid #0EA5E933; display: grid; place-items: center; color: #0EA5E9"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z"></path></svg></span>
+          </div>
+          <div style="margin-top: auto; display: flex; flex-direction: column; gap: 8px">
+            <span style="font-size: 38px; font-weight: 800; letter-spacing: -1px; line-height: 1; color: #F2F4F7">Ver visão executiva</span><div></div>
+            <span style="font-size: 15px; color: #A3B4D1; line-height: 1.4">os números do KYC ficam no portal de Operações, sem repetir aqui</span>
+          </div>
+        </div>
+      </div>
+    </section>
+    </main>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":4000}}'>
+class Component extends DCLogic {
+  renderVals() { return {}; }
+}
+</script>
+</body>
+</html>
